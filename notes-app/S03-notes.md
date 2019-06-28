@@ -29,6 +29,23 @@ console.log(exportFunction)
 
 The `require` keyword also works for npm package. In this project structure the app.js file is consuming the `validator` package to do a validation over an string to check if is an URL.
 
+### [Nodemon](https://www.npmjs.com/package/nodemon)
+nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+
+To use the `nodemon` command as a replace of:
+
+```
+node app.js
+```
+
+we type:
+
+```
+nodemon app.js
+```
+
+Now the node session will open and every saved change in our project will be refresh thanks to the `nodemon` command.
+
 References
 -
 + [FileSystem official Docs](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html)
