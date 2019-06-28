@@ -27,6 +27,8 @@ const exportFunction = require('./x.js')
 console.log(exportFunction)
 ```
 
+The `require` keyword also works for npm package. In this project structure the app.js file is consuming the `validator` package to do a validation over an string to check if is an URL.
+
 References
 -
 + [FileSystem official Docs](https://nodejs.org/dist/latest-v10.x/docs/api/fs.html)
