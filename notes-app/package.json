@@ -9,6 +9,7 @@
   "author": "suabochica",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.4.2",
     "validator": "^11.0.0"
   }
 }
