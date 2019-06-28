@@ -1,0 +1,11 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "Node notes app using file system and command line interface.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "suabochica",
+  "license": "ISC"
+}
