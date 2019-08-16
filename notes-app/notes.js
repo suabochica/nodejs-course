@@ -1,5 +1,10 @@
-const getNotes = function () {
-  return 'Your notes with green background...'
-}
+const getNotes = function() {
+  return "Your notes with green background...";
+};
 
-module.exports = getNotes
+const addNote = function(title, body) {};
+
+module.exports = {
+  getNotes,
+  addNote
+};
