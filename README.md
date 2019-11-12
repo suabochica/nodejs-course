@@ -19,3 +19,36 @@ You’ll be building four projects:
 
 By the end, you’ll be able to take what you’ve learned and launch your own Node application.
 
+# Contents
+
+## Section 1: Welcome
+1. Welcome to the class
+2. Grab the PDF Guide
+
+## Section 2: Installing and exploring Node.js
+1. Intro: Installing and exploring Node.js
+2. Installing Node.js and Visual Studio Code
+3. What is Node.js?
+4. Why should I use Node.js?
+5. Your first Node.js script
+
+## Section 3: Node.js Module System (Notes App)
+1. Intro: Node.js Module System
+2. Importing Node.js Core Modules
+3. Importing your own files
+4. Importing `npm` modules
+5. Printing in colors
+6. Global `npm` modules and `nodemon`
+
+## Section 4: File System and Command Line Args (Notes App)
+1. Intro: File System and Command Line
+2. Getting input from users
+3. Argument parsing with `yars` part one
+4. Argument parsing with `yars` part two
+5. Storing data with JSON
+6. Adding a note
+7. Remove a note
+8. ES6 Aside: arrow functions
+9. Refactoring using arrow functions
+10. Listing notes
+11. Reading a note
