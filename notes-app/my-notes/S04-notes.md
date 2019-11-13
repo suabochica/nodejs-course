@@ -1,4 +1,17 @@
-# S04: File System and Command Line Args
+# Section 04: File System and Command Line Args
+
+## Index
+
+1. Intro: File System and Command Line
+2. Getting input from users
+3. Argument parsing with `yars` part one
+4. Argument parsing with `yars` part two
+5. Storing data with JSON
+6. Adding a note
+7. Remove a note
+8. ES6 Aside: arrow functions
+9. Refactoring using arrow functions
+10. Listing notes
 
 With node you con run the `node` command with some additional information. For example:
 
