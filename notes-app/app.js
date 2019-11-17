@@ -1,25 +1,61 @@
-/*
-const fs = require('fs')
+const yargs = require('yargs');
+const notes = require('./notes.js');
 
-fs.writeFileSync('notes.txt', 'My name is sergio')
-fs.appendFileSync('notes.txt', ' I live in Bogotá')
-*/
-const validator = require('validator')
-const chalk = require('chalk')
+// Customize yargs version
+yargs.version('1.1.0');
 
-const getNotes = require('./notes.js')
+// Create add command
+yargs.command({
+    command: 'add',
+    describe: 'Add a new note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demmandOption: true,
+            type: 'string',
+        },
+        body: {
+            describe: 'Note body',
+            demmandOption: true,
+            type: 'string',
 
-const msg = getNotes()
-const greenMsg = chalk.green.inverse.bold(msg);
+        }
+    },
+    handler: function(args) {
+        notes.addNote(args.title, args.body);
+    }
+});
 
-const command = process.argv[2]
+// Create remove command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demmandOption: true,
+            type: 'string',
+        },
+    },
+    handler: function(args) {
+        notes.removeNote(args.title);
+    }
+});
 
-console.log(process.argv);
-console.log(greenMsg)
-console.log(validator.isURL('https/mead.io'))
+// Create list command
+yargs.command({
+    command: 'list',
+    describe: 'List your notes',
+    handler: function() {
+        console.log('Listing out all notes');
+    }
+});
 
-if (command === 'add') {
-  console.log('Adding note!')
-} else if (command === 'remove') {
-  console.log('Removing note!')
-}
+// Create read command
+yargs.command({
+    command: 'read',
+    describe: 'Read a note',
+    handler: function() {
+        console.log('Reading a note');
+    }
+});

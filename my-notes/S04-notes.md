@@ -279,5 +279,24 @@ This command will create and the `notes.json` file with the next body:
 ```
 
 ## 7. Removing a Note
+To remove a note we will define three steps:
++ Setup the remove command option and function
++ Wire up the removeNote function
++ Use chalk to provide useful logs for remove
 
-// TODO
+### Setup the remove command option and function
+1. Setup the remove command to take a required "--title" option
+2. Create and export a removeNote function from note.js
+3. Call removeNote in remove command handler
+4. Have removeNote log the title of the note to ve removed
+5. Test your work using `node app.ks remove --title="some title"`
+
+### Wire up the removeNote function
+1. Load existing notes
+2. Use array filter method to remove the matching note (if any)
+3. Save te newly crated array
+4. Test your work with a title that exists and a title that does not exist
+
+### Use chalk to provide useful logs for remove
+1. If a note is removed, print "Note removed!" with a green background
+2. If no note is removed, print "No note found!" with a red background
