@@ -300,3 +300,63 @@ To remove a note we will define three steps:
 ### Use chalk to provide useful logs for remove
 1. If a note is removed, print "Note removed!" with a green background
 2. If no note is removed, print "No note found!" with a red background
+
+## 8. ES6 Aside: Arrow Functions
+Arrow functions come with a few great features, making them a nice alternative to the standard ES5 function.
+
+### Arrow functions
+Arrow functions offer up an alternative syntax from the standard ES5 function. The snippet below shows an example of a standard function and then an arrow function. While the syntax is obviously different, you still have the two important pieces, an arguments list and function body.
+
+```js
+// const square = function (x) {
+//  return x * x;
+//}
+
+const square = (x) => {
+  return x * x;
+}
+
+console.log(square(2)) // Print: 4
+```
+
+### Shorthand Syntax
+Arrow functions have optional shorthand syntax. This is useful when you have a function that immediately returns a value. The example below shows how this can be used.
+
+```js
+const squareAlt = (x) => x * x;
+
+console.log(squareAlt(2)) // Print: 4
+```
+
+Notice that two important things are missing from the functions definition.
+
+1. The curly braces wrapping the function body
+2. The `return` statement
+
+In place of both is the value to be returned. There is no need for an explicit return statement, as the value provide is implicitly returned.
+
+### This binding
+Arrow functions don't bind their own `this` value. Instead, the `this` value of the scope in which it was defined is accessible. This makes arrow functions bad candidates for methods, as `this` won't be a reference to the object the method is defined on.
+
+For methods, ES6 provides a new method definition syntax. You can see this in the definition of the `printGuestList` method below. That function is a standard function, just with a shorthand syntax which allows for the removal of the colon and the function keyword.
+
+Because arrow functions don't bind this, they work well for everything except methods. As shown below, the arrow function passed to `forEach` is able to access `this.name` correctly, as it is defined as an arrow function an doesn't have a this binding of its own. That code would not work if you swapped out the arrow functions for a standard function.
+
+```js
+ const event = {
+    name: 'Brithday Party',
+    guestList: ['Tino, Pibe, Tren'],
+    printGuestList() {
+        console.log('Guest list for ' + this.name);
+
+        this.guestList.forEach((guest) => {
+            console.log(guest + 'is attending' + this.name);
+        });
+    }
+}.printGuestList()
+
+event
+```
+
+### Links
++ [Arrow Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
