@@ -12,6 +12,7 @@
 8. ES6 Aside: arrow functions
 9. Refactoring using arrow functions
 10. Listing notes
+11. Reading a notes
 
 ## 1. Intro: File System and Command Line
 To create the notes-app we will learn to use the file system and command line arguments. Along the way, we will lear how to get input from the user, work with JSON and create a place to store user data.
@@ -360,3 +361,9 @@ event
 
 ### Links
 + [Arrow Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+## 9. Refactoring using arrow functions
+With the guides established in the the playground folder, now its time to integrate the arrow functions in the Node.js app.
+
+
+## 10. Listing Notes.
