@@ -367,3 +367,10 @@ With the guides established in the the playground folder, now its time to integr
 
 
 ## 10. Listing Notes.
+For listing note we should achieve the next task:
+
+1. Create and export listNotes from notes.json file
+   - "Your notes" using chalk
+   - Print note title for each note
+2. Call list notes from command handler
+3. Test your work
