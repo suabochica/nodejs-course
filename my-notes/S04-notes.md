@@ -346,7 +346,7 @@ Because arrow functions don't bind this, they work well for everything except me
 ```js
  const event = {
     name: 'Brithday Party',
-    guestList: ['Tino, Pibe, Tren'],
+    guestList: ['Roy, Bradley, Amstrong'],
     printGuestList() {
         console.log('Guest list for ' + this.name);
 
@@ -354,9 +354,9 @@ Because arrow functions don't bind this, they work well for everything except me
             console.log(guest + 'is attending' + this.name);
         });
     }
-}.printGuestList()
+}
 
-event
+event.printGuestList();
 ```
 
 ### Links
@@ -366,7 +366,7 @@ event
 With the guides established in the the playground folder, now its time to integrate the arrow functions in the Node.js app.
 
 
-## 10. Listing Notes.
+## 10. Listing Notes
 For listing note we should achieve the next task:
 
 1. Create and export listNotes from notes.json file
@@ -374,3 +374,35 @@ For listing note we should achieve the next task:
    - Print note title for each note
 2. Call list notes from command handler
 3. Test your work
+
+## 11. Reading Notes
+For read a note we will use the `find` method of the javascript Array object
+
+### Array Find method
+The `find` method allows you to find a single item in an array. It is similar to `filter`, though `find` returns a single element as opposed to an array of elements. `find` will stop its search through the array after finding the first match.
+
+The example below shows how find can be used to locate the user whose name is Edward Elric.
+
+```js
+const users = [
+  {
+    name: 'Edward Elric'
+    age: 15,
+  },
+  {
+    name: 'Alphonse Elric'
+    age: 14,
+  },
+  {
+    name: 'Roy Mustang'
+    age: 29,
+  },
+]
+
+const user = users.find((user) => user.name === "Edwar Elric")
+
+console.log(user) // Print the first object in the array
+```
+
+### Links
++ [Arrow find method](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
