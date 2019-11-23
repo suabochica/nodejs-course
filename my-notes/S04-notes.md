@@ -367,7 +367,7 @@ With the guides established in the the playground folder, now its time to integr
 
 
 ## 10. Listing Notes
-For listing note we should achieve the next task:
+For listing note we should achieve the next tasks:
 
 1. Create and export listNotes from notes.json file
    - "Your notes" using chalk
@@ -403,6 +403,15 @@ const user = users.find((user) => user.name === "Edwar Elric")
 
 console.log(user) // Print the first object in the array
 ```
+
+For achieve the read command we should accomplish the next tasks:
+1. Setup --title option for read command
+2. Create readNote in notes.js
+  + Search for note by title
+  + Find note and print title (styled) and body (plain)
+  + No note found? Print error in red
+3. Have the command handler call the functions
+4. Test your work by running a couple commands
 
 ### Links
 + [Arrow find method](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
