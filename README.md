@@ -52,3 +52,8 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 9. Refactoring using arrow functions
 10. Listing notes
 11. Reading a note
+
+## Section 5: Debugging Node.js
+1. Intro: Debugging Node.js
+2. Debugging Node.js
+3. Error Messages
