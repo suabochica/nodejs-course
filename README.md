@@ -43,8 +43,8 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 ## Section 4: File System and Command Line Args (Notes App)
 1. Intro: File System and Command Line
 2. Getting input from users
-3. Argument parsing with `yars` part one
-4. Argument parsing with `yars` part two
+3. Argument parsing with `yargs` part one
+4. Argument parsing with `yargs` part two
 5. Storing data with JSON
 6. Adding a note
 7. Remove a note
@@ -57,3 +57,20 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 1. Intro: Debugging Node.js
 2. Debugging Node.js
 3. Error Messages
+
+
+## Section 6: Asynchronous Node.js
+1. Intro: Asynchronous Node.js
+2. Asynchronous Basics
+3. Call Stack, Callback Queue, and Event Loop
+4. Making HTTP Requests
+5. Customizing HTTP Requests
+6. An HTTP Request Challenge
+7. Handling Errors
+8. The Callback Function
+9. The Callback Abstraction
+10. The Callback Abstraction Challenge
+11. Callback Chaining
+12. ES6 Aside: Object Property Shorthand and Destructuring
+13. Destructuring and Property Shorthand Challenge
+14. Bonus: HTTP Request Without a Library
