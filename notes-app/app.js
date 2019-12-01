@@ -11,12 +11,12 @@ yargs.command({
     builder: {
         title: {
             describe: 'Note title',
-            demmandOption: true,
+            demandOption: true,
             type: 'string',
         },
         body: {
             describe: 'Note body',
-            demmandOption: true,
+            demandOption: true,
             type: 'string',
 
         }
@@ -33,7 +33,7 @@ yargs.command({
     builder: {
         title: {
             describe: 'Note title',
-            demmandOption: true,
+            demandOption: true,
             type: 'string',
         },
     },
@@ -59,7 +59,7 @@ yargs.command({
     builder: {
         title: {
             describe: 'Note title',
-            demmandOption: true,
+            demandOption: true,
             type: 'string',
         }
     },
