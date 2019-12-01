@@ -19,11 +19,11 @@ yargs.command({
             demandOption: true,
             type: 'string',
 
-        }
+        },
     },
     handler(args) {
         notes.addNote(args.title, args.body);
-    }
+    },
 });
 
 // Create remove command
@@ -68,3 +68,5 @@ yargs.command({
         notes.readNote(args.title);
     }
 });
+
+yargs.parse()
