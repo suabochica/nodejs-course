@@ -56,6 +56,17 @@ The asynchronous and non-blocking nature makes Node.js ideal for backend develop
 + [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
 
 ## 3. Call Stack, Callback Queue, and Event Loop
+To understand the executions of asynchronous code in Node.js and V8 we have to put onstage the elements in the next image:
+
+![Async Node.js](https://github.com/suabochica/nodejs-course/tree/master/assets/async-node-js.jpg)
+
+-_Call stack:_ Stack that determines which function are being executed in the script.
+-_Callback queue:__Queue that determines which function will pass to the _call stack_.
+-_Event loop:_ Mechanism that continuously monitors the _callback queue_ and the _call stack_ to push the first callback function in line onto the _call stack_, as soon as the stack is empty. His job allow us asynchronous code in JavaScript.
+-_Node.js APIs:_ Queue that determines which function will pass to the _call stack_.
+
+## Links
++ [Mead Asynchronous JavaScript Slides](http://files.mead.io/87d2ba3ed9a4)
 
 ## 4. Making HTTP Requests
 
