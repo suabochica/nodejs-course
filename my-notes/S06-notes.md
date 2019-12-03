@@ -69,7 +69,38 @@ To understand the executions of asynchronous code in Node.js and V8 we have to p
 + [Mead Asynchronous JavaScript Slides](http://files.mead.io/87d2ba3ed9a4)
 
 ## 4. Making HTTP Requests
+It is time to make HTTP request from Node. The HTTP request wil enable your app to communicate with other APIs and servers to do a wide variety of things. Everything from fetching real-time weather data to sending text messages to users.
 
+### Making HTTP Requests
+There are several libraries that make it easy to fire off HTTP requests. A recommended one is `request`. You can install it using the command below:
+
+```
+npm i request
+```
+
+Before you use the library in your app, you will need to figure out which URL you are trying to fetch. To fetch real-time weather data, you will need to sign up for a free Dark Sky API account. You can do that [here](https://darksky.net/dev)
+
+Below is an example URL that responds with forecast data to San Francisco.
+
+https://api.darksky.net/forecast/9d1465c6f3bb7a6c71944bdd8548d026/37.8267,-122.4233
+
+If you visit that URL in the browser, you will see that the response is JSON data. This same data can be fetched by our Node.js app using the request library. The example below fetches data and prints the current temperature to the console.
+
+```js
+const request = require('request')
+
+const url = 'https://api.darksky.net/forecast/9d1465c6f3bb7a6c71944bdd8548d026/37.8267,- 122.4233'
+
+request({ url: url }, (error, response) => {
+    // Parse the response body from JSON string into JavaScript object
+    const data = JSON.parse(response.body)
+    // Will print the current temperature to the console
+    console.log(data.currently.temperature)
+})
+```
+
+### Links
++ [npm: request](https://www.npmjs.com/package/request)
 
 ## 5. Customizing HTTP Requests
 
