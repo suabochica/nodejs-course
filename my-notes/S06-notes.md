@@ -145,7 +145,38 @@ Goal: Print the latitude and longitude of Los Angeles.
 + [Mapbox](https://www.mapbox.com/)
 
 ## 7. Handling Errors
+There are plenty of reasons an HTTP request can fail. Maybe your machine does not have an internet connection, or maybe the URL is incorrect. Regardless of what goes wrong, it is necessary know how to handle error that occur when making HTTP requests. 
 
+### Handling Errors
+Handling errors is important. It would be nice if we could always provide the user with a forecast for their location, but that is not going to happen. When things fail, you should aim to provide users with clear an useful message in plain English to the know what is going on.
+
+The callback function you pass to `request` expects and `error` and `response` argument to be provided. Either `error` or `response` will have a value, never both. If `error` has a value, that means things went wrong. In this case `response` will be `undefined`, as there is no response. If `response` has a value, things went well. In this case, `error` will be `undefined` as no error occurred.
+
+The code below handle two different errors:
+1. If `error` exist, the program prints a message letting the user know it was unable to connect.
+2. If the error is in the inputs of the URL, the program prints a message instructing the user to try a different search.
+
+Lastly the coordinate are printed to the console if neither error occurs.
+
+```js
+const geocodeURL =
+'https://api.mapbox.com/geocoding/v5/mapbox.places/philadelphia.json?access_t
+oken=pk.eyJ1IjoiYW5kcmV3bWVhZDEiLCJhIjoiY2pvOG8ybW90MDFhazNxcnJ4OTYydzJlOSJ9.
+njY7HvaalLEVhEOIghPTlw&limit=1'
+
+request({url: geocodeURL, json: true}, (error, response) => {
+    if (error) {
+        console.log("Unable to connect with the geocode service");
+    } else if (response.body.features.lenght === 0) {
+        console.log("Unable to locate address. Please try with another search");
+    } else {
+        const latitude = response.body.features[0].center[1];
+        const longitude = response.body.features[0].center[0];
+
+        console.log(latitude, longitude);
+    }
+});
+```
 
 ## 8. The Callback Function
 
