@@ -103,7 +103,33 @@ request({ url: url }, (error, response) => {
 + [npm: request](https://www.npmjs.com/package/request)
 
 ## 5. Customizing HTTP Requests
+The request library offer us several options that we will review right now.
 
+### Request Options
+The request library comes with plenty of options to make your life easier. One is the `json`option. Set `json` to `true` and request will automatically parse the JSON into a JavaScript object for you.
+
+Also, you can explore the different properties that the darksky API offer for us. You can get the currently temperature, the precipitation probability and you can retrieve forecast minutely, hourly or monthly. Some settings are put from the URL after the `?` character to indicate parameters for the request.
+
+```js
+const request = require('request')
+const url = 'https://api.darksky.net/forecast/9d1465c6f3bb7a6c71944bdd8548d026/37.8267,- 122.4233'
+request({ url: url, json: true }, (error, response) => {
+    console.log(response.body.daily.data[0].summary + ' It is currently ' +
+response.body.currently.temperature + ' degrees out. There is a ' +
+response.body.currently.precipProbability + '% chance of rain.')
+})
+```
+
+the above program would print:
+
+```
+$ node app.js
+Mostly cloudly overnight. It is currently 51.49 degrees out. There is a 0% change of rain.
+```
+
+### Links
++ [npm request option](https://www.npmjs.com/package/request#requestoptions-callback)
++ [darksky docs](https://darksky.net/dev/docs)
 
 ## 6. An HTTP Request Challenge
 
