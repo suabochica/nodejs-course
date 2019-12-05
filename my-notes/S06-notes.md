@@ -132,7 +132,17 @@ Mostly cloudly overnight. It is currently 51.49 degrees out. There is a 0% chang
 + [darksky docs](https://darksky.net/dev/docs)
 
 ## 6. An HTTP Request Challenge
+It is challenge time. Here we will to integrate a geocoding API called Mapbox into the Node.js application.
 
+Goal: Print the latitude and longitude of Los Angeles.
+
+1. Fire off a new request to the URL explored in browser
+2. Have the request module parse it as JSON
+3. Print both, latitude and longitude to the terminal
+4. Test your work
+
+### Links
++ [Mapbox](https://www.mapbox.com/)
 
 ## 7. Handling Errors
 
