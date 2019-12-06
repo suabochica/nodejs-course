@@ -179,7 +179,34 @@ request({url: geocodeURL, json: true}, (error, response) => {
 ```
 
 ## 8. The Callback Function
+A callback function is a functions that is passed as an argument to another function. That is it. This is something you have used before, and now we will dive a bit deeper into how they work.
 
+### The Callback Function
+Imagine you have a `functionA` which gets passed as an argument to `functionB`. `functionB` will do some work an then call `functionA` at some point in the future.
+
+Callback functions are the core of asynchronous development. When you perform an asynchronous operation, you will provide Node with a callback function. Node will then call the callback when the asynchronous operation is complete. This is how you get access to the results of the asynchronous operation, whether it is an HTTP request for JSON data or a query to a database for a user's profile.
+
+The example below shows how you can use the callback pattern in your own code. The `geocode` function is set up to take in two arguments. The firs is the address to geocode. The second is the callback function to run when the geocoding process is complete. Below, we simulate this request by using `setTimeout` to make the process asynchronous.
+
+```js
+const geocode = (address, callback) => {
+    setTimeout(() => {
+        const data = {
+            latitude: 0,
+            longitude: 10,
+        };
+
+        callback(data);
+
+    }, 2000);
+}
+
+geocode('Shamballa', (data) => {
+    console.log(data);
+});
+```
+
+The call to `geocode` provides both arguments, the address and the callback function. Notice that the callback function is expecting a single parameter which it has called `data`. This is where the callback function will get access to the results of the asynchronous operation. You can see where `callback` is called with the data inside the `geocode` function.
 
 ## 9. The Callback Abstraction
 
