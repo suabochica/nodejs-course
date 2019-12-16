@@ -257,8 +257,23 @@ geocode('Boston', (error, data) => {
 
 ## 10. The Callback Abstraction Challenge
 
-## 11. Callback Chaining
+**Goal**: Create a reusable function for getting the forecast
 
+1. Setup the forecast `function` in the utils/forecast.js
+2. Require the function in app.js and call it as shown below
+3. The forecast function should have three potential calls to callback
+    - Low lever error, pass string for error
+    - Coordinate error, pass string for error
+    - Success, pass forecast string for data
+
+```js
+forecast(-75.088, 44.1545, (error, data) => {
+    console.log('error', error);
+    console.log('data', data);
+})
+```
+
+## 11. Callback Chaining
 
 ## 12. ES6 Aside: Object Property Shorthand and Destructuring
 

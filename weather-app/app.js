@@ -1,5 +1,9 @@
-const request = require('request');
 const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+
+
+/**
+ * Code commented because the request function was abstracted in the utils folder.
 
 const url = 'https://api.darksky.net/forecast/a80913de58bbd5b29fe12bc546cfe7e3/37.8267,-122.4233';
 
@@ -10,15 +14,21 @@ request({url: url, json: true}, (error, response) => {
     } else if (response.body.error) {
         console.log("Unable to find location");
     } else {
-        const summary = response.body.daily.data[0].summaryresponse.body.daily.data[0].summary;
+        const summary = response.body.daily.data[0].summary;
         const temperature = response.body.currently.temperature;
         const precipitationProbability = response.body.currently.precipProbability;
 
         console.log(summary + ' It is currently ' + temperature + ' degrees out. There is a ' + precipitationProbability + '% chance of rain');
     }
 });
+ */
 
-/**
+forecast(-75.7088, 44.1545, (error, data) => {
+    console.log('error', error);
+    console.log('data', data);
+})
+
+ /**
  * Code commented because was abstracted in the utils folder.
 const geocodeURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic291amlyb21hcGJveCIsImEiOiJjazN0NXZ0bHcwZWtlM21scXk2OTZraHJsIn0.dKnpqid-bYfPmrt2PW-XWg";
 
@@ -36,7 +46,7 @@ request({url: geocodeURL, json: true}, (error, response) => {
 });
 */
 
-geocode('', (error, data) => {
+geocode('Boston', (error, data) => {
     console.log('error', error);
     console.log('data', data);
 })
