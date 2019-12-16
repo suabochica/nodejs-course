@@ -301,6 +301,64 @@ geocode(address, (error, data) => {
 First up, is the call to `geocode`. The call to `geocode` provides an address and a callback function as it did before. It is the code inside the callback function that looks a bit different. The callback function call `forecast`. This means that forecast won't get called until after `geocode` is complete. The latitude and longitude from the geocoding operation is also provided as the input for the `forecast` function call.
 
 ## 12. ES6 Aside: Object Property Shorthand and Destructuring
+ES6 has done wonders making JavaScript easier to use. We will explore a couple of features that make it easier work with objects.
+
+### Property Shorthand
+The property shorthand makes it easier to define properties when creating a new object. It provides a shortcut for defining a property whose value comes from a variable of the same name. You can see this in the example below where a `user` object is created. The `name` property gets its value from a variable also called `name`.
+
+```js
+const name = 'Edward';
+const userAge = 16;
+
+const user = { 
+    name,
+    age: userAge,
+    location: 'Amestrian'
+};
+
+console.log('user', user);
+```
+
+### Object Destructuring
+Object destructuring gives you a syntax for pulling properties off of objects and into standalone variables. This is useful whe working with the same object properties throughout your code. Instead of writing `user.name` a dozen times, you could destructure the property into a `name` variable. Check the next example:
+
+```js
+const user = {
+    name: 'Edward',
+    age: 16,
+    location: 'Amestrian'
+}
+
+// The line below uses destructuring
+const { age, location:address } = user
+
+console.log(age)
+console.log(address)
+```
+`user` is destructured on line 8 above. The `age` property has been destructured and stored in `age`. The `location` property has been destructured and stored in `address`.
+
+### Destructuring Function Arguments
+Destructuring works with function parameters as well. If an object is passed into a function, it can be destructured inside the function definition. you can see this in the `transaction` function below. The function accepts an object as its second argument. The `label` and `stock` properties have both been destructured into standalone variables that become available in the function.
+
+```js
+const product = {
+    label: 'Red notebook',
+    price: 3,
+    stock: 201,
+    salePrice: undefined,
+    rating: 4.2
+}
+
+const transaction = (type, { label, stock }) => {
+    console.log(type, label, stock)
+}
+
+transaction('order', product)
+```
+
+### Links
++ [Property shorthand](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015)
++ [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ## 13. Destructuring and Property Shorthand Challenge
 
