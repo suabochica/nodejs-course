@@ -1,6 +1,26 @@
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
+const address = process.argv[2];
+
+if (! address) {
+    return console.log('Please provide an address');
+} else {
+    geocode(address, (error, data) => {
+        if (error) {
+            return console.log('error', error);
+        }
+    
+        forecast(data.latitude, data.longitude, (error, forecastData) => {
+            if (error) {
+                return console.log('error', error);
+            }
+           
+            console.log(data.location);
+            console.log('forecastData', forecastData);
+        });
+    });
+}
 
 /**
  * Code commented because the request function was abstracted in the utils folder.
@@ -23,10 +43,6 @@ request({url: url, json: true}, (error, response) => {
 });
  */
 
-forecast(-75.7088, 44.1545, (error, data) => {
-    console.log('error', error);
-    console.log('data', data);
-})
 
  /**
  * Code commented because was abstracted in the utils folder.
@@ -46,7 +62,3 @@ request({url: geocodeURL, json: true}, (error, response) => {
 });
 */
 
-geocode('Boston', (error, data) => {
-    console.log('error', error);
-    console.log('data', data);
-})
