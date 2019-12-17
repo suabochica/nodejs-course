@@ -369,3 +369,13 @@ transaction('order', product)
 
 
 ## 14. Bonus: HTTP Request Without a Library
+While the request library is great, it is not necessary if you want to make HTTP requests from Node. You can use the core http or https module of Node.json.
+
+### The HTTPS Module
+Node.js provides two core modules for making HTTP request. the `http` module can be use to make http requests and the `https` module can be used to make https requests. One great feature about request is that it provides a single module that can make both.
+
+The code in `playground/06-raw-https.js` uses the https module to fetch the forecast from DarkSky API, Notice there is a lot more required to get things working. Separate callbacks are required for incoming chunks of data, the end of the response, and the error for the request. This means you will likely recreate your own function similar to `request` to make you life easier. It is best to stick with a tested an popular library like request.
+
+### Links
++ [Node.js http documentation](https://nodejs.org/dist/latest-v11.x/docs/api/http.html)
++ [Node.js https documentation](https://nodejs.org/dist/latest-v11.x/docs/api/https.html)
