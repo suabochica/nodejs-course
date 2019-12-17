@@ -361,5 +361,11 @@ transaction('order', product)
 + [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ## 13. Destructuring and Property Shorthand Challenge
+**Goal**: Use both, destructuring and shorthand property in weather application.
+
+1. Use destructuring in app.js, forecast.js and geocode.js
+2. Use property shorthand in forecast.js and geocode.js
+3. Test your work and ensure that all works
+
 
 ## 14. Bonus: HTTP Request Without a Library
