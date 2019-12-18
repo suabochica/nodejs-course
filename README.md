@@ -58,7 +58,6 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 2. Debugging Node.js
 3. Error Messages
 
-
 ## Section 6: Asynchronous Node.js
 1. Intro: Asynchronous Node.js
 2. Asynchronous Basics
@@ -74,3 +73,16 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 12. ES6 Aside: Object Property Shorthand and Destructuring
 13. Destructuring and Property Shorthand Challenge
 14. Bonus: HTTP Request Without a Library
+
+## Section 7: Web Servers
+1. Intro: Web Servers
+2. Hello Express
+3. Serving up HTML and JSON
+4. Serving up Static Assets
+5. Serving up CSS, JS, Images and More
+6. Dynamic Pages with Templating
+7. Customizing the Views Directory
+8. Advancing Templating
+9. 404 Pages
+10. Styling the Application: Part I
+11. Styling the Application: Part II
