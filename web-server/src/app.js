@@ -11,11 +11,14 @@ app.get('/weather', (request, response) => {
 });
 
 app.get('/about', (request, response) => {
-    response.send('About');
+    response.send('<h1>About</h1>');
 });
 
 app.get('/help', (request, response) => {
-    response.send('Help!');
+    response.send({
+        forecast: 'It is raining',
+        location: 'Atlantis'
+    });
 });
 
 app.listen(3000, () => {

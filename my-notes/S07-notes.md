@@ -67,6 +67,27 @@ Server is up on port 3000.
 ```
 
 ## 3. Serving up HTML and JSON
+With the basics out of the way, it is time to serve up HTML and JSON with Express. That will let you serve up a static website or create an HTTP REST API designed to be consumed by a web or mobile application.
+
+### Serving up HTML and JSON
+Using `response.send` you can send back more than just text. `response.send` can be used to send an HTML or JSON response. The root route below sends back some HTML to be rendered in the browser. The weather route bleow send back a JSON respone.
+
+```js
+app.get('', (request, response) => {
+   // Provide HTML to render in the browser
+   response.send('<h1>Weather</h1>');
+})
+
+app.get('/weather', (request, response) => {
+   // Provide HTML to render in the browser
+   response.send({
+      forecast: 'It is raining',
+      location: 'Bogotá'
+   });
+```
+
+### Links
++ [Express - res.send](http://expressjs.com/en/4x/api.html#res.send);
 
 ## 4. Serving up Static Assets
 
