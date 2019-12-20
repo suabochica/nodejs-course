@@ -90,6 +90,18 @@ app.get('/weather', (request, response) => {
 + [Express - res.send](http://expressjs.com/en/4x/api.html#res.send);
 
 ## 4. Serving up Static Assets
+Exoress cab serve up all the assets needed for you website. This includes HTML, CSSS, JavaScript, images, and more. Time the serve up an entire directory with Express.
+
+### Serving up a Static Directory
+A modern website is more that just an HTML file. It is styles, scripts, images, and fonts. Everything needs to be exposed via the web server so the browser can load it in. With Express, it is easy to serve up an entire directory without needing to manually serve ip each asset. All Express needs is the path to the directory it should serve.
+
+The example below uses Node's path module to generate the absolute path. The call to `path.join` allows you to manipulate a path by providing individual path segments. It starts with `__dirname` which is the directory path for the current script. From there, the second segment moves out of the `src` folder and into the `public ` directory.
+
+The path is then provided to `express.static` as shown below.
+
+```js
+
+```
 
 ## 5. Serving up CSS, JS, Images and More
 
