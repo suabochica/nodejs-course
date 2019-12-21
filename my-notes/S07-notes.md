@@ -147,11 +147,57 @@ All files in `public` are exposed via the Express server. This is where your sit
         <img src="/img/me.png">
     </body>
 </html>
-
-
 ```
 
 ## 6. Dynamic Pages with Templating
+Your web pages don't have to be static. Express supports templating engines that allow you to render dynamic HTML pages. So we will use Handlebars as templating engine for express.
+
+### Setting up Handlebars
+Start by installing Handlebars in your project.
+
+```
+npm i hbs@4.0.1
+```
+
+From there, you will need to use `app.set` to set a value for the `view engine` config option. The value is the name of the template engine module you installed. That is `hbs`.
+
+```js
+app.set('view engine', 'hbs');
+```
+
+### Rendering Handlebars Templates
+By default Express expects your views to live in a `views` directory inside your project root. You will learn how to customize the location and directory names in the next section.
+
+Below is an example handlebars view in `views/index.hbs`. This looks like a normal HTML document with a few new features. Notice `{{title}}` and `{{name}}`. This is a Handlebars syntax which allows you to inject variables inside of the template. This is what allows you to generate dynamic pages.
+
+```html
+<!DOCTYPE>
+
+<html>
+    <head>
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/js/app,js"></script>
+    </head>
+
+        <h1>{{title}}</h1>
+        <p>Created by {{name}}</p>
+    </body>
+</html>
+```
+Now, you can render the template. This is done by defining a new route and calling `res.render` with the template name. The `.hbs` file extension can be let off. The second argument is an object that contains all the variables the template should have access to when rendering. This is where values are provided for `title` and `name`.
+
+```js
+app.get('', (request, response) => {
+    response.render('index', {
+        title: 'Weather',
+        name: 'Edward Elric'
+    });
+});
+```
+### Links
++ [Handlebars](https://handlebarsjs.com/)
++ [npm:hbs](https://www.npmjs.com/package/hbs)
+
 
 ## 7. Customizing the Views Directory
 
