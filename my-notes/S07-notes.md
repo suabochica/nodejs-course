@@ -100,10 +100,56 @@ The example below uses Node's path module to generate the absolute path. The cal
 The path is then provided to `express.static` as shown below.
 
 ```js
+const path = require('path');
+const express = require('express');
 
+
+const app = express();
+const publicDirectoryPath = path.join(__dirname, '../public');
+console.log(__dirname);
+
+app.use(express.static(publicDirectoryPath));
+
+app.get('/weather', (request, response) => {
+    response.send({
+        forecast: 'It is raining',
+        location: 'Atlantis'
+    });
+});
+
+app.listen(3000, () => {
+    console.log('Server is up on port 3000');
+});
 ```
 
+Start the server, and the browser will be able to access all assets in the public directory.
+
+### Links
++ [Path](https://nodejs.org/dist/latest-v11.x/docs/api/path.html)
+
 ## 5. Serving up CSS, JS, Images and More
+It is time to use the Express server to serve up a webpage with images, styles, and scripts.
+
+### Serving up CSS, JS, Images and More
+All files in `public` are exposed via the Express server. This is where your site assets need to live. If they are not in `public`, then they are not public and the browser won't be able to load them correctly. The HTML file below shoes how you can use a CSS file , JavaScrip file and image in your website.
+
+```html
+<!DOCTYPE>
+
+<html>
+    <head>
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/js/app,js"></script>
+    </head>
+
+    <body>
+        <h1>About</h1>
+        <img src="/img/me.png">
+    </body>
+</html>
+
+
+```
 
 ## 6. Dynamic Pages with Templating
 
