@@ -260,6 +260,22 @@ The partial can then be rendered on a page using `{{>header}}` where "header" co
 ```
 
 ## 9. 404 Pages
+Time to set up a 404 page. The 404 page will show when a user tries to visit a page that does not exist.
+
+### Setting up a 404 Page
+Express has support for `*` in route paths. This is a special character which matches anything. This can be used to create a route handler that matches all requests.
+
+The 404 page should be set up just before call to `app.listen`. this ensures that requests for valid pages still get the correct response. The code below send the object with the information that you can show in a 404 page.
+
+```js
+app.get('*', (request, response) => {
+    response.render('404', {
+        title: '404',
+        name: 'Edward Elric',
+        errorMessage: 'Page not found',
+    });
+});
+```
 
 ## 10. Styling the Application: Part I
 

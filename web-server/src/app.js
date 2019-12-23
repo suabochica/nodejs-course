@@ -46,6 +46,22 @@ app.get('/weather', (request, response) => {
     });
 });
 
+app.get('/help/*', (request, response) => {
+    response.render('404', {
+        title: '404',
+        name: 'Edward Elric',
+        errorMessage: "Help page not found",
+    });
+});
+
+app.get('*', (request, response) => {
+    response.render('404', {
+        title: '404',
+        name: 'Edward Elric',
+        errorMessage: 'Page not found',
+    });
+});
+
 app.listen(3000, () => {
     console.log('Server is up on port 3000');
 });
