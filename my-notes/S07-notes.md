@@ -200,6 +200,15 @@ app.get('', (request, response) => {
 
 
 ## 7. Customizing the Views Directory
+If you don't save your handlebars files inside a `views` folder, that is the default folder where express will fetch the views, when you load the localhost in the browser you will get an error. To customize the location of the views directory, you have to provide to Express a path with the new location and call the `app.set` to set a values for the `views` option. The example below configures Express to look for views in `templates/views`
+
+```js
+const viewsPath = path.join(__dirname, '../templates/views');
+app.set('views', viewsPath);
+```
+
+### Links
++ [Express API](https://expressjs.com/en/api.html)
 
 ## 8. Advancing Templating
 
