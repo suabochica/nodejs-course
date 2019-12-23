@@ -61,10 +61,10 @@ If you run the app, you will see the message printing letting you know that the 
 ```
 $ node app.js
 Server is up on port 3000.
+```
 
 ### Links
 + [Express](http://expressjs.com/)
-```
 
 ## 3. Serving up HTML and JSON
 With the basics out of the way, it is time to serve up HTML and JSON with Express. That will let you serve up a static website or create an HTTP REST API designed to be consumed by a web or mobile application.
@@ -76,7 +76,7 @@ Using `response.send` you can send back more than just text. `response.send` can
 app.get('', (request, response) => {
    // Provide HTML to render in the browser
    response.send('<h1>Weather</h1>');
-})
+});
 
 app.get('/weather', (request, response) => {
    // Provide HTML to render in the browser
@@ -84,6 +84,8 @@ app.get('/weather', (request, response) => {
       forecast: 'It is raining',
       location: 'Bogotá'
    });
+});
+
 ```
 
 ### Links
@@ -211,6 +213,51 @@ app.set('views', viewsPath);
 + [Express API](https://expressjs.com/en/api.html)
 
 ## 8. Advancing Templating
+It is time to work with Handlebars partials. As the name suggest, partials are just part of the web pages and are great for things you need to show on multiple pages like headers, footers, and navigation bars.
+
+### Setting up Partials
+You can use partials by telling Handlebars where you would like to store them. This is done with a call to `hbs.registerPartials`. It expects to get called with the absolute path to the partials directory.
+
+```js
+const hbs = require('hbs');
+...
+
+const partialPath = path.join(__dirname, '../templates/partials');
+hbs.registerPartials(partialsPath);
+
+...
+```
+
+### Using Partials
+Partials are created with the "hbs" file extension. Partials have access to all the same features as you Handlebars templates. The header partial below renders the title followed by a list of navigation links which can be shown at the top of every page.
+
+```html
+{{!-- header.hbs --}}
+<h1>{{title}}</h1>
+
+<div>
+    <a href="/">Weather</a>
+    <a href="/about">About</a>
+    <a href="/help">Help</a>
+</div>
+```
+
+The partial can then be rendered on a page using `{{>header}}` where "header" comes from the partial file name. If the partial was `footer.hbs`, it could be rendered using `{{>footer}}`.
+
+```html
+<!DOCTYPE>
+
+<html>
+    <head>
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/js/app,js"></script>
+    </head>
+
+    <body>
+        {{>header}}
+    </body>
+</html>
+```
 
 ## 9. 404 Pages
 
