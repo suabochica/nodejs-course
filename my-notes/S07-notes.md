@@ -281,3 +281,4 @@ app.get('*', (request, response) => {
 Time to add some styles to the weather application. There are no notes because no new Node.js features are covered.
 
 ## 11. Styling the Application: Part II
+Time to add some styles to the weather application. There are no notes because no new Node.js features are covered.
