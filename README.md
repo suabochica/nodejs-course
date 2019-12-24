@@ -86,3 +86,12 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 9. 404 Pages
 10. Styling the Application: Part I
 11. Styling the Application: Part II
+
+## Section 8: Accessing API from browser
+1. Intro: Your Own API
+2. The Query String
+3. Building a JSON HTTP Endpoint
+4. ES6 Aside: Default Function Parameters
+5. Browser HTTP Requests with Fetch
+6. Creating a Search Form
+7. Wiring up the User Interface
