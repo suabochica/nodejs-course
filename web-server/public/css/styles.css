@@ -1,5 +1,31 @@
+body {
+    color: #333333;
+    font-family: arial;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+footer {
+    color: #888888;
+    border-top: 1px solid #EEEEEE;
+    margin-top: 16px;
+    padding: 16px 0;
+}
+
+header {
+    margin: 16px 0 48px 0;
+}
+
+header a {
+    color: #888888;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
 h1 {
-    color: chocolate;
+    font-size: 64px;
+    margin-bottom: 16px;
 }
 
 img {
