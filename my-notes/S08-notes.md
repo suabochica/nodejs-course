@@ -42,8 +42,8 @@ app. get('/weather', (req, res) => {
 ### Links
 + [Express req.query](http://expressjs.com/en/4x/api.html#req.query)
 
-
 ## 3. Building a JSON HTTP Endpoint
+The weather application already has the code in place to fetch the weather for a given address. So, our goal is to wire up the route handler to fetch the weather and send it back to the browser. Please review the section six notes and the contents inside the `/weather-app` folder.
 
 ## 4. ES6 Aside: Default Function Parameters
 
