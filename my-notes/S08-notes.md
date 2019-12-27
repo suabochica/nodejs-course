@@ -46,6 +46,35 @@ app. get('/weather', (req, res) => {
 The weather application already has the code in place to fetch the weather for a given address. So, our goal is to wire up the route handler to fetch the weather and send it back to the browser. Please review the section six notes and the contents inside the `/weather-app` folder.
 
 ## 4. ES6 Aside: Default Function Parameters
+ES6 provides a new syntax to set default values for function arguments. We will use this new syntax to improve and clean up the application code.
+
+### Default Function Parameters
+Function parameters are `undefined` unless an argument values is provided when the function is called. ES6 now allow function parameters to be configured with a custom default value.
+
+You can see this in action in the `greeter` function below. `name` wil be `'user'` if no value is provided. `age` will be undefined if no value is provided.
+
+```js
+const greeter = (name = 'user', age) => {
+    console.log('Hello' + name);
+}
+
+greeter('Edward'); // Hello Edward
+greeter(); // Hello user
+```
+
+This syntax can also be used to provide default values when using ES6 destructuring. The `transaction` function below shows this off by providing a default value for `stock`.
+
+```js
+const transaction = (type, { label, stock = 0 } = {}) => {
+    console.log(type, label, stock)
+}
+
+transaction('order')
+transaction('order', product)
+```
+
+### Links
++ [MDN: Default Function Parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
 ## 5. Browser HTTP Requests with Fetch
 

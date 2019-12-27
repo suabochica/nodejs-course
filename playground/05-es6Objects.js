@@ -39,7 +39,7 @@ const {label, price} = product;
 console.log('ln 36', label);
 console.log('ln 37', price);
 
-const transaction = (type, {label, price}) => {
+const transaction = (type, { label, price } = {}) => {
     console.log(type, label, price);
 }
 
