@@ -145,4 +145,20 @@ const searchElement = document.querySelector('input');
 ```
 
 ## 7. Wiring up the User Interface
+Finally, the information of our API is enable in the browser. Now we have to manipulate the text content of HTML element from JavaScript. That will allow the weather application to render the forecast data to the browser instead of the console.
 
+### Rendering Dynamic textContent
+
+Set up HTML elements for the messages you want to render. Below is an example paragraph which can be used to render some text from JavaScript. It contains no text by default. It will be updated to show some text as the client-side JavaScript runs.
+
+```html
+<p id="message-1"> </p>
+```
+
+The code below can be used to change the text content of the paragraph. First up, `document.querySelector` is used to target the element. It is used with `#`, which searches for elements by their ID. The text content can be updated by setting a value on the `textContent` property.
+
+```js
+const messageOne = document.querySelector('#message-1');
+
+messageOne.textContent = 'My new text';
+```

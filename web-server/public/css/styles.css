@@ -32,6 +32,21 @@ h1 {
     margin-bottom: 16px;
 }
 
+input {
+    border: 1px solid #CCCCCC;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+
+    padding: 8px;
+}
+
 .portrait {
     width: 248px;
 }
@@ -39,3 +54,5 @@ h1 {
 .main-content {
     flex-grow: 1;
 }
+
+
