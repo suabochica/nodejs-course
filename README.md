@@ -87,7 +87,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 10. Styling the Application: Part I
 11. Styling the Application: Part II
 
-## Section 8: Accessing API from browser
+## Section 8: Accessing API from Browser
 1. Intro: Your Own API
 2. The Query String
 3. Building a JSON HTTP Endpoint
@@ -95,3 +95,15 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 5. Browser HTTP Requests with Fetch
 6. Creating a Search Form
 7. Wiring up the User Interface
+
+## Section 9: Application Deployment
+1. Intro: Application Deployment
+2. Joining Heroku and Github
+3. Version Control with Git
+4. Exploring Git
+5. Integrating Git
+6. Setting up SSH Keys
+7. Pushing code to Github
+8. Deploying Node.js to Heroku
+9. New Feature Deployment Workflow
+10. Avoiding Global Modules
