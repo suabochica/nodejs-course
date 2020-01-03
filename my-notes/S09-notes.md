@@ -50,6 +50,31 @@ You can grab the Git installer from the git official page. After installing Git,
 + [Git](https://git-scm.com/)
 
 ## 4. Exploring Git
+Git is not the easiest tool in the world to get started with. For that reason it is important share the next fundamentals concepts:
+
+![image](assets/version_control_git.png)
+
+The above image shows the four possible states for a file inside git.
+
++ **Untracked Files:** Files that are new for the git project. In the last the `readme.md` file is an untracked file. By default these file are not candidate to be committed.
++ **Unstaged Changes:** Files that the git project recognize and were changed from the last commit but are not candidates to be recorded. 
++ **Stage Changes:** Files that the git project recognize and were changed from the last commit and are candidates to be recorded in a new commit. 
++ **Commits:** Files changes recorded. Each commit has a hash associated that makes it unique.
+
+To move a file from a state to another state you should use the git command. For example, to move a file from untracked or unstaged to state you have to run
+
+```
+git add name_file.format
+```
+
+To move from stage to commit you have to run
+
+```
+git commit
+```
+
+Every commit have a message, so this command will open your terminal editor to record the changes with a message.
+
 ## 5. Integrating Git
 ## 6. Setting up SSH Keys
 ## 7. Pushing code to Github
