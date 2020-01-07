@@ -107,6 +107,41 @@ git commit -m "Initial commit"
 From here, you can continue to add new features to the project and use the git commands to create new commits.
 
 ## 6. Setting up SSH Keys
+SSH is a protocol used to securely transfer code between your machine and Github/Heroku
+
+### Creating SSH Keys
+Windows users won't have access to the necessary SSH commands form the command prompt. Make sure to use Git Bash for the following commands.
+
+SSH uses an SSH key pair to secure the connection between your machine and the machine you are communicating with. You can check if you already have an SSH key pair with the following command.
+
+```
+ls -a -l ~/.ssh
+```
+
+If after run the command you have a key pair like `id_rsa` and `id_rsa.pub` in the output means that have keys already created. If it is not the case, you can create a new key pair using the following command. Make sure to swap out the email for your email address.
+
+```
+ssh-keygen -t rsa -b 4096 -C "youremail@domain.com"
+```
+
+The SSH key needs to be configured to be used for new SSH connections. Firs. ensure that the SSH agent is running. You can do that using the command below.
+
+```
+eval "$(ssh-agent -s)"
+```
+
+Next, add the new SSH private key file to the SSH agent. The following command is for macOS users.
+
+```
+ssh-add -K ~/.ssh/id_rsa
+```
+
+The command below is for Linux and Windows users.
+
+```
+ssh-add ~/.ssh/id_rsa
+```
+
 ## 7. Pushing code to Github
 ## 8. Deploying Node.js to Heroku
 ## 9. New Feature Deployment Workflow
