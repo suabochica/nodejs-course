@@ -76,6 +76,36 @@ git commit
 Every commit have a message, so this command will open your terminal editor to record the changes with a message.
 
 ## 5. Integrating Git
+Let start to use Git. First we will to set up Git in the project. Also, you will explore the commands needed to get Git tracking your code.
+
+### Initializing Git
+Git needs to be initialized in your project before it can be used. You can initialize Git in your project by running `git init` from the root of the project. All Git commands should be run from the root of the project.
+
+Before going any further, Git needs to be configured to ignore the `node_modules` folder. This is a generated directory which doesn't need to be under version control. You can always regenerate the `node_modules` by running `npm install`. Create a `.gitignore` file with the following line to ignore the folder.
+
+```
+node_modules/
+```
+
+### Commiting Changes
+Think of a commit as a save point. A commit lets you create a save point that contains your project files exactly as they were when the commit was created. You will create new commits to track your changes as you continue to build out your application.
+
+Before creating a commit, it is a good idea run `git status` to get a summary of the changes that are about to be commited. This will show untracked files, unstaged changes and staged files.
+
+Using `git add <path to file>`, you can add files to the staging area. Changes to files in the staging area will be included in the next commit. The shortcut below adds all untracked files and unstaged changes to the staging area.
+
+```
+git add .
+```
+
+You can now use the git commit command to create a commit. Each commit requires a commit message. The command below creates a commit and provides "initial commit" as the commit message.
+
+```
+git commit -m "Initial commit"
+```
+
+From here, you can continue to add new features to the project and use the git commands to create new commits.
+
 ## 6. Setting up SSH Keys
 ## 7. Pushing code to Github
 ## 8. Deploying Node.js to Heroku
