@@ -2,12 +2,12 @@
 
 ## Index
 1. Intro: Application Deployment
-2. Joining Heroku and Github
+2. Joining Heroku and GitHub
 3. Version Control with Git
 4. Exploring Git
 5. Integrating Git
 6. Setting up SSH Keys
-7. Pushing code to Github
+7. Pushing code to GitHub
 8. Deploying Node.js to Heroku
 9. New Feature Deployment Workflow
 10. Avoiding Global Modules
@@ -15,11 +15,11 @@
 ## 1. Intro: Application Deployment
 Time to learn how to set up communication between the client and the server. This will be done via HTTP request. The goal is that users will be able to type an address in the browser to view their forecast.
 
-## 2. Joining Heroku and Github
-You will join to Github and Heroku. Github is a development platform that makes it easy to manage software development projects. Heroku is an application deployment platform which provides everything needed to deploy your Node.js applications.
+## 2. Joining Heroku and GitHub
+You will join to GitHub and Heroku. GitHub is a development platform that makes it easy to manage software development projects. Heroku is an application deployment platform which provides everything needed to deploy your Node.js applications.
 
 ### Joining to Heroku
-Make sure to sign up for an account with both, Github and Heroku. From there, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). After running the installer, you can confirm the Heroku CLI was installed correctly by running `heroku -v` to print the installed version.
+Make sure to sign up for an account with both, GitHub and Heroku. From there, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli). After running the installer, you can confirm the Heroku CLI was installed correctly by running `heroku -v` to print the installed version.
 
 The Heroku CLI give you commands to deploy and manage you Node.js applications. Before you can do that, you will need to log in to your Heroku account. This makes sure that the command you run actually changes your Heroku applications.
 
@@ -28,7 +28,7 @@ heroku login
 ```
 
 ### Links
-+ [Github](https://github.com/)
++ [GitHub](https://github.com/)
 + [Heroku](https://dashboard.heroku.com/apps)
 + [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
@@ -57,8 +57,8 @@ Git is not the easiest tool in the world to get started with. For that reason it
 The above image shows the four possible states for a file inside git.
 
 + **Untracked Files:** Files that are new for the git project. In the last the `readme.md` file is an untracked file. By default these file are not candidate to be committed.
-+ **Unstaged Changes:** Files that the git project recognize and were changed from the last commit but are not candidates to be recorded. 
-+ **Stage Changes:** Files that the git project recognize and were changed from the last commit and are candidates to be recorded in a new commit. 
++ **Unstaged Changes:** Files that the git project recognize and were changed from the last commit but are not candidates to be recorded.
++ **Stage Changes:** Files that the git project recognize and were changed from the last commit and are candidates to be recorded in a new commit.
 + **Commits:** Files changes recorded. Each commit has a hash associated that makes it unique.
 
 To move a file from a state to another state you should use the git command. For example, to move a file from untracked or unstaged to state you have to run
@@ -107,7 +107,7 @@ git commit -m "Initial commit"
 From here, you can continue to add new features to the project and use the git commands to create new commits.
 
 ## 6. Setting up SSH Keys
-SSH is a protocol used to securely transfer code between your machine and Github/Heroku
+SSH is a protocol used to securely transfer code between your machine and GitHub/Heroku
 
 ### Creating SSH Keys
 Windows users won't have access to the necessary SSH commands form the command prompt. Make sure to use Git Bash for the following commands.
@@ -124,7 +124,7 @@ If after run the command you have a key pair like `id_rsa` and `id_rsa.pub` in t
 ssh-keygen -t rsa -b 4096 -C "youremail@domain.com"
 ```
 
-The SSH key needs to be configured to be used for new SSH connections. Firs. ensure that the SSH agent is running. You can do that using the command below.
+The SSH key needs to be configured to be used for new SSH connections. First ensure that the SSH agent is running. You can do that using the command below.
 
 ```
 eval "$(ssh-agent -s)"
@@ -142,7 +142,33 @@ The command below is for Linux and Windows users.
 ssh-add ~/.ssh/id_rsa
 ```
 
-## 7. Pushing code to Github
+## 7. Pushing code to GitHub
+To push your code to GitHub you should configure SSH with Github.
+
+### Configuring SSH with GitHub
+Once you generated your SSH key pair you are ready to wire the public key to you Github account. The SSH key pair are to files `id_rsa` and `id_rsa.pub`. `id_rsa` is a private key file which should be kept secret. `id_rsa.pub` is a public key file which should be shared with the services you plan to communicate with.
+
+The command below will allow you to dump the contents of the public key file to the terminal. Copy and paste the contents to clip board and register the SSH key with GitHub in the respective settings.
+
+```
+cat ~/.ssh/id_rsa.pub
+```
+
+### Pushing Your Code to GitHub
+Before to push your code, you need to create a new GitHub repository before you will be able to push your code. This is a remote Git repository that will live on the GitHub server. A remote repository is nothing more than a version of your project hosted somewhere else. In this case, it is a version of your project stored on GitHub.
+
+Once the repository is created, you will need to set up the origin remote. Replace `<repo url>` with the repository URL provided by GitHub.
+
+```
+git remote add origin <repo url>
+```
+
+You can now push your latest commits to the remote! After pushing your commits refresh the GitHub repository page in your browser to see your project files and folder appear.
+
+```
+git push -u origin master
+```
+
 ## 8. Deploying Node.js to Heroku
 ## 9. New Feature Deployment Workflow
 ## 10. Avoiding Global Modules
