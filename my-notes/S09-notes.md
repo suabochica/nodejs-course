@@ -204,3 +204,21 @@ For a new feature deployment workflow you will go through the process that inclu
 The goal is to give you and experience using what was covered in the previous sections.
 
 ## 10. Avoiding Global Modules
+Let's refactor the application to remove the use of global modules. This ensures that you application installs all the dependencies you need to run.
+
+### Replacing Global Modules with Local Modules
+Sick of typing out that long nodemon command? Probably yes. Let's turn into a script. You can create a `dev` script with the value `nodemon src/app,js -e js,hbs`. This will start up the dev server anytime you run `npm run dev`.
+
+The dev script needs nodemon to be installed. The issue is that nodemon is not listed as a dependency in `package.json`. However, this can be fixed byuninstalling nodemon globally.
+
+```
+npm uninstall -g nodemon
+```
+
+Now install it as a local dependency.
+
+```
+npm i nodemon --save-dev
+```
+
+Now, `npm install` will be able to install all your application dependencies, including nodemon.
