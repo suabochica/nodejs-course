@@ -193,4 +193,14 @@ Run `heroku create` from your application root to create a new application. This
 You can run `git push heroku master` to deploy. From there run `heroku open` to open your application in the browser.
 
 ## 9. New Feature Deployment Workflow
+For a new feature deployment workflow you will go through the process that includes:
+
+1. Add your changes locally
+2. Test the changes.
+3. Commit your changes
+4. Push your changes to GitHub
+5. Deploy your change to Heroku
+
+The goal is to give you and experience using what was covered in the previous sections.
+
 ## 10. Avoiding Global Modules
