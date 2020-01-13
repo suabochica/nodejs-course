@@ -1,0 +1,54 @@
+# Section 10: MongoDB and Promises
+
+## Index
+1. Intro: MongoDB
+2. MongoDB and NoSQL Databases
+3. Installing MongoDB on macOS
+4. Installing Database GUI Viewer
+5. Connecting and Inserting Documents
+6. Inserting Documents
+7. The ObjectID
+8. Querying Documents
+9. Promises
+10. Updating Documents
+12. Deleting Documents
+
+## 1. Intro: MongoDB
+Let's introduce databases in our Node.js application, Here we will learn how to connect to a MongoDB database from your Node.js application. This will allow us to store data in a secure and reliable fashion. To illustrate this relation, we will create a _Task Application_ that will use MongoDB to store user accounts as well as tasks.
+
+## 2. MongoDB and NoSQL Databases
+Before to start with MongoDB, it is necessary explore the NoSQL concept. NoSQL stands for _not only SQL_. The NoSQL databases are a bit different that traditional SQL databases such as MySQL. However, we can define the theory behind NoSQL from the SQL concepts. Please check carefully the next image:
+
+![image](../assets/sql_no_sql.png)
+
+As you can see, the notion of the database is the same for both proposals. The difference is in the way how the data is stored. In SQL databases we have the next hierarchy:
+
+1. Table
+2. Row/Record
+3. Column
+
+For the other hand, in NoSQL the scheme is:
+
+1. Collection
+2. Document
+3. Field
+
+With this base, we can start to go deep with MongoDB, that is a NoSQL database.
+
+## 3. Installing MongoDB on macOS
+
+## 4. Installing Database GUI Viewer
+
+## 5. Connecting and Inserting Documents
+
+## 6. Inserting Documents
+
+## 7. The ObjectID
+
+## 8. Querying Documents
+
+## 9. Promises
+
+## 10. Updating Documents
+
+## 12. Deleting Documents

@@ -61,7 +61,7 @@ The next image put together a quick comparison between a blocking and a non-bloc
 
 > The task: Fetch two users, and execute a sum.
 
-![image](assets/async_nodejs.png)
+![image](../assets/async_nodejs.png)
 
 As you can see, the non-blocking case executes the task twice faster that the blocking code. Thanks to the non-blocking model NodeJS is lightweight and efficent.
 
