@@ -62,6 +62,42 @@ Robo 3T is a completely free MongoDB admin tool.
 - [Robo 3T download page](https://robomongo.org/)
 
 ## 5. Connecting and Inserting Documents
+Let's to connect your MongoDB database with a Node.js application, and then, insert documents into the database to save them for later.
+
+### Connecting to MongoDB
+MongoDB provides a native driver that allows you to connect to the database. You just need to provide two pieces of information. The first is the connection URL and the second is the name of the database. You can pick any database name that you like, but I suggest chose a coherent one.
+
+```js
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
+
+const connectionURL = "mongodb://127.0.0.1:27017";
+const databaseName = "task-manager";
+
+MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
+    if (error) {
+        return console.log("Unable to connect database");
+    }
+
+    const db = client.db(databaseName);
+
+    // Start to interact with the database
+});
+```
+
+### Inserting a doument
+With the connection open, you are ready to insert documents to the database. Remember that a database is made up of collections, and collections are used to store documents. The code below inserts a new document into the "users" collection. `db.collection` is used to get a reference to the collection you are trying to manipulate. `insertOne` is used to insert a new document into that collection.
+
+```
+db.collection('users').insertOne({
+    name: "Edward",
+    age: 27
+})
+```
+
+### Links
++ [npm:mongodb](https://www.npmjs.com/package/mongodb)
++ [MongoDB driver documentation](http://mongodb.github.io/node-mongodb-native/3.1/api/)
 
 ## 6. Inserting Documents
 
