@@ -36,6 +36,22 @@ For the other hand, in NoSQL the scheme is:
 With this base, we can start to go deep with MongoDB, that is a NoSQL database.
 
 ## 3. Installing MongoDB on macOS
+To install MongoDB on macOS, you can download the [MongoDB Community Server](https://www.mongodb.com/download-center/community). The download is a zip file. Unzip the contents, change the folder name to "mongodb", and move it to your users home directory. From there, create a "mongodb-data" directory at the same level of your "mongodb". This directory will store the database data.
+
+Now, you can start the mongodb server using the following command:
+
+```
+/Users/{username}/mongodb/bin/mongod --dbpath=/Users/{username}/mongodb-data
+```
+
+This command will generate some contents inside the `~/mongodb-data` and also you will see an output in the terminal like:
+
+```
+NETWORK  [initandlisten] waiting for connections on port 27017
+```
+
+### Links
+- [MongoDB download page](https://www.mongodb.com/download-center/community)
 
 ## 4. Installing Database GUI Viewer
 
