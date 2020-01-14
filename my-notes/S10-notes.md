@@ -54,6 +54,12 @@ NETWORK  [initandlisten] waiting for connections on port 27017
 - [MongoDB download page](https://www.mongodb.com/download-center/community)
 
 ## 4. Installing Database GUI Viewer
+The GUI (Graphic User Interface) that we will setup is Robo 3T. Robo T3 is a MongoDB admin tool that makes easy to manage and visualize the data in your database.
+
+Robo 3T is a completely free MongoDB admin tool.
+
+### Links
+- [Robo 3T download page](https://robomongo.org/)
 
 ## 5. Connecting and Inserting Documents
 
