@@ -85,7 +85,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 });
 ```
 
-### Inserting a doument
+### Inserting a document
 With the connection open, you are ready to insert documents to the database. Remember that a database is made up of collections, and collections are used to store documents. The code below inserts a new document into the "users" collection. `db.collection` is used to get a reference to the collection you are trying to manipulate. `insertOne` is used to insert a new document into that collection.
 
 ```
@@ -100,6 +100,36 @@ db.collection('users').insertOne({
 + [MongoDB driver documentation](http://mongodb.github.io/node-mongodb-native/3.1/api/)
 
 ## 6. Inserting Documents
+In the last section we review how to insert one document, this time we will learn how to insert several documents.
+
+### Inserting Documents
+Similar to the `insertOne` method, the collection object offer us a `insertMany` method to insert multiple documents at once. The example below inserts two documents into "tasks" collection. `insertMany` expects an array of objects, and an array of the documents you want to insert.
+
+```
+db.collection('tasks').insertMany([
+    {
+        description: 'Task one description',
+        complete: false
+    },
+    {
+        description: 'Task two description',
+        complete: false
+    },
+]
+, (error, result) => {
+    if (error) {
+        return console,log("Unable to insert tasks!");
+    }
+
+    console.log(result.opts);
+});
+
+```
+
+### Links
++ [insertOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertOne)
++ [insertMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertMany)
+
 
 ## 7. The ObjectID
 
