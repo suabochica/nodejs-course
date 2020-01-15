@@ -105,7 +105,7 @@ In the last section we review how to insert one document, this time we will lear
 ### Inserting Documents
 Similar to the `insertOne` method, the collection object offer us a `insertMany` method to insert multiple documents at once. The example below inserts two documents into "tasks" collection. `insertMany` expects an array of objects, and an array of the documents you want to insert.
 
-```
+```js
 db.collection('tasks').insertMany([
     {
         description: 'Task one description',
@@ -114,6 +114,7 @@ db.collection('tasks').insertMany([
     {
         description: 'Task two description',
         complete: false
+
     },
 ]
 , (error, result) => {
@@ -130,8 +131,26 @@ db.collection('tasks').insertMany([
 + [insertOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertOne)
 + [insertMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertMany)
 
-
 ## 7. The ObjectID
+MongoDB uses ObjectID's to create a unique identifiers for all the documents in the database. It is a different than the traditional auto-incrementing integer ID, but it comes with its own set of advantages, how for example, get a timestamp of the insertion of the document.
+
+### Working with ObjectIDs
+MongoDB provides `ObjectID` which can be used to generate new ObjectIDs. The example below generates a new Id and prints it to the console:
+
+```js
+const { MongoClient, ObjectID } =  mongodb;
+
+const connectionURL = "mongodb://127.0.0.1:27017";
+const databaseName = "task-manager";
+
+const id = new ObjectID();
+console.log(id); // Print the id to the console
+```
+
+An ObjectID is a GUID (Global Uniques Identifier). GUIDs are generated randomly via an algorithm to ensure uniqueness. These IDs can be generated on the server, but as seen in the snippet above, they can be generated of the cliente ass weel. That means a client can generate ID for a document it is about to insert to the database.
+
+### Links
++ [ObjectID](https://docs.mongodb.com/manual/reference/method/ObjectId/)
 
 ## 8. Querying Documents
 
