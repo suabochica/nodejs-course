@@ -153,6 +153,32 @@ An ObjectID is a GUID (Global Uniques Identifier). GUIDs are generated randomly 
 + [ObjectID](https://docs.mongodb.com/manual/reference/method/ObjectId/)
 
 ## 8. Querying Documents
+Let's learn how to read data from MongoDB. This will allow you to fetch the documents that you had previously inserted.
+
+### Finding Documents
+You can search for documents in a given collection using `find` or `findOne`. `find` can be used to fetch multiple documents, while `findOne` can be used to fetch a single document.
+
+The example below use `find` to search for documents in the tasks collection. You can provide an object as the first argument to `find` to filter documents. The example below sets `completed` equal to false to fetch only those tasks that have not been completed.
+
+```js
+db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
+    console.log(tasks)
+})
+```
+
+The next example uses `findOne` to find a single document by its ID. In this case, it is necessary to pass the string version of the ID to the `ObjectID` constructor function to convert it to an ObjectID.
+
+```js
+db.collection('tasks').findOne({ _id: new
+ObjectID("5c0fec243ef6bdfbe1d62e2f") }, (error, task) => {
+    console.log(task)
+})
+```
+
+### Links
++ [find](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#find)
++ [findOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#findOne)
+
 
 ## 9. Promises
 
