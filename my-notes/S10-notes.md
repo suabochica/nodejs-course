@@ -179,8 +179,44 @@ ObjectID("5c0fec243ef6bdfbe1d62e2f") }, (error, task) => {
 + [find](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#find)
 + [findOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#findOne)
 
-
 ## 9. Promises
+It is important to understand the Promises feature. Promises provide a much needed alternative to the traditional pattern.
+
+To illustrate the alternative, let's review the callback pattern. Please check the next code:
+
+```js
+const doWorkCallback = (callback) => {
+   setTimeout(() => {
+       callback("This is my error", undefined);
+       // callback(undefined, [1, 1, 2]);
+   }, 2000);
+}
+
+doWorkCallback((error, result) => {
+   if(error) {
+       return console.log(error);
+   }
+
+   console.log(result);
+})
+```
+Remember that in the callback pattern just one callback function will be executed. The commented line above, is to illustrate the happy path to get a result from the callback. The disadvantage of the callback pattern is that we just have one function to handle two scenarios. Let's check how Promises solve this issue:
+
+```js
+const doWorkPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        // resolve([4, 7, 1]);
+        reject("Things went wrong");
+    }, 2000);
+});
+
+doWorkPromise.then((result) => {
+    console.log("Success!", result);
+}).catch((error) => {
+    console.log("Error!", error);
+});
+```
+Promises offer us two functions `resolve` and `reject`. This functions follows the states definitions of a promise: pending, and then, fulfilled or rejected. This way we can handle the success path and the error path properly. It is important to notice that the `then` method just chain the success path of the promise and the `catch` method will chain the error path, and no matter the case, the promise will response the first function attended.
 
 ## 10. Updating Documents
 
