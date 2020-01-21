@@ -14,16 +14,23 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     const db = client.db(databaseName);
 
-/*
+
+    /**
+    Users Collection
+    ================
+
+    Insertions/Create
+    ----------
+
     db.collection('users').insertOne({
         name: 'Edward',
         age: 27
     }, (error, result) => {
         if (error) {
             return console,log("Unable to insert document");
-        }
+       }
 
-        console.log(result.opts);
+       console.log(result.opts);
     });
 
     db.collection('users').insertMany([
@@ -44,27 +51,8 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         console.log(result.opts);
     });
 
-    db.collection('tasks').insertMany([
-        {
-            description: 'Task one description',
-            complete: false
-        },
-        {
-            description: 'Task two description',
-            complete: false
-        },
-        {
-            description: 'Task three description',
-            complete: false
-        },
-    ]
-    , (error, result) => {
-        if (error) {
-            return console,log("Unable to insert tasks!");
-        }
-
-       console.log(result.opts);
-    });
+    Fetch/Read
+    ----------
 
     db.collection('users').findOne({
         name: 'Winry',
@@ -86,24 +74,81 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         console.log(results);
     });
 
-*/
-    db.collection('tasks').findOne({
-        _id: new ObjectID("5e1f5bc28e48b110adb9b74a"),
-    }, (error, result) => {
-        if (error) {
-            return console,log("Unable to find tasks");
+    Update
+    ------
+    db.collection('users').updateOne({
+        _id: new ObjectID("5e1f5bc28e48b110adb9b747"),
+    }, {
+        $set: {
+            name: "Roy",
         }
-
+    }).then((result) => {
         console.log(result);
+    }).catch((error) => {
+        console.log(error);
     });
 
-    db.collection('tasks').find({
-        complete: false,
-    }).toArray((error, results) => {
-        if (error) {
-            return console.log("Unable to find tasks");
-        }
+    */
 
-        console.log(results);
+
+
+    /**
+       Tasks Collection
+    */
+
+    // db.collection('tasks').insertMany([
+    //     {
+    //         description: 'Task one description',
+    //         complete: false
+    //     },
+    //     {
+    //         description: 'Task two description',
+    //         complete: false
+    //     },
+    //     {
+    //         description: 'Task three description',
+    //         complete: false
+    //     },
+    // ]
+    // , (error, result) => {
+    //     if (error) {
+    //         return console,log("Unable to insert tasks!");
+    //     }
+
+    //    console.log(result.opts);
+    // });
+
+    // db.collection('tasks').findOne({
+    //     _id: new ObjectID("5e1f5bc28e48b110adb9b74a"),
+    // }, (error, result) => {
+    //     if (error) {
+    //         return console,log("Unable to find tasks");
+    //     }
+
+    //     console.log(result);
+    // });
+
+    // db.collection('tasks').find({
+    //     complete: false,
+    // }).toArray((error, results) => {
+    //     if (error) {
+    //         return console.log("Unable to find tasks");
+    //     }
+
+    //     console.log(results);
+    // });
+
+
+    db.collection('tasks').updateMany({
+        completed: false,
+    },
+    {
+        $set: {
+            completed: true,
+        }
+    }).then((result) => {
+        console.log(result);
+    }).catch((error) => {
+        console.log(error);
     });
 });

@@ -219,5 +219,46 @@ doWorkPromise.then((result) => {
 Promises offer us two functions `resolve` and `reject`. This functions follows the states definitions of a promise: pending, and then, fulfilled or rejected. This way we can handle the success path and the error path properly. It is important to notice that the `then` method just chain the success path of the promise and the `catch` method will chain the error path, and no matter the case, the promise will response the first function attended.
 
 ## 10. Updating Documents
+You can update documents in a collection using `updateOne` or `updateMany`. The first argument for both methods is similar to the first argument used in `find` and `findOne`. It is an object that allows you to filter down all the documents to just the ones you want to update.
+
+The update calls require a second argument as well. This is an object where you define the updates you want to make. For this, you need to use one of the supported _update operators_
+
+The `updateOne` call below use `$inc` to increment the age field on the targeted document by 1.
+
+```js
+db.collection('users').updateOne({
+    _id: new ObjectID("5c0fe6634362c1fb75b9d6b5")
+}, {
+    $inc: {
+        age: 1 
+    }
+}).then((result) => {
+    console.log(result)
+}).catch((error) => {
+    console.log(error)
+})
+```
+
+The `updateMany` call below uses `$set` to set the **completed** field to `true` for all documents where the completed field is currently `false`.
+
+```js
+db.collection('tasks').updateMany({
+    completed: false,
+},
+{
+    $set: {
+        completed: true,
+    }
+}).then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.log(error);
+});
+```
+
+### Links
++ [updateOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#updateOne)
++ [updateMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#updateMany)
++ [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/#id1)
 
 ## 12. Deleting Documents
