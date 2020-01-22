@@ -47,7 +47,7 @@ const me = new User({
     name: "Sergio",
     age: 27,
 });
-```
+``` 
 
 The new model instance can be saved to the database using the `save` method.
 
@@ -64,10 +64,77 @@ me.save().then(() => {
 + [Mongoose](https://mongoosejs.com/)
 
 ## 3. Creating a Mongoose Model
+Let's define the model for a Task. So, with the help of the notes in the section two, let's create a Task model with a description and a completed fields. The result is:
 
-## 4. Data Validation and Serialization, Part I
+```js
+const Task = mongoose.model("Task", {
+    description: {
+        type: String,
+    },
+    complete: {
+        type: Boolean,
+    },
+});
 
-## 5. Data Validation and Serialization, Part II
+const taskOne = new Task({
+    description: "Clean my desk",
+    complete: false,
+});
+
+taskOne.save().then(() => {
+    console.log(taskOne);
+}).catch((error) => {
+    console.log("Error!", error);
+});
+
+```
+
+## 4. Data Validation and Sanitization, Part I
+Time to set up data validation and sanitization for our models. _Validation_ will allow you to restrict what data can be stored in the database, while _sanitization_ will allow you to store user data in a uniform and standardized way.
+
+### Data Validation and Sanitization
+First up, install validator. While Mongoose provides basic tools for performing validation, the validator library provides useful methods for validating data such as email addresses, phone numbers, zip codes, and more.
+
+```
+npm i validator@10.9.0
+```
+Mongoose comes with support for basic validation and sanitization. The user model below shows how this can be configured. `required` is used to validate that a value is provided for a given field. `trim`, is used to remove extra spaces before or after data. `lowercase` is used to convert the data lowercase before saving it to the database. You can find a complete list of options in the schema documentation.
+
+You can also define custom validation for your models. This is done using `validate` as shown in the example below. The method gets called with the value to validate, and it should throw an error if the data is invalid. The next snippet uses the `isEmail` method from validator to validate the email address is valid before saving it to the database.
+
+```js
+const mongoose = require('mongoose')
+const validator = require('validator')
+
+const User = mongoose.model('User', {
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid')
+            }
+        }
+    }
+})
+```
+
+### Links
++ [Schema](https://mongoosejs.com/docs/schematypes.html)
++ [npm: validator](https://www.npmjs.com/package/validator)
+
+## 5. Data Validation and Sanitization, Part II
+It is up to you to add validation and sanitization to the task model. We suggest left the description field mandatory, and the complete field optional but assign `false` as default value.
+
+
+You will also be defining a new field on the user model with validation and sanitization of its own. This new field is password, so it is recommendable to add a validation of a minimum of 7 characters and avoid to include the password word in this field.
 
 ## 6. Structuring a REST API
 
