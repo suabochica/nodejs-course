@@ -262,3 +262,32 @@ db.collection('tasks').updateMany({
 + [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/#id1)
 
 ## 12. Deleting Documents
+You can delete documents from MongoDB using `deleteOne` or `deleteMany`. Both accept an object as the first argument. This object is used to filter just the documents you want to delete.
+
+The example below uses `deleteMany` to delete all users whose `age` field is 27.
+
+```js
+db.collection('users').deleteMany({
+    age: 27
+}).then((result) => {
+    console.log(result)
+}).catch((error) => {
+    console.log(error)
+})
+```
+
+This next example uses `deleteOne` to delete a single document, the first one with a `description` of "Clean the house".
+
+```js
+db.collection('tasks').deleteOne({
+    description: "Clean the house"
+}).then((result) => {
+    console.log(result)
+}).catch((error) => {
+    console.log(error)
+})
+```
+
+### Links
++ [deleteOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#deleteOne)
++ [deleteMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#deleteMany)
