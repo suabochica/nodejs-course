@@ -120,3 +120,25 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 9. Promises
 10. Updating Documents
 12. Deleting Documents
+
+## Section 11: REST APIs and Mongoose
+1. Intro: Mongoose
+2. Setting up Mongoose
+3. Creating a Mongoose Model
+4. Data Validation and Serialization, Part I
+5. Data Validation and Serialization, Part II
+6. Structuring a REST API
+7. Installing Postman
+8. Resource Creation Endpoints, Part I
+9. Resource Creation Endpoints, Part II
+10. Resource Reading Endpoints, Part I
+11. Resource Reading Endpoints, Part II
+12. Promises Chaining
+13. Promises Chaining Challenge
+14. Async/Await, Part I
+15. Async/Await, Part II
+16. Integrating Async/Await
+17. Resource Updating Endpoints, Part I
+18. Resource Updating Endpoints, Part II
+19. Resource Deleting Endpoints
+20. Separate Route Files
