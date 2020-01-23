@@ -15,7 +15,7 @@ npm install mongoose@5.3.16
 
 Like the MongoDB native driver, Mongoose provides a `connect` function you can use to connect to your MongoDB database.
 
-```
+```js
 const mongoose = require('mongoose');
 
 mongoose.connect("mongodb://127.0.0.1:27017/task-manager-api", {
@@ -42,12 +42,12 @@ const User = mongoose.model("User", {
 
 With the model defined, it is time to start creating and saving users. The `User` variable above stores the Mongoose model. This is a constructor function that can be used to create new users. The next snippet create a new user with the name `Sergio` and the age 27. This alone won't save any data to the database, but it is a step in the right direction.
 
-````js
+```js
 const me = new User({
     name: "Sergio",
     age: 27,
 });
-``` 
+```
 
 The new model instance can be saved to the database using the `save` method.
 
@@ -137,6 +137,31 @@ It is up to you to add validation and sanitization to the task model. We suggest
 You will also be defining a new field on the user model with validation and sanitization of its own. This new field is password, so it is recommendable to add a validation of a minimum of 7 characters and avoid to include the password word in this field.
 
 ## 6. Structuring a REST API
+First we will to define the acronyms. REST stands for Representational State Transfer and API stands for Application Programming Interface. So, let's start with API. An API is nothing more than a set of tools that allow you to build a software application. It is very broad term so, we could say that node provide us the eyes for the API. Also, we could say that our `npm` modules like express provides us with a set of tool that allows to build software application.
+
+Now let's move on REST. REST is often described as an architecture style whose goal is the examination of the Internet as a stateless service of near-limitless expansion model with a simple but effective information delivery system. So we can reduce the concept like a set of formal and informal guides to create constraints. One of the core relations in an REST architecture is the **Client/Server** communication, like illustrates the next image.
+
+![image](../assets/rest_api.png)
+
+When we use REST style an application can interact with resource by knowing only to things:
+
++ Identifier of the resource
++ Action to be performed on the resource
+
+A resource is the consolidation of the domain that groups the data. In our case the Tasks and the Users are resources. The next image is a definition of the tasks resource:
+
+![image](../assets/tasks_resource.png)
+
+The action to be performed on the resource is achieved with HTTP verbs which are equivalent to the CRUD operations that we perform before in the database.
+
+Another important concept in REST is **stateless**. This means, that each request from the client to the server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. _Session state is therefore kept entirely on the client._
+
+
+In the other hand it is useful to know the template of the request document (from the client to the server) and the response document (from server to client). The next image show the headers, the status code and the information that is relevant in the transfer operations between the client and the server.
+
+![image](../assets/request_response_format.png)
+
+If you mix both concepts, REST API, we can conclude the it is a combination that allows clients like web applications to access and manipulate resources using a set of predefined operations to build software applications.
 
 ## 7. Installing Postman
 

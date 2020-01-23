@@ -52,7 +52,7 @@ You can grab the Git installer from the git official page. After installing Git,
 ## 4. Exploring Git
 Git is not the easiest tool in the world to get started with. For that reason it is important share the next fundamentals concepts:
 
-![image](assets/version_control_git.png)
+![image](../assets/version_control_git.png)
 
 The above image shows the four possible states for a file inside git.
 
