@@ -195,6 +195,29 @@ app.post('/users', (req, res) => {
 ```
 
 ## 9. Resource Creation Endpoints, Part II
+The part two corresponds to the creation of the endpoint for the `/tasks` resources. The idea here is apply the same steps that we did in the creation of the `/users` endpoint. Additionally, we will add semantic to our communications with help of the HTTP statuses code. When we create a resource, the proper code to use is the 201. In that case the post request will be like:
+
+```js
+app.post('/tasks', (request, response) => {
+    const task = new Task(request.body);
+
+    task.save().then(() => {
+        response.status(201).send(task);
+    }).catch((error) => {
+        response.status(400).send(error);
+    });
+});
+```
+
+In summary the steps to execute are:
+1. Move the resource model to the `/models` directory.
+2. Import the model in the `index.js` file.
+3. Set the `app.post` request for the resource in `index.js`
+4. Add the request to the respective collection in Postman
+5. Test your work.
+
+### Links
++ [HTTPstatuses](https://httpstatuses.com)
 
 ## 10. Resource Reading Endpoints, Part I
 
