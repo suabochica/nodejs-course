@@ -165,7 +165,34 @@ If you mix both concepts, REST API, we can conclude the it is a combination that
 
 ## 7. Installing Postman
 
+Postman makes it easy to test your REST API by providing you with a set of tools for making HTTP requests. This is not meant to serve as a replacement for a web mobile application, it is just a useful way to debug your endpoints as you are creating them.
+
+### Links
++ [Postman](https://www.getpostman.com/)
+
 ## 8. Resource Creation Endpoints, Part I
+Let's create REST API endpoints for creating resources. This will allow users of the API to create new users and new tasks.
+
+### Resource Creation Endpoints
+Resource creation endpoints use the POST HTTP method. The URL structure is `/resources`. If you wanted to create a user, it would be `POST /users`. If you wanted to create a task, it would be `POST /tasks`.
+
+The code below uses `app.post` to set up a POST request handler for `/users`. The handler function creates a new instance of the user model and saves it to the database.
+
+`express.json` is also setup to parse incoming JSON into JavaScript object with you can access on `req.body`.
+
+```js
+app.use(express.json());
+
+app.post('/users', (req, res) => {
+    const user = new User(req/body)
+
+    user.save().then(() => {
+        res.send(user)
+    }).catch((error) => {
+       res.status(400).send(error)
+    })
+})
+```
 
 ## 9. Resource Creation Endpoints, Part II
 
