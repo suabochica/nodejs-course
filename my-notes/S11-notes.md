@@ -220,6 +220,30 @@ In summary the steps to execute are:
 + [HTTPstatuses](https://httpstatuses.com)
 
 ## 10. Resource Reading Endpoints, Part I
+Let's create REST API endpoint for reading resources. Twhi will allow users of the API to fetch users and tasks from the database.
+
+### Resource Reading Endpoints
+Resources reading endpoints use the GET HTTP method. The URL structure is `/resources` for a list of resources and `/resources/:id` for fetching an individual resource by its ID. If you wanted to fetch all your tasks, it would be `GET /tasks`. If you wanted to fetch an individual task with the id 198, it would be `GET /tasks/198`.
+
+The code below uses `app.get` to set up a GET request for `/users/:id`. `:id` serves as a placeholder for the id of the user to fetch. If the request is `GET /users/321`, then the id will be 321. This is know as a URL parameter, and you can access the value for the URL on `req.params`
+
+```js
+app.get('/users/:id', (request, response) => {
+    const _id = request.params.id;
+    console.log("_id", _id);
+    User.findById(_id).then((user) => {
+        if (!user) {
+            return response.status(404).send();
+        }
+
+        response.send(user);
+    }).catch((error) => {
+        response.status(500).send(error);
+    });
+});
+```
+### Links
++ [Express route parameters](http://expressjs.com/en/guide/routing.html#route-parameters)
 
 ## 11. Resource Reading Endpoints, Part II
 
