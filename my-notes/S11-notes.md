@@ -230,7 +230,7 @@ The code below uses `app.get` to set up a GET request for `/users/:id`. `:id` se
 ```js
 app.get('/users/:id', (request, response) => {
     const _id = request.params.id;
-    console.log("_id", _id);
+
     User.findById(_id).then((user) => {
         if (!user) {
             return response.status(404).send();
@@ -246,6 +246,13 @@ app.get('/users/:id', (request, response) => {
 + [Express route parameters](http://expressjs.com/en/guide/routing.html#route-parameters)
 
 ## 11. Resource Reading Endpoints, Part II
+In summary the steps to create the reading endpoint for tasks are:
+
+1. Import the model in the `index.js` file.
+2. Set the `app.get` with the `/tasks` request for the resource in `index.js`
+2. Set the `app.get` with the `/tasks/:id` request for the resource in `index.js`, and check if a result is received.
+3. Add the request to the respective collection in Postman
+4. Test your work.
 
 ## 12. Promises Chaining
 

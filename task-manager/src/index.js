@@ -33,7 +33,7 @@ app.get('/users', (request, response) => {
 
 app.get('/users/:id', (request, response) => {
     const _id = request.params.id;
-    console.log("_id", _id);
+
     User.findById(_id).then((user) => {
         if (!user) {
             return response.status(404).send();
@@ -44,6 +44,29 @@ app.get('/users/:id', (request, response) => {
         response.status(500).send(error);
     });
 });
+
+app.get('/tasks', (request, response) => {
+    Task.find({}).then((tasks) => {
+        response.send(tasks);
+    }).catch((error) => {
+        response.status(500).send(error);
+    });
+});
+
+app.get('/tasks/:id', (request, response) => {
+    const _id = request.params.id;
+
+    Task.findById(_id).then((task) => {
+        if (!task) {
+            return response.status(404).send();
+        }
+
+        response.send(task);
+    }).catch((error) => {
+        response.status(500).send(error);
+    });
+});
+
 
 app.post('/tasks', (request, response) => {
     const task = new Task(request.body);
