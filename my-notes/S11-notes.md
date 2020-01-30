@@ -320,6 +320,37 @@ Task.findByIdAndDelete("5e28b2d57f12445cab486728").then((task) => {
 ```
 
 ## 14. Async/Await, Part I
+Async/Await provides and improved syntax for working with promises. You will be able to write complex asynchronous code that looks like normal synchronous code. This makes it much easier to write and maintain asynchronous code.
+
+### Exploring Async/Await
+The example below use the `add` function that we created two lessons ago.
+
+The first step to using async and await is to create an asynchronous function. This is done using the `async` keyword before the function definition. This can be seen in the definition of `doWorkAsync` below. Any function can be defined as asynchronous function, not just arrow functions.
+
+With an async function in place, you can now use the `await` operator. The `await` operator can only be used inside asynchronous functions. This remove the need for excess callbacks and makes code much easier to read.
+
+The `await` operator is used with promises in asynchronous functions. You can see this used three times in `doWorkAsync`. The `await` operator allows you to work with promises in a way that looks like synchronous code. If the promise is fulfilled, the fulfilled value can be accessed as the return value form the function. If the promise is rejected, it would be as though the function threw an error. `await` will pause the function execution until the promise is either fulfilled or rejected.
+
+It is important to note that async and await are syntax enhancements for working with promises, Promises are still at the core of asynchronous code that uses async and await.
+
+```js
+const doWorkAsync = async () => {
+    const sum_one = await add(13, 21);
+    const sum_two = await add(sum_one, 34);
+    const sum_three = await add(sum_two, 55);
+
+    return sum_three;
+};
+
+doWorkAsync().then((result) => {
+    console.log("result", result);
+}).catch((error) => {
+    console.log("error", error);
+});
+```
+### Links
++ [mdn: async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
++ [mdn: await operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
 
 ## 15. Async/Await, Part II
 

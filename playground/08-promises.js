@@ -23,7 +23,7 @@ const add = (a, b) => {
             resolve(a + b);
         }, 2000);
     });
-}
+};
 
 // First approach: nested then, bad!
 // double catch is a bad symptom.
