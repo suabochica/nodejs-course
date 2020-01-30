@@ -290,6 +290,34 @@ add(1, 2).then((sum) => {
 ```
 
 ## 13. Promises Chaining Challenge
+And interesting feature of mongoose is that if you check his API, several methods returns promises. It means that we can apply the promise chaining in the context of the actions that we are performing over the database.
+
+Below I share the steps to check how we can use promises chaining in out task app.
+
+1. Create a playground file.
+2. Load in mongoose for the database connection.
+3. Load in the Task model.
+4. Given an ID remove a task.
+5. Print the total number of incomplete tasks.
+6. Test your work.
+
+Steps 4 and 5 will be achieved with promises chaining. The code below illustrates this description.
+
+```js
+require('../src/db/mongoose');
+
+const Task = require('../src/models/task');
+
+Task.findByIdAndDelete("5e28b2d57f12445cab486728").then((task) => {
+    console.log(task);
+
+    return Task.countDocuments({ completed: false });
+}).then(countResult => {
+    console.log(countResult);
+}).catch((error) => {
+    console.log(error);
+});
+```
 
 ## 14. Async/Await, Part I
 
