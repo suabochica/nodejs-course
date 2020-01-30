@@ -353,6 +353,7 @@ doWorkAsync().then((result) => {
 + [mdn: await operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
 
 ## 15. Async/Await, Part II
+There are no notes for this challenge, as no new information is covered. The goal is to give you experience using what was covered in previous lessons inside the task application.
 
 ## 16. Integrating Async/Await
 
