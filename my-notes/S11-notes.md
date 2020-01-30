@@ -255,6 +255,39 @@ In summary the steps to create the reading endpoint for tasks are:
 4. Test your work.
 
 ## 12. Promises Chaining
+Time to explore the promise chaining. Promise chaining is a syntax that allows you to chain together multiple asynchronous tasks in a specific order. This is great for complex code where one asynchronous task needs t be performed after the completion of a different asynchronous tasks.
+
+### Promise Chaining
+To demonstrate promise chaining, the following function will be used to simulate an asynchronous tasks. In reality, it is just adding up a couple of numbers, waiting two seconds, and fulfilling the promise with the sum.
+
+```js
+const add = (a, b) => {
+    return new Promise(resolve, reject) => {
+        setTimeout(() => {
+            if (a < 0 || b < 0) {
+                return reject("Numbers must be non-negative")
+            }
+            
+            resolve(a + b)
+        }, 2000)
+    }
+}
+```
+
+With this dummy asynchronous function defined, promise chaining can be used to call `add` twice. The code below adds up `1` and `2` for a total of `3`. It then uses the sum of `3` as the input for the another call `add`. The second call to `add` adds up `3` and `4` for a total of `7`.
+
+Promise chaining occurs when the `then` callback function returns a promise. This allows you to chain on another `then` call which will run when the second promise is fulfilled. `catch` can still be called to handled any errors that might occur along the way.
+
+```js
+add(1, 2).then((sum) => {
+    console.log(sum) // Will print 3
+    return add(sum, 4)
+}).then((sum2) => {
+    console.log(sum2) // Will print 6
+}).catch((e) => {
+    console.log(e)
+})
+```
 
 ## 13. Promises Chaining Challenge
 
