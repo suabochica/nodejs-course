@@ -356,6 +356,18 @@ doWorkAsync().then((result) => {
 There are no notes for this challenge, as no new information is covered. The goal is to give you experience using what was covered in previous lessons inside the task application.
 
 ## 16. Integrating Async/Await
+We can apply the async/await syntax in the HTTP verbs that we had been defined to consume our API resources. Below is a modified version of `GET /users` action. The handler function was set up as an asynchronous function which allows you to use await in the function. `awit` is used with the promise from `User.find` to get a list of all the users without needing to call `then` and `catch` with handler functions. A try/catch statement is also used to handle any errors that might occur.
+
+```js
+app.get('/users', async (rqu, res) => {
+  try {
+    const users = await User.find({})
+    res.send(users)
+  } catch (e) {
+    res.status(500).send(e)
+  }
+})
+```
 
 ## 17. Resource Updating Endpoints, Part I
 
