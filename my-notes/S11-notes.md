@@ -290,7 +290,7 @@ add(1, 2).then((sum) => {
 ```
 
 ## 13. Promises Chaining Challenge
-And interesting feature of mongoose is that if you check his API, several methods returns promises. It means that we can apply the promise chaining in the context of the actions that we are performing over the database.
+An interesting feature of mongoose is that if you check his API, several methods returns promises. It means that we can apply the promise chaining in the context of the actions that we are performing over the database.
 
 Below I share the steps to check how we can use promises chaining in out task app.
 
@@ -370,8 +370,54 @@ app.get('/users', async (rqu, res) => {
 ```
 
 ## 17. Resource Updating Endpoints, Part I
+Time to create and REST API endpoints for updating resources. This will allow users of the API to update users and tasks that are already in the database.
+
+Resource updating endpoints use the PATCH HTTP method. The URL structure is `/resources/:id` for updating and individual resource by its ID. If you want to update and individual task with id of 44, it would be `PATCH /tasks/44`.
+
+`app.patch` is used to set up the Express route handler.
+
+```js
+app.patch('/users/:id', async (req, res) => {
+  // Route
+})
+```
+
+When working with updates it is a good idea to alert the user if they are typing to update something that the can't update. The code below checks that the user is only updating fields that can be updated, otherwise it will send back an error response.
+
+```js
+    const updates = Object.keys(request.body);
+    const allowedUpdates = ['description', 'completed'];
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidOperation) {
+        return response.status(400).send({ "error": "Invalid updates!" });
+    }
+```
+
+If all goes well, the updates will be applied to the user, then a response will be sent back. If the provided updates are valid, `findByIdAndUpdate` can be used to update the document in the database. `try/catch` is used here to send back an error if something goes wrong updating the user. This would include the new data not passing the validation defined for the model.
+
+```js
+    try {
+        const task = await Task.findByIdAndUpdate(request.params.id, request.body, { new: true, runValidators: true, });
+
+        if (!task) {
+            return response.status(404).send();
+        }
+
+        response.send(task);
+    } catch (error) {
+        response.status(400).send(error);
+    }
+```
 
 ## 18. Resource Updating Endpoints, Part II
+In summary the steps to create the updating endpoint for tasks are:
+
+1. Import the model in the `index.js` file.
+2. Set the `app.patch` with the `/tasks/:id` request for the resource in `index.js`, and check if a result is received.
+3. Validate that the user is sending the proper information to update the resource
+3. Add the request to the respective collection in Postman
+4. Test your work.
 
 ## 19. Resource Deleting Endpoints
 

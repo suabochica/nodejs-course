@@ -54,6 +54,28 @@ app.post('/users', async (request, response) => {
     }
 });
 
+app.patch('/users/:id', async(request, response) => {
+    const updates = Object.keys(request.body);
+    const allowedUpdates = ['name', 'password', 'email', 'age'];
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidOperation) {
+        return response.status(400).send({ "error": "Invalid updates!" });
+    }
+
+    try {
+        const user = await User.findByIdAndUpdate(request.params.id, request.body, { new: true, runValidators: true, });
+
+        if (!user) {
+            return response.status(404).send();
+        }
+
+        response.send(user);
+    } catch (error) {
+        response.status(400).send(error);
+    }
+});
+
 //---------------------------------------------
 // Tasks resource actions
 //---------------------------------------------
@@ -94,6 +116,27 @@ app.post('/tasks', async (request, response) => {
     }
 });
 
+app.patch('/tasks/:id', async(request, response) => {
+    const updates = Object.keys(request.body);
+    const allowedUpdates = ['description', 'completed'];
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidOperation) {
+        return response.status(400).send({ "error": "Invalid updates!" });
+    }
+
+    try {
+        const task = await Task.findByIdAndUpdate(request.params.id, request.body, { new: true, runValidators: true, });
+
+        if (!task) {
+            return response.status(404).send();
+        }
+
+        response.send(task);
+    } catch (error) {
+        response.status(400).send(error);
+    }
+});
 
 app.listen(port, () => {
     console.log("Server is running on port " + port);
