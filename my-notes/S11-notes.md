@@ -420,5 +420,33 @@ In summary the steps to create the updating endpoint for tasks are:
 4. Test your work.
 
 ## 19. Resource Deleting Endpoints
+Time to create and REST API endpoints for deleting resources. This will allow users of the API to delete users and tasks that are already in the database.
+
+Resource deleting endpoints use the DELETE HTTP method. The URL structure is `/resources/:id` for deleting and individual resource by its ID. If you want to update and individual task with id of 48, it would be `PATCH /tasks/48`.
+
+
+`app.delete` is used to set up the Express route handler.
+
+```js
+app.delete('/users/:id', async (req, res) => {
+  // Route
+})
+```
+
+The handler itself can delete the resource using `findByIdAndDelete`.
+
+```js
+try {
+    const user = await User.findByIdAndDelete(_id);
+
+    if (!user) {
+        response.status(404).send();
+    }
+
+    response.send(user);
+} catch (error) {
+    response.status(500).send(error);
+}
+```
 
 ## 20. Separate Route Files
