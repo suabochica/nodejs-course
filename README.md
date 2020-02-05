@@ -142,3 +142,20 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 18. Resource Updating Endpoints, Part II
 19. Resource Deleting Endpoints
 20. Separate Route Files
+
+## Section 12: API Authentication and Security
+1. Intro: Authentication and Security
+2. Securely Storing Passwords with Bcrypt: Part I
+3. Securely Storing Passwords with Bcrypt: Part II
+4. Login Users
+5. JSON Web Tokens
+6. Generating Authentication Tokens
+7. Express Middleware
+8. Accepting Authentication Tokens
+9. Advanced Postman
+10. Login Out
+11. Hiding Private Data
+12. Authenticating User Endpoints
+13. The User/Task Relationship
+14. Authenticating Task Endpoints
+15. Cascade Delete Tasks
