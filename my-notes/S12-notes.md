@@ -54,6 +54,28 @@ console.log(isMatch)
 + [npm](bcryptjs)
 
 ## 3. Securely Storing Passwords with Bcrypt: Part II
+Time to use Mongoose middleware. Middleware will allow you to automatically hash a user's password before the user saved to the database.
+
+### Mongoose Middleware
+Middleware allows you to register some code to run before or after a lifecycle event for your model. As an example, you could use middleware to register some code to run just after a user is deleted. You could also use middleware to register some code to run just before the user is saved. This can be used to hash passwords just before saving users to the database.
+
+This example below call `pre` with the 'save' lifecycle event. This registers a function to run just before users are saved. The function itself checks the password has been modified. If the password was altered, the plain text password is overwritten with a hashed version.
+
+```js
+userSchema.pre('save', async function (next) {
+    const user = this;
+
+    if (user.isModified('password')) {
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+
+    next();
+});
+```
+
+### Links
++ [Mongoose Middleware](https://mongoosejs.com/docs/middleware.html)
+
 ## 4. Login Users
 ## 5. JSON Web Tokens
 ## 6. Generating Authentication Tokens
