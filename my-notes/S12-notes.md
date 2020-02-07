@@ -77,6 +77,34 @@ userSchema.pre('save', async function (next) {
 + [Mongoose Middleware](https://mongoosejs.com/docs/middleware.html)
 
 ## 4. Login Users
+Logging in a user is a two-step process. The user provides their email and password, and the first thing to do is fetch the user by their email. From there, bcrypt is used to verify the password provided matches the hashed password stored in the database. If either step fails, the users won't be able to log in. If both steps succeed, then you know the user is who they say they are.
+
+The code below sets up `findByCredentials` which finds a user by their email and password.
+
+```js
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        throw new Error('Unable to login');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        throw new Error('Unable to login');
+    }
+
+    return user;
+};
+```
+
+You can then call `findByCredentials` from you application when users nee to login. The example below shows how this can be done.
+
+```js
+const user = await User.findByCredentials(request.body.email, request.body.password);
+```
+
 ## 5. JSON Web Tokens
 ## 6. Generating Authentication Tokens
 ## 7. Express Middleware

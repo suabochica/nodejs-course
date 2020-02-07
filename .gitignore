@@ -1,4 +1,5 @@
 **/.DS_Store
+.log
 notes-app/node_modules
 weather-app/node_modules
 web-server/node_modules

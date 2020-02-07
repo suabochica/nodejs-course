@@ -44,6 +44,16 @@ router.post('/users', async (request, response) => {
     }
 });
 
+router.post('/users/login', async (request, response) => {
+    try {
+        const user = await User.findByCredentials(request.body.email, request.body.password);
+
+        response.send(user);
+    } catch (error) {
+        response.status(400).send();
+    }
+});
+
 router.patch('/users/:id', async(request, response) => {
     const updates = Object.keys(request.body);
     const allowedUpdates = ['name', 'password', 'email', 'age'];
