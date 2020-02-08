@@ -140,6 +140,39 @@ const data = jwt.verify(token, 'thisismynewcourse')
 ```
 
 ## 6. Generating Authentication Tokens
+Time to integrate JWT into the application. This will allow the app to issue to issue an authentication token when a user signs up or logs in.
+
+### Generating and Storing Auth Tokens
+Authentication tokens for a user can be stored in the datanbase. This provides a way for users to log out. All generated authentication tokens will be stored as part of the user profile. If a user logs out, the token will be removed from the user profile. A token would only be considered valid if it's valid JWT an it's still stored as part of the user profile. A user could be logged out of all session by simply deleting all the tokens stored in their user profile.
+
+The snippet below adds a `tokens` array onto the user model. This will be used to store all valid authentication tokens for a user.
+
+```js
+const userSchema = new mongoose.Schema({
+  tokens: [{
+    token: {
+      type: String,
+      required: true
+    }
+  }]
+})
+```
+The instance method below is responsible for generating a new authentication tokens. The token is created, stored in the database, and finally returned from the function.
+
+```js
+userSchema.methods.generateAuthToken = async function () {
+    const user = this;
+    const token = jwt.sign( { _id: user._id.toString() }, 'thisismycourse');
+
+    user.tokens = user.tokens.concat({ token });
+    await user.save();
+
+    return token;
+};
+```
+
+`generateAuthToken` can then be called to generate a fresh authentication token when users sign up or log in.
+
 ## 7. Express Middleware
 ## 8. Accepting Authentication Tokens
 ## 9. Advanced Postman
