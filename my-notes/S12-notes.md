@@ -106,6 +106,39 @@ const user = await User.findByCredentials(request.body.email, request.body.passw
 ```
 
 ## 5. JSON Web Tokens
+JWT a.k.a JSON Web Tokens is provide a nice system for issuing and validating authentication tokens. The authentication token will ensure that the client does not need to log in every time the want to perform an operation on the server.
+
+### JSON Web Tokens
+First up, install the library.
+
+```
+npm i jsonwebtoken@8.5.1
+```
+
+The `sign` method can be used to generate a new token. `sign` accepts three arguments:
+
+1. The data embed in the token: For this case it needs to include a unique identifier for the user.
+2. Secret phrase: This is used to issue and validate tokens, ensuring that the token data has not beem tampered with.
+3. Set of option in an object: The example below use `expiresIn` to create a token that is valid for seven days.
+
+```js
+const jwt = require('jsonwebtoken')
+
+const token = jwt.sign({ _id: 'abc123' }, 'thisismycourse', { 'expiresIn': '7 days' });
+```
+
+Tokens can be issued to users when they sign up or log in to the application. These can then be stored on the data and used to authenticate the user when they perform other options.
+
+The server can verify the token using `verify`. This requires two arguments:
+
+1. The token to validate.
+2. The secret phrase that the token was created wiht. If valid, the embedded data will be returned. This would allow the server to figure out which user is performing the operation.
+
+```js
+const data = jwt.verify(token, 'thisismynewcourse')
+// data._id contains the user id of the user that owns this token
+```
+
 ## 6. Generating Authentication Tokens
 ## 7. Express Middleware
 ## 8. Accepting Authentication Tokens
