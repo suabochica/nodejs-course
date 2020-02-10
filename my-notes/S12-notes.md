@@ -174,6 +174,26 @@ userSchema.methods.generateAuthToken = async function () {
 `generateAuthToken` can then be called to generate a fresh authentication token when users sign up or log in.
 
 ## 7. Express Middleware
+When working with middleware, you will have more control over how your server processes requests. This will be used to check that a user is authenticated before performing specific operations.
+
+### Exploring Express Middleware
+Express middleware is nothing more than a function that runs as Express handles a given request. You can customize the function to do whatever you want it to do, and you can have it run whenever you wan it to.
+
+The example below uses middleware to print information about incoming request. Middleware functions should accept three parameters: `req`, `res` and `next`. The only new parameter is `next`. `next` is called to signal to Express that the middleware function is done.
+
+```js
+const loggerMiddleware = (req, res, next) => {
+    console.log('New request to: ' + req.method + ' ' + req.path)
+    next
+}
+
+// Register the function as middleware for the application
+app.use(loggerMiddleware)
+```
+
+### Links
++ [Express Middleware](http://expressjs.com/th/guide/using-middleware.html)
+
 ## 8. Accepting Authentication Tokens
 ## 9. Advanced Postman
 ## 10. Login Out
