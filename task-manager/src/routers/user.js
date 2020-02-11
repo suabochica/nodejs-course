@@ -1,4 +1,5 @@
 const express = require('express');
+const auth = require('../middleware/auth');
 const User = require('../models/user');
 
 //---------------------------------------------
@@ -15,6 +16,10 @@ router.get('/users', async (request, response) => {
     } catch (error) {
         response.status(500).send(error);
     }
+});
+
+router.get('/users/me', auth, async (request, response) => {
+    response.send(request.user);
 });
 
 router.get('/users/:id', async (request, response) => {

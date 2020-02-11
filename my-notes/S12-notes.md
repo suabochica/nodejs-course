@@ -195,7 +195,65 @@ app.use(loggerMiddleware)
 + [Express Middleware](http://expressjs.com/th/guide/using-middleware.html)
 
 ## 8. Accepting Authentication Tokens
+Let's use Express middleware to put specific routes behind authentication. That will require the client to be authenticated before the operation can be performed.
+
+### Accepting and Validating Tokens
+
+The goal of the authentication middleware is to validate the authentication token and then fetch the profile for that user. `auth` below shows how you can get this done. Notice that the user profile is added into `req.user` This allows route handler functions to access the user profile without needing to fetch it again.
+
+```js
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+
+const auth = async (request, response, next) => {
+    try {
+        const token = request.header('Authorization').replace('Bearer ', '');
+        const decoded = jwt.verify(token, 'thisismycourse');
+        const user = await User.findOne({ _id: decoded._id, 'tokens.token': token });
+
+        if (!user) {
+            throw new Error();
+        }
+
+        request.user = user;
+        next();
+    } catch (error) {
+        return response.status(401).send({ error: 'Please authenticate'});
+    }
+};
+
+module.exports = auth;
+```
+
+The authentication middleware can be added to individual endpoints to lock them down. This is shown with `GET /users/me` below. `autd` is added as the second argument to `router.get` meaning that it will run before the route handler function runs. This will ensure the user is authenticated.
+
+```js
+router.get('users/me', auth, async (request, response) => {
+    response.send(request.user)
+});
+```
+
 ## 9. Advanced Postman
+Let's go deep exploring environments with Postman. Environments make it easy to manage your request and authentication without having to manually add authentication tokens to the individual request.
+
+To do a basic set up of an environments in Postman you can follow the next steps:
+
+1. In the superior left corner you will see a gear icon next to a drop down with a "No environments" label.
+2. Click on the gear and add an environment name like "Task Manager API (dev)"
+3. There you will have an space to set a configuration of key/value pairs that you can consume in your collection. For example we can set a key `url` with the `localhost:3000` value and consume it form our request changing the address by `{{url}}/users`.
+
+Now we will do a more complex set up to handle the Authorization header. As you can see in the Request View, we have a **Authorization** tab. There you can set the header choosing the respective authorization method (in this case Bearer Token), and then pass the value of the token that we store in the database.
+
+Additionally, you can execute a java script code after execute a request. If you check the Request View, you will see a **Test** tab. There you can set an script to dynamically define the values of some key of the environment. The next code will set the value of the `authToken` key from the response of the request:
+
+```js
+if (pm.response.code === 201) {
+    pm.environment.set('authToken', pm.response.jsong().token);
+}
+```
+
+ `pm` is a global object that enables postman to access to some properties of the request.
+
 ## 10. Login Out
 ## 11. Hiding Private Data
 ## 12. Authenticating User Endpoints
