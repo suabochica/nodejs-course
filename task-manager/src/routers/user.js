@@ -8,15 +8,15 @@ const User = require('../models/user');
 
 const router = new express.Router();
 
-router.get('/users', async (request, response) => {
-    const users = await User.find({});
+// router.get('/users', async (request, response) => {
+//     const users = await User.find({});
 
-    try {
-        response.send(users);
-    } catch (error) {
-        response.status(500).send(error);
-    }
-});
+//     try {
+//         response.send(users);
+//     } catch (error) {
+//         response.status(500).send(error);
+//     }
+// });
 
 router.get('/users/me', auth, async (request, response) => {
     response.send(request.user);
@@ -59,6 +59,31 @@ router.post('/users/login', async (request, response) => {
         response.send({ user, token });
     } catch (error) {
         response.status(400).send();
+    }
+});
+
+router.post('/users/logout', auth, async (request, response) => {
+    try {
+        request.user.tokens = request.users.tokens.filter((token) => {
+            return token.token !== request.token;
+        });
+
+        await request.user.save();
+
+        response.send();
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
+router.post('/users/logoutAll', auth, async (request, response) => {
+    try {
+        request.user.tokens = [];
+        await request.user.save();
+
+        response.send();
+    } catch (error) {
+        response.status(500).send(error);
     }
 });
 

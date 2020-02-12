@@ -255,7 +255,63 @@ if (pm.response.code === 201) {
  `pm` is a global object that enables postman to access to some properties of the request.
 
 ## 10. Login Out
+Currently we give a way to our users to log in, but we don't defined something to log out. To achieve that we will crate a new endpoint at `/users/logout` and we will set a logic to do validation over the tokens that we attached to our users. The next snippet illustrate this goal.
+
+```js
+router.post('/users/logout', auth, async (request, response) => {
+    try {
+        request.user.tokens = request.users.tokens.filter((token) => {
+            return token.token !== request.token;
+        });
+
+        await request.user.save();
+
+        response.send();
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+```
+
+Notice that we always work with the user property that comes with the `request` object. Now let's try to accomplish the challenge of logout all the users following the next steps:
+
+1. Set up POST `/users/logoutAll`
+2. Create the router handler to wipe the tokens array
+    - Send 200 or 500
+3. Test your work checking the updates in the documents of your database.
+
+The next snippet is the solution for this behavior:
+
+```js
+router.post('/users/logoutAll', auth, async (request, response) => {
+    try {
+        request.user.tokens = [];
+        await request.user.save();
+
+        response.send();
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+```
+
 ## 11. Hiding Private Data
+It is necessary to limit what data gets sent to the client. This will allow you to hide authentication tokens and hashed passwords from server responses.
+
+### Hiding Private Data
+When a Mongoose document is passed to `res.send`, Mongoose converts the object into JSON. You can customize this by adding `toJSON` as a method on the object. The method below remove the `password` and `tokens` properties before sending the response back.
+
+```js
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject 
+}
+```
+
 ## 12. Authenticating User Endpoints
 ## 13. The User/Task Relationship
 ## 14. Authenticating Task Endpoints
