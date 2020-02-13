@@ -313,6 +313,47 @@ userSchema.methods.toJSON = function () {
 ```
 
 ## 12. Authenticating User Endpoints
+Now it is pending to execute the _delete_ and _update_ user actions behind to the authentication middleware. So we will to update the URL of the endpoints and below I will share the snippet that will achieve these goals.
+
+First, the delete action:
+
+```js 
+router.delete('/users/me', auth, async (request, response) => {
+    try {
+        await request.user.remove();
+        response.send(user);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
+```
+
+And second the update action:
+
+```js
+router.patch('/users/me', auth, async(request, response) => {
+    const updates = Object.keys(request.body);
+    const allowedUpdates = ['name', 'password', 'email', 'age'];
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidOperation) {
+        return response.status(400).send({ "error": "Invalid updates!" });
+    }
+
+    try {
+        updates.forEach((update) => request.user[update] = request.body[update]);
+        await request.user.save();
+
+        response.send(request.user);
+    } catch (error) {
+        response.status(400).send(error);
+    }
+});
+```
+
+Check that in both cases we are using the user attached in the request the returns the authentication middleware.
+
 ## 13. The User/Task Relationship
 ## 14. Authenticating Task Endpoints
 ## 15. Cascade Delete Tasks
