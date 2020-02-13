@@ -1,5 +1,6 @@
 const express = require('express');
 const Task = require('../models/task');
+const auth = require('../middleware/auth');
 
 //---------------------------------------------
 // Tasks resource actions
@@ -32,8 +33,12 @@ router.get('/tasks/:id', async (request, response) => {
     }
 });
 
-router.post('/tasks', async (request, response) => {
-    const task = new Task(request.body);
+router.post('/tasks', auth, async (request, response) => {
+    const task = new Task({
+        ...request.body,
+        owner: request.user._id,
+    });
+
     try {
         await task.save();
         response.status(201).send(task);

@@ -248,7 +248,7 @@ Additionally, you can execute a java script code after execute a request. If you
 
 ```js
 if (pm.response.code === 201) {
-    pm.environment.set('authToken', pm.response.jsong().token);
+    pm.environment.set('authToken', pm.response.json().token);
 }
 ```
 
@@ -355,5 +355,49 @@ router.patch('/users/me', auth, async(request, response) => {
 Check that in both cases we are using the user attached in the request the returns the authentication middleware.
 
 ## 13. The User/Task Relationship
+Time to create the relationship between a user and tasks. This will make it possible to know which tasks a user created.
+
+### Mongoose Relationships
+To set up the relationship, both the user and the task mode will be changed. First up, a new field needs to be added onto the task. This will store the ID of the user who create it.
+
+```js
+const Task = mongoose.model("Task", {
+    ...
+    owner: {
+        type: mongoose.Schema.ObjectId,
+        required: true,
+        ref: 'User'
+    }
+});
+```
+
+Next, a virtual property needs to be added onto the user. The code below adds a `tasks` field onto users that can be used to fetch the tasks for a given user. It's a virtual property because users in the database won't have a `tasks` field. It is a reference to the task data stored in the separate connection.
+
+```js
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner',
+});
+```
+
+With the relationship configured, tasks can be created with an owner value.
+
+The code below shows how you can fetch the owner of a given tasks.
+
+```js
+const task = await Task.findById('5c2e505a3253e18a43e612e6')
+await task.populate('owner').execPopulate()
+console.log(task.owner)
+```
+
+The code below shows how you can fetch the tasks for a given user.
+
+```js
+const user = await User.findById('5c2e4dcb5eac678a23725b5b')
+await user.populate('tasks').execPopulate()
+console.log(user.tasks)
+```
+
 ## 14. Authenticating Task Endpoints
 ## 15. Cascade Delete Tasks
