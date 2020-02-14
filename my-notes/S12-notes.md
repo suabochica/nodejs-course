@@ -400,4 +400,10 @@ console.log(user.tasks)
 ```
 
 ## 14. Authenticating Task Endpoints
+Now it is time to setting up authentication for the task endpoints. Basically we have to follow the next step to achieve the goal:
+
+1. Add the authentication middelware.
+2. Find the task by _id/owner relationship. For this replace the mongoose methods `.findById(_id_)` by `findOne({_id: req.params.id, owner: request.user._id_})`
+3. Test your work with Postman.
+
 ## 15. Cascade Delete Tasks
