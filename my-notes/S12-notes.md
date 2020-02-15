@@ -407,3 +407,21 @@ Now it is time to setting up authentication for the task endpoints. Basically we
 3. Test your work with Postman.
 
 ## 15. Cascade Delete Tasks
+For delete the tasks attached to an user when this user is removed we will use Mongoose middleware. This will make sure that all their data is securely removed from the database.
+
+### Deleting a User's Tasks
+
+The middleware function below is registered using `pre`. It will run just before `remove` fires for the user. The function itself deletes all tasks created by that user. Now when a user closes their account, their other data will get deleted too. 
+
+```js
+const Task = require(../models.task)
+
+...
+
+userSchema.pre('remove', async function (next) {
+    const user = this;
+
+    await Task.deleteMany({ owner: user._id });
+    next();
+});
+```
