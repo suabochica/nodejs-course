@@ -8,10 +8,19 @@ const auth = require('../middleware/auth');
 const router = new express.Router();
 
 router.get('/tasks', auth, async (request, response) => {
-    const tasks =  await Task.find({ owner: request.user._id });
+    const match = {};
+
+    if (request.query.completed) {
+        match.completed = request.query.completed === 'true';
+    };
 
     try {
-        response.send(tasks);
+        await request.user.populate({
+            path: 'tasks',
+            match
+        }).execPopulate();
+
+        response.send(request.user.tasks);
     } catch (error) {
         response.status(500).send(error);
     }
@@ -30,7 +39,7 @@ router.get('/tasks/:id', auth, async (request, response) => {
 
         response.send(task);
     } catch (error) {
-        reponse.status(500).send(error);
+        response.status(500).send(error);
     }
 });
 
