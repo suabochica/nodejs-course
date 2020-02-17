@@ -53,4 +53,24 @@ await req.user.populate({
 ```
 
 ## 4. Paginating Data
+Time to add pagination to the application. This will allow the client to fetch data in pages. The client can start off with the first page of data and then fetch other pages as they are needed.
+
+### Data Pagination
+Pagination is configured using `limit` and `skip`. These two values give the client complete control of the data they are getting back.
+
+If a client wanted the first page of 10 tasks, `limit` would be set to `10` and `skip` would be set to `0`. If the client wanted the third page of 10 tasks, `limit` would be set to `10` and `skip` would be set to `20`.
+
+Both `limit` and `skip` can be added onto the `options` object passed to `populate`. The code below uses `parseInt` to convert the string query parameters into numbers first.
+
+```js
+await req.user.populate({
+    path: 'tasks',
+    match,
+    options: {
+        limit: parseInt(req.query.limit),
+        skip: parseInt(req.query.skip)
+    }
+}).execPopulate()
+```
+
 ## 5. Sorting Data
