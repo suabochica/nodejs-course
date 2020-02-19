@@ -159,3 +159,20 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 13. The User/Task Relationship
 14. Authenticating Task Endpoints
 15. Cascade Delete Tasks
+
+## Section 13: Sorting, Pagination and Filtering
+1. Intro: Sorting, Pagination and Filtering
+2. Working with Timestamps
+3. Filtering Data
+4. Paginating Data
+5. Sorting Data
+
+## Section 14: File Uploads
+1. Intro: File Uploads
+2. Adding Support for File Uploads
+3. Validating File Uploads
+4. Validation Challenge
+5. Handling Express Errors
+6. Adding Images to the User Profile
+7. Serving up Files
+8. Auto-Cropping and Image Formatting
