@@ -91,11 +91,23 @@ router.delete('/users/me', auth, async (request, response) => {
 });
 
 const upload = multer({
-    dest: 'avatars'
+    dest: 'avatars',
+    limits: {
+        fileSize: 1000000,
+    },
+    fileFilter(request, file, callback) {
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            return callback(new Error("Please upload a JPG, JPEG or PNG file."));
+        } else {
+            callback(undefined, true);
+        }
+    }
 });
 
 router.post('/users/me/avatar', upload.single('avatar'), (request, response) => {
     response.send();
+}, (error, request, response, next) => {
+    return response.status(400).send({error: error.message});
 });
 
 module.exports = router;
