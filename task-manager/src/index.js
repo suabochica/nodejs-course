@@ -78,7 +78,19 @@ app.listen(port, () => {
 
 const multer = require('multer');
 const upload = multer({
-    dest: 'images'
+    dest: 'images',
+    limits: {
+        fileSize: 1000000,
+    },
+    fileFilter(request, file, callback) {
+        // For validate just one type of file, you can use !file.originalname.endsWith('.pdf'))
+        // For validate several types of files, you should use a regex as shown below
+        if (!file.originalname.match(/\.(doc|docx)$/)) {
+            return callback(new Error("Please upload a PDF File"));
+        }
+
+        callback(undefined, true);
+    }
 });
 
 app.post('/upload', upload.single('upload'), (req, res) => {
