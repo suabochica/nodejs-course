@@ -90,8 +90,11 @@ router.delete('/users/me', auth, async (request, response) => {
     }
 });
 
+//--------------------------------------
+// Avatar Endpoints
+//--------------------------------------
+
 const upload = multer({
-    dest: 'avatars',
     limits: {
         fileSize: 1000000,
     },
@@ -104,10 +107,18 @@ const upload = multer({
     }
 });
 
-router.post('/users/me/avatar', upload.single('avatar'), (request, response) => {
+router.post('/users/me/avatar', auth, upload.single('avatar'), async (request, response) => {
+    request.user.avatar = request.file.buffer;
+    await request.user.save();
     response.send();
 }, (error, request, response, next) => {
     return response.status(400).send({error: error.message});
+});
+
+router.delete('/users/me/avatar', auth, async (request, response) => {
+    request.user.avatar = undefined;
+    await request.user.save();
+    response.send();
 });
 
 module.exports = router;
