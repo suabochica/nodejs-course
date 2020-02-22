@@ -159,4 +159,40 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
 > Note: you can render an image with his binary data with the next format: `<img src="data:image/jpg;base64,{binary data}"/>`
 
 ## 7. Serving up Files
+Time to serve up user profile images. These images will be served up as if they were static assets for the application.
+
+Serving up the user avatars will require two pieces of data from the server. The first is the images data, and the second is the `Content-Type` header. The image data is stored on the user profile. The header should be set equal to `image/png` which lets the client know they are getting a PNG image back.
+
+The route below fetches the image data and sets the `Content-Type` header for the response. The URL could be visited to view the profile picture.
+
+```js
+router.get('/users/:id/avatar', async (req, res) => { try {
+        const user = await User.findById(req.params.id)
+if (!user || !user.avatar) { throw new Error()
+}
+        res.set('Content-Type', 'image/jpg')
+res.send(user.avatar) } catch (e) {
+        res.status(404).send()
+    }
+})
+```
+
 ## 8. Auto-Cropping and Image Formatting
+Finally, we will resize and format images. This will let you create uniform sizes and file types for users avatars.
+
+First up, install the npm library
+
+```
+npm i sharp@0.21.1
+```
+
+Now sharp can be used to manipulate uploaded images. Before the image data is added onto the user profile, the data should be passed through sharp. The example below uses `resize` to resize all uploads to 250 by 250 pixels. The example also use `png` to convert all images to portable network graphics. Lastly, `toBuffer` is used to retrieve the modified image data. The modified data is what should be saved in the database.
+
+```js
+const sharp = require('sharp')
+const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250
+}).png().toBuffer()
+```
+
+### Links
++ [npm: sharp](https://www.npmjs.com/package/sharp)
