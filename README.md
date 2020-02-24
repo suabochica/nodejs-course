@@ -176,3 +176,11 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 6. Adding Images to the User Profile
 7. Serving up Files
 8. Auto-Cropping and Image Formatting
+
+## Section 15: Sending Emails
+1. Intro: Sending Emails
+2. Exploring SendGrid
+3. Sending Welcome Cancelation Emails
+4. Environment Variables
+5. Creating a Production MongoDB Database
+6. Heroku Deployment
