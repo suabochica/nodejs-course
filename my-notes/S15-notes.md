@@ -43,6 +43,44 @@ In the long term, you will want to purchase a custom domain and register it with
 
 
 ## 3. Sending Welcome Cancelation Emails
+Now let's use the code that we consolidate to integrate the SendGrid mail library and then we will send emails when a new user is created and when a user cancelates his account. To achieve this goal, lets exports some functions from our `accounts.js` file and consume them in the `routers/users.js`.
+
+So for send a welcome email we will expose a function as shows the next snippet:
+
+```js
+const sendWelcomeEmail = (email, name) => {
+    sgMail.send({
+        to: email,
+        from: 'sergio.kun21@gmail.com',
+        subject: 'Thanks for joining in!',
+        text: `Welcome to the app, ${name}. Let me know how do you get along with the app`
+    });
+};
+
+module.exports = {
+    sendWelcomeEmail,
+};
+```
+Then we consume this function in our `POST` request to create an user:
+
+```js
+const { sendWelcomeEmail } = require('../emails/account');
+
+router.post('/users', async (request, response) => {
+    const user = new User(request.body);
+
+    try {
+        await user.save();
+        sendWelcomeEmail(user.email, user.name);
+        const token = await user.generateAuthToken();
+
+        response.status(201).send({ user, token });
+    } catch (error) {
+        response.status(400).send(error);
+    }
+});
+```
+
 ## 4. Environment Variables
 ## 5. Creating a Production MongoDB Database
 ## 6. Heroku Deployment
