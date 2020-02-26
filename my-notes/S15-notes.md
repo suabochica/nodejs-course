@@ -82,5 +82,34 @@ router.post('/users', async (request, response) => {
 ```
 
 ## 4. Environment Variables
+Let's learn how to use environment variables to securely store API keys and other credentials. This will reduce the chance your private keys fail into the wrong hands.
+
+First up lets install the `env-cmd` module.
+
+```
+npm i env-cmd@10.1.0 --save-dev
+```
+
+Next up, create an environment file `dev.env` in the `config` directory. This will store your environment variables in the following format.
+
+```
+KEY=value
+ANOTHER_KEY=someothervalue
+```
+
+Next, update the `dev` script to use env-cmd to load thos environment variables when it starts up. That woudl be `env-cmd ./config/dev.env nodemon src/index.js`
+
+Now, you can remove API keys and database credentials from the application itself. For example, you can create `MONGODB_URL` in the development environment file. the applicatio code shown below can then reference that environment variable to get its value. This can be done with the SendGrid API key and the JWT secret used to generate and verigy authentication tokens.
+
+```js
+mongoose.connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
+```
+### Links
++ [npm: env-cmd](https://www.npmjs.com/package/env-cmd)
+
 ## 5. Creating a Production MongoDB Database
 ## 6. Heroku Deployment
