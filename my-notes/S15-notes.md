@@ -133,3 +133,24 @@ For production we will use the MongoDB Atlas service so in summary this are the 
 + [MongoDB Compass](https://www.mongodb.com/products/compass)
 
 ## 6. Heroku Deployment
+Let's deploy the task manager API to Heroku.
+
+You already know how to deploy Node.js applications to Heroku. The only difference with this application is that your custom environment variables need to be configured on Heroku too. This does not include `PORT`, as that is managed by Heroku.
+
+The command below is used to set an environment.
+
+```
+heroku config:set KEY=VALUE
+```
+
+A variation of that command can be used to fetch all the environment variables currently configured.
+
+```
+heroku config
+```
+
+Lastly, you can delete an environment as shown here.
+
+```
+heroku config:unset KEY
+```
