@@ -112,4 +112,24 @@ mongoose.connect(process.env.MONGODB_URL, {
 + [npm: env-cmd](https://www.npmjs.com/package/env-cmd)
 
 ## 5. Creating a Production MongoDB Database
+To create a production MongoDB database we will use the MongoDB Atlas platform that is a cloud-hosted service on AWS to deploy, operate and scale a MongoDB database in just few clicks.
+
+This section brings different setups according two environments: Production and Development.
+
+For production we will use the MongoDB Atlas service so in summary this are the steps that we have to execute:
+
+1. Create an account for MongoDB Atlas
+2. Choose the free plan to create one cluster
+3. Follow the configuration steps
+  + Create a manual IP: 0.0.0.0/0
+  + Set a username and a password
+4. Download the Compass Database Client (a replace to Robo3T)
+  + Connect the local database
+  + Connect the atlas/prod database 
+
+### Links
++ [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/lp/general/try?utm_source=google&utm_campaign=gs_americas_colombia_search_brand_atlas_desktop&utm_term=atlas%20mongo&utm_medium=cpc_paid_search&utm_ad=e&gclid=EAIaIQobChMIjZLM6a_y5wIVgpOzCh2cygLwEAAYASAAEgIEDfD_BwE)
+
++ [MongoDB Compass](https://www.mongodb.com/products/compass)
+
 ## 6. Heroku Deployment
