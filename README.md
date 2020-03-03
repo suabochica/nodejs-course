@@ -22,10 +22,12 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 # Contents
 
 ## Section 1: Welcome
+
 1. Welcome to the class
 2. Grab the PDF Guide
 
 ## Section 2: Installing and exploring Node.js
+
 1. Intro: Installing and exploring Node.js
 2. Installing Node.js and Visual Studio Code
 3. What is Node.js?
@@ -33,6 +35,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 5. Your first Node.js script
 
 ## Section 3: Node.js Module System (Notes App)
+
 1. Intro: Node.js Module System
 2. Importing Node.js Core Modules
 3. Importing your own files
@@ -41,6 +44,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 6. Global `npm` modules and `nodemon`
 
 ## Section 4: File System and Command Line Args (Notes App)
+
 1. Intro: File System and Command Line
 2. Getting input from users
 3. Argument parsing with `yargs` part one
@@ -54,11 +58,13 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 11. Reading a note
 
 ## Section 5: Debugging Node.js
+
 1. Intro: Debugging Node.js
 2. Debugging Node.js
 3. Error Messages
 
 ## Section 6: Asynchronous Node.js
+
 1. Intro: Asynchronous Node.js
 2. Asynchronous Basics
 3. Call Stack, Callback Queue, and Event Loop
@@ -75,6 +81,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 14. Bonus: HTTP Request Without a Library
 
 ## Section 7: Web Servers
+
 1. Intro: Web Servers
 2. Hello Express
 3. Serving up HTML and JSON
@@ -88,6 +95,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 11. Styling the Application: Part II
 
 ## Section 8: Accessing API from Browser
+
 1. Intro: Your Own API
 2. The Query String
 3. Building a JSON HTTP Endpoint
@@ -97,6 +105,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 7. Wiring up the User Interface
 
 ## Section 9: Application Deployment
+
 1. Intro: Application Deployment
 2. Joining Heroku and Github
 3. Version Control with Git
@@ -109,6 +118,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 10. Avoiding Global Modules
 
 ## Section 10: MongoDB and Promises
+
 1. Intro: MongoDB
 2. MongoDB and NoSQL Databases
 3. Installing MongoDB on macOS
@@ -119,9 +129,10 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 8. Querying Documents
 9. Promises
 10. Updating Documents
-12. Deleting Documents
+11. Deleting Documents
 
 ## Section 11: REST APIs and Mongoose
+
 1. Intro: Mongoose
 2. Setting up Mongoose
 3. Creating a Mongoose Model
@@ -144,6 +155,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 20. Separate Route Files
 
 ## Section 12: API Authentication and Security
+
 1. Intro: Authentication and Security
 2. Securely Storing Passwords with Bcrypt: Part I
 3. Securely Storing Passwords with Bcrypt: Part II
@@ -161,6 +173,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 15. Cascade Delete Tasks
 
 ## Section 13: Sorting, Pagination and Filtering
+
 1. Intro: Sorting, Pagination and Filtering
 2. Working with Timestamps
 3. Filtering Data
@@ -168,6 +181,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 5. Sorting Data
 
 ## Section 14: File Uploads
+
 1. Intro: File Uploads
 2. Adding Support for File Uploads
 3. Validating File Uploads
@@ -178,9 +192,28 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 8. Auto-Cropping and Image Formatting
 
 ## Section 15: Sending Emails
+
 1. Intro: Sending Emails
 2. Exploring SendGrid
 3. Sending Welcome Cancelation Emails
 4. Environment Variables
 5. Creating a Production MongoDB Database
 6. Heroku Deployment
+
+## Section 16: Sending Emails
+
+1. Intro: Testing Node.js
+2. Jest Testing Framework
+3. Writing Tests and Assertions
+4. Writing Your Own Tests
+5. Testing Asynchronous Code
+6. Testing and Express Application: Part I
+7. Testing and Express Application: Part II
+8. Jest Setup and Teardown
+9. Testing with Authentication
+10. Advanced Assertions
+11. Mocking Libraries
+12. Wrapping up User Tests
+13. Setup Task Test Suite
+14. Testing with Task Data
+15. Bonus: Extra Tests Ideas
