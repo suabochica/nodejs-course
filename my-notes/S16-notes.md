@@ -68,6 +68,14 @@ test('Should calculate total with tip', () => {
 + [expect](https://jestjs.io/docs/en/expect)
 
 ## 4. Writing Your Own Tests
+In this section, it’s on you to write some new test cases using what you’ve learned so far. No new information is covered. The goal is to give you experience using what was covered in previous lessons.
+
+To validate the testing practice in our `math.js` file we will add two functions:
+
+1. fahrenheitToCelsius(temp)
+2. celsiusToFahrenheit(temp)
+
+The idea is that we create the respective tests to assert the results of these functions.
 
 ## 5. Testing Asynchronous Code
 
