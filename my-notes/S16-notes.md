@@ -36,7 +36,7 @@ test('This should fail', () => {
 
 ### Links
 
-+ [Jest(https://jestjs.io/)
++ [Jest](https://jestjs.io/)
 
 ## 3. Writing Tests and Assertions
 Let's add assertions to your test cases. Assertions allow you to check if a given value is what you are expecting or not.
@@ -78,6 +78,27 @@ To validate the testing practice in our `math.js` file we will add two functions
 The idea is that we create the respective tests to assert the results of these functions.
 
 ## 5. Testing Asynchronous Code
+Testing asynchronous code will be necessary to test the Express API endpoints. Before to start with this testing scenarios, we will use the asynchronous `add` function you created earlier in the course. Both test cases add up 2 to 3 and assert that the total is 5.
+
+The callback function for the first test case accpets a `done` parameter. Ths lets Jest know that the test function contains asyncrhonous code. Jest won't determine if the test passed or failed until `done` is called. In the example below, `then` is called to run some code after the numbers are added. This is where the assertion is added and it is where `done` is called.
+
+```js
+test('Should add two numbers', (done) => {
+    add(2, 3).then((sum) => {
+        expect(sum).toBe(7);
+        done();
+    });
+});
+```
+
+Your test cases can use async/await as well. The test case below is a refactored version of the test case above. The test case function is defined with `async`. `await` is used in the function to ensure that Jest waits for those asynchronous tasks to complete. Both test cases are functionally identical.
+
+```js
+test('Should add two numbers async/await', async () => {
+    const sum = await add(2, 3);
+    expect(sum).toBe(5);
+});
+```
 
 ## 6. Testing and Express Application: Part I
 

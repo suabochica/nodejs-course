@@ -10,7 +10,6 @@ const add = (a, b) => {
     });
 };
 
-
 const doWorkAsync = async () => {
     const sum_one = await add(13, 21);
     const sum_two = await add(sum_one, 34);
