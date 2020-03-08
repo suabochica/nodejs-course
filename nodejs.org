@@ -10,7 +10,8 @@
     CLOSED: [2020-03-05 Thu 16:59]
 *** DONE 5. Testing Asynchronous Code
     CLOSED: [2020-03-06 Fri 15:34]
-*** 6. Testing and Express Application: Part I
+*** DONE 6. Testing and Express Application: Part I
+    CLOSED: [2020-03-08 Sun 12:57]
 *** 7. Testing and Express Application: Part II
 *** 8. Jest Setup and Teardown
 *** 9. Testing with Authentication

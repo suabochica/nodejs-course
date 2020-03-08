@@ -101,6 +101,26 @@ test('Should add two numbers async/await', async () => {
 ```
 
 ## 6. Testing and Express Application: Part I
+Before to start to test the Express application we should set up the Express API to be easily testable. This involves settings up a test environment as well as configuring Jest to work with Node.
+
+### Creating a Test Environment
+Creating the test environment requires `test.env` to be added to the `config` directory. The contents will be identical to `.env` with the exception of the MongoDB connection string. The test environment should use a separate database such as `task-manager-api-test`. This will prevent the test cases from messing with development data.
+
+With the environment in place, update the `test` script to load the environment file in. That would be `env-cmd .config/test.env jest --watch --runInBand`.
+
+### Configuring Jest
+By default, Jest is expecting to run in the browser. You can use Jest with Node, but you will need to configure. Jest to enable support. Jest can be configured by adding a `jest` property in `package..json`. The configuration below sets `testEnvironment` to `node` to ensure that Jest runs correctly in Node.js.
+
+```json
+{
+    jest: {
+        "testEnvironment": "node"
+    }
+}
+```
+
+### Links
++ [Configuring Jest](https://jestjs.io/docs/en/configuration#testenvironment-string)
 
 ## 7. Testing and Express Application: Part II
 
