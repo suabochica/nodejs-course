@@ -123,6 +123,36 @@ By default, Jest is expecting to run in the browser. You can use Jest with Node,
 + [Configuring Jest](https://jestjs.io/docs/en/configuration#testenvironment-string)
 
 ## 7. Testing and Express Application: Part II
+Time to add tests for the Express API, Each test case will focus on testing a specific endpoint, making assertions about the response form server.
+
+### Testing with Supertest
+Supertest was created by the Express team to allow you to easily test your Express apps. First up, install the module.
+
+```
+npm i supertest --save-dev
+```
+
+Now, supertest can be used to test an endpoint. The test case below test that new users can sign up for accounts. All the account data provided is valid, so a new account should be created.
+
+Step one is to pass the express `app` to `request`. Next, supertest methods can be chained together to fit the needs of yout tests. `post` is used to make an HTTP POST request to `/users`. `.send` is used to  send the correct JSON data to the server. `expect` is used to assert that the response status code is correct. In this case, a succesful signup should result in a `201` status code.
+
+```js
+const request = require('supertest');
+const app = require('../src/app');
+
+test('Should sign up a new user', async () => {
+    await request(app).post('/users').send({
+        name: 'Edward',
+        email: 'edward@elric.com',
+        password: 'MyPass777!'
+    }).expect(201);
+});
+```
+
+Unfortunately, if you run this test twice, the second time will file because the user is already created in the test database. To resolve this issue, we should wipe the test database everytime that we run the test. That is the reason why we decide to separate the production database from the test database.
+
+### Links
++ [npm: supertest](https://www.npmjs.com/package/supertest)
 
 ## 8. Jest Setup and Teardown
 
