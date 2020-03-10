@@ -12,14 +12,15 @@
     CLOSED: [2020-03-06 Fri 15:34]
 *** DONE 6. Testing and Express Application: Part I
     CLOSED: [2020-03-08 Sun 12:57]
-*** 7. Testing and Express Application: Part II
-*** 8. Jest Setup and Teardown
-*** 9. Testing with Authentication
-*** 10. Advanced Assertions
-*** 11. Mocking Libraries
-*** 12. Wrapping up User Tests
-*** 13. Setup Task Test Suite
-*** 14. Testing with Task Data
+*** DONE 7. Testing and Express Application: Part II
+    CLOSED: [2020-03-10 Tue 12:59]
+*** TODO 8. Jest Setup and Teardown
+*** TODO 9. Testing with Authentication
+*** TODO 10. Advanced Assertions
+*** TODO 11. Mocking Libraries
+*** TODO 12. Wrapping up User Tests
+*** TODO 13. Setup Task Test Suite
+*** TODO 14. Testing with Task Data
 ** Section 17: Real-Time Web Applications with Socket.io
 *** 1: Section Intro: Real-Time Web Applications with Socket.io
 *** 2: Creating the Chat App Project

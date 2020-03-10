@@ -155,6 +155,46 @@ Unfortunately, if you run this test twice, the second time will file because the
 + [npm: supertest](https://www.npmjs.com/package/supertest)
 
 ## 8. Jest Setup and Teardown
+Let's configure Jest to add test data into the database. This will allow you to test operations that require existing data, such as the login operation. You can't log in if there is not a user account in the database to login to.
+
+### Seeding Database
+Jest provides lifecycle functions that you can use to configure your test suite. There are four:
+
+1. `beforeEach` - Run some code before each test case
+2. `afterEach` - Run some code after each test case
+3. `before` - Run some code once before each test case
+4. `after` - Run some code once after each test case
+
+`beforeEach` works great for adding test data to the database. The `beforeEach` call below removes all users and then adds a single test user into the database. By having this run before each test case, it ensures that the test run in a consistent environment each time they execute.
+
+```js
+const User = require('../src/models/user.js');
+
+const userOne = {
+    name: 'Alphonse',
+    email: 'alphonse@elric.com',
+    password: 'FullMetal2!'
+}
+
+beforeEach(async() => {
+    await User.deleteMany();
+    await new User(userOne).save();
+});
+```
+
+With the test user in place, the test case below is able to test the login operation by logging in as the test user.
+
+```js
+test('Should login existing user', async () => {
+    await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: userOne.password
+    }).expect(200);
+});
+```
+
+### Links
++ [Jest setup and teardown](https://jestjs.io/docs/en/setup-teardown)
 
 ## 9. Testing with Authentication
 
