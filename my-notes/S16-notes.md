@@ -197,6 +197,33 @@ test('Should login existing user', async () => {
 + [Jest setup and teardown](https://jestjs.io/docs/en/setup-teardown)
 
 ## 9. Testing with Authentication
+The goal is to test operations that require authentication. This means an authentication token will need to be passed along with the request. Step one is to create an authentication token for the test user.
+
+```js
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+const userOneId = new mongoose.Types.ObjectId();
+const userOne = {
+    _id: userOneId,
+    name: 'Alphonse',
+    email: 'alphonse@elric.com',
+    password: 'FullMetal2!',
+    tokens: [{
+        token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
+    }]
+}
+```
+From there, the authentication token can be added as part of the supertest request. Supertest provides a `set` method for setting request headers. The test case below attempts to fetch the user profile for the logged-in user.
+
+```js
+test('Should get profile for user', async () => {
+    await request(app).get('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send()
+        .expect(200);
+});
+```
 
 ## 10. Advanced Assertions
 
