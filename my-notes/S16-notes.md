@@ -238,6 +238,22 @@ So far, we did assertions over the status code of the HTTP request. However, Jes
 - [Jest: Expect](https://jestjs.io/docs/en/expect)
 
 ## 11. Mocking Libraries
+Jest lets you mock npm modules so you can override module functionality in your test environment.
+
+### Mocking Libraries
+You can mock a npm module by creating a `__mocks__` directory in the `tests` folder. A module can be mocked by creating a file in the `__mocks__` folder. The filename should match up with the module name, so `tests/__mocks__/express.js` can be used to mock the Express library. If the npm module use scope like `@sendgrid/mail`, then, `@sendgrid` folder would be created with a `mail.js` file inside.
+
+The job of the mock file is to provide mocked versions of the library features. The SendGrid mock below defines and exports `setApiKey` and `send`. This ensures that our code still works even though emails will no longer be sent for the tests.
+
+```js
+module.exports = {
+    setApiKey() {},
+    send() {},
+};
+```
+
+### Links
+- [Jest: Manual Mocks](https://jestjs.io/docs/en/manual-mocks)
 
 ## 12. Wrapping up User Tests
 

@@ -14,10 +14,14 @@
     CLOSED: [2020-03-08 Sun 12:57]
 *** DONE 7. Testing and Express Application: Part II
     CLOSED: [2020-03-10 Tue 12:59]
-*** TODO 8. Jest Setup and Teardown
-*** TODO 9. Testing with Authentication
-*** TODO 10. Advanced Assertions
-*** TODO 11. Mocking Libraries
+*** DONE 8. Jest Setup and Teardown
+    CLOSED: [2020-03-12 Thu 14:56]
+*** DONE 9. Testing with Authentication
+    CLOSED: [2020-03-12 Thu 14:56]
+*** DONE 10. Advanced Assertions
+    CLOSED: [2020-03-12 Thu 14:56]
+*** DONE 11. Mocking Libraries
+    CLOSED: [2020-03-12 Thu 14:57]
 *** TODO 12. Wrapping up User Tests
 *** TODO 13. Setup Task Test Suite
 *** TODO 14. Testing with Task Data
