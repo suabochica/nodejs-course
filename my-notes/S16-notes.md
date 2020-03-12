@@ -226,6 +226,16 @@ test('Should get profile for user', async () => {
 ```
 
 ## 10. Advanced Assertions
+So far, we did assertions over the status code of the HTTP request. However, Jest offer us a suite of matchers that allow us to create advanced assertions like: 
+
+- In the POST request to create an user, assert that the database was changed properly
+- In the POST request to create an user, assert that the response body have the expected properties.
+- In the POST request to create an user, assert that the response body have the expected properties.
+- In the GET request to retrieve an user, assert that the response body token, match with the user token property
+- In the DELETE request to remove an user, assert that the is null
+
+### Links
+- [Jest: Expect](https://jestjs.io/docs/en/expect)
 
 ## 11. Mocking Libraries
 
