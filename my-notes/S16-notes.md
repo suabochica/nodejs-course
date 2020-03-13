@@ -256,6 +256,9 @@ module.exports = {
 - [Jest: Manual Mocks](https://jestjs.io/docs/en/manual-mocks)
 
 ## 12. Wrapping up User Tests
+In this lesson, it’s your job to finalize the user tests.
+
+There are no notes for this challenge, as no new information is covered. The goal is to give you experience using what was covered in previous lessons.
 
 ## 13. Setup Task Test Suite
 

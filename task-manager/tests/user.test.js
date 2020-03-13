@@ -84,7 +84,7 @@ test('Should delete user profile', async () => {
         .expect(200);
 
     const user = await User.findById(userOneId);
-    
+
     // Assert that the user is null
     expect(user).toBeNull();
 });
@@ -93,4 +93,35 @@ test('Should not get profile for unauthenticated user', async () => {
     await request(app).delete('/users/me')
         .send()
         .expect(401);
+});
+
+// test('Should upload image avatar', async () => {
+//     await request(app).post('/users/me/avatar')
+//         .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+//         .attach('avatar', 'tests/fixtures/slbenitezd.jpg')
+//         .expect(200);
+
+//     const user = await User.findById(userOneId);
+//     expect(user.avatar).toEqual(expect.any(Buffer));
+// });
+
+test('Should update valid user field', async () => {
+    await request(app).patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            name: 'Winry'
+        })
+        .expect(200);
+
+    const user = await User.findById(userOneId);
+    expect(user.name).toEqual('Winry');
+});
+
+test('Should not update invalid users field', async () => {
+    await request(app).patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            location: 'Bogota'
+        })
+        .expect(400);
 });
