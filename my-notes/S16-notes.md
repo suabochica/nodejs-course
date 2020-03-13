@@ -295,4 +295,17 @@ The goal is put in the `db.js` file all the settings that are common for both su
 
 ## 14. Testing with Task Data
 
-## 15. Bonus: Extra Tests Ideas
+Testing tasks will require that some test tasks exist in the database. Like with users, tasks
+can be added to the database using `beforeEach`  The test case below fetches all tasks for the user. It also asserts that the status code is a `200` and the tasks are sent back correctly.
+
+```js
+test('Should fetch user tasks', async () => {
+    const response = await request(app)
+          .get('/tasks')
+          .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+          .send()
+          .expect(200);
+
+    expect(response.body.length).toEqual(2);
+});
+```

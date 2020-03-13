@@ -82,6 +82,7 @@ test('Should not get profile for unauthenticated user', async () => {
         .expect(401);
 });
 
+// Expected 200 "OK", got 400 "Bad Request"
 // test('Should upload image avatar', async () => {
 //     await request(app).post('/users/me/avatar')
 //         .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
@@ -112,3 +113,12 @@ test('Should not update invalid users field', async () => {
         })
         .expect(400);
 });
+
+//-------------------------------------
+// Bonus
+//-------------------------------------
+
+// Should not signup user with invalid name/email/password
+// Should not update user if unauthenticated
+// Should not update user with invalid name/email/password
+// Should not delete user if unauthenticated
