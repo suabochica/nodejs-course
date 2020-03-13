@@ -261,6 +261,37 @@ In this lesson, it’s your job to finalize the user tests.
 There are no notes for this challenge, as no new information is covered. The goal is to give you experience using what was covered in previous lessons.
 
 ## 13. Setup Task Test Suite
+Now that we will to introduce the test suite for the task router, it is a good idea organize the folder structure to leave able the shared settings between the user and the task routers. This mean that in the fixtures folder we will ad a `db.js` file with the next content:
+
+```js
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const User = require('../../src/models/user');
+
+const userOneId = new mongoose.Types.ObjectId();
+const userOne = {
+    _id: userOneId,
+    name: 'Trisha',
+    email: 'trisha@elric.com',
+    password: 'Hoffenheim',
+    tokens: [{
+        token: jwt.sign({ _id: userOneId }, process.env.JWT_SECRET)
+    }]
+};
+
+const setupDatabase = async () => {
+    await User.deleteMany();
+    await new User(userOne).save();
+};
+
+module.exports = {
+    userOneId,
+    userOne,
+    setupDatabase,
+};
+```
+
+The goal is put in the `db.js` file all the settings that are common for both suites. For the other hand, is we have several suites, jest will run them in parallel. This cause that the code executed in one suite could affect the code in another one. To avoid this in the `package.json` file, we can add the option `-runInBand`. This will be establish a sequence in the test suites.
 
 ## 14. Testing with Task Data
 
