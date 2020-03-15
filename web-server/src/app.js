@@ -78,9 +78,9 @@ app.get('/products', (request, response) => {
     if (!request.query.search) {
         return response.send({
             error: 'You must provide a search term'
-        })
+        });
     }
-    
+
     response.send({
         products: [],
     });

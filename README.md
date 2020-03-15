@@ -200,7 +200,7 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 5. Creating a Production MongoDB Database
 6. Heroku Deployment
 
-## Section 16: Sending Emails
+## Section 16: Testing Node.js
 
 1. Intro: Testing Node.js
 2. Jest Testing Framework
@@ -217,3 +217,30 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 13. Setup Task Test Suite
 14. Testing with Task Data
 15. Bonus: Extra Tests Ideas
+
+## Section 17: Real-Time Web Applications with Socket.io
+
+1: Section Intro: Real-Time Web Applications with Socket.io
+2: Creating the Chat App Project
+3. WebSockets
+4. Getting Started with Socket.io
+5. Socket.io Events
+6. Socket.io Events Challenge
+7. Broadcasting Events
+8. Sharing Your Location
+9. Event Acknowledgements
+10. Form and Button States
+11. Rendering Messages
+12. Rendering Location Messages
+13. Working With Time
+14. Timestamps for Location Messages
+15. Styling the Chat App
+16. Join Page
+17. Socket.io Rooms
+18. Storing Users: Part I
+19. Storing Users: Part II
+20. Tracking Users Joining and Leaving
+21. Sending Message to Rooms
+22. Rendering User List
+23. Automatic Scrolling
+24. Deploying the Chat Application

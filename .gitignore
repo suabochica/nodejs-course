@@ -6,4 +6,4 @@ web-server/node_modules
 task-manager/node_modules
 task-manager/.env
 task-manager/.test.env
-
+chat-app/node_modules

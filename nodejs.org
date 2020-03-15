@@ -29,8 +29,9 @@
 *** DONE 14. Testing with Task Data
     CLOSED: [2020-03-13 Fri 17:09]
 ** Section 17: Real-Time Web Applications with Socket.io
-*** 1: Section Intro: Real-Time Web Applications with Socket.io
-*** 2: Creating the Chat App Project
+*** DONE 1: Section Intro: Real-Time Web Applications with Socket.io
+    CLOSED: [2020-03-14 Sat 13:21]
+*** TODO 2: Creating the Chat App Project
 *** 3. WebSockets
 *** 4. Getting Started with Socket.io
 *** 5. Socket.io Events
