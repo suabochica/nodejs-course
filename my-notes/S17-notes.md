@@ -30,6 +30,63 @@ In this case we start with a client active, and three clients in hold. First, we
 The next thing we're gonna do is make sure that everyone else connected to that chatroom actually sees the message that this person typed. So right here we'll go ahead and bring those three clients into the mix. And this time we're also going to send some data around this time though it's going to go from the server to the client something we were not able to do in the past. So right here the server has said to this client I have a message from another user. It's going to send that message across to the client and the client can it in the browser the exact same thing is going to happen with our other two clients as well.
 
 ## 4. Getting Started with Socket.io
+Time to setup the socket.io library. Socket.io comes with everything needed to set up a Web Socket server using Node.
+
+### Socket.io on the Server
+First up, install the modules
+
+```
+npm install socket.io@2.0.20
+```
+
+Socket.io can be used on its own or with Express. Since the chat app will serving up client-site assets, both Express and Socket.io will get set up. The server file below show how to get this done.
+
+```js
+
+const express = require('express');
+const http = require('http');
+const socketio = require('socket.io');
+const path = require('path');
+
+// Create the Express application
+const app = express();
+
+// Create the HTTP server using the Express application
+const server = http.createServer(app);
+
+// Connect Socket.io to the HTTP Server
+const io = socketio(server);
+
+const port = process.env.PORT || 3000;
+const publicDirectoryPath = path.join(__dirname, '../public');
+
+app.use(express.static(publicDirectoryPath));
+
+// Listen for new connections to Socket.io
+io.on('connection', () => {
+    console.log('New web socket connection');
+});
+
+app.listen(port, () => {
+    console.log('Server is up on port 3000');
+});
+```
+
+The server above uses `io.on` which is provided by Socket.io. `on` allows the server to listen for an event and respond to it. In the example above, the server listens for `connection` which allows it to run some code when a client connects to the WebSocket server.
+
+### Socket.io on the Client
+Socket.io is also used on the client to connect to the server. Socket.io automatically serves up `/src/socket.io/socket.io.js` which contains the client-side code. The script tags below load in the client-side library followed by a custom JavaScript file.
+
+```js
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+```
+
+You client-side JavaScript can the connect to the Socket.io server by calling `io`. `io` is provided by the client-side socket.io library. Calling this function will setup the connection, and it will cause the server `connection` event handler to run.
+
+### Links
++ [https://socket.io/](Socket.io)
+
 ## 5. Socket.io Events
 ## 6. Socket.io Events Challenge
 ## 7. Broadcasting Events
