@@ -88,6 +88,49 @@ You client-side JavaScript can the connect to the Socket.io server by calling `i
 + [https://socket.io/](Socket.io)
 
 ## 5. Socket.io Events
+Time to learn how to work with events in Socket.io. Events allow you to transfer data from the client to the server.
+
+### Working with Events
+There are two side to every event, the sender and the receiver. If the server is the sender, then the client is the receiver, and vice versa. Events can be sent from the sender using `emit`. Events can be received by receiver using `on`. The example below shows how this pattern can be used to create a simple counter application. The following snippet contains the client-side JavaScript code.
+
+```js
+const socket = io();
+
+// Listen the 'COUNT_UPDATED' event
+socket.on('COUNT_UPDATED', (count) => {
+    console.log('The count has been updated', count);
+});
+
+document.querySelector('#plus-one').addEventListener('click', () => {
+    console.log('Clicked');
+    // Listen the 'INCREMENT' event
+    socket.emit('INCREMENT');
+});
+```
+
+The client6 code uses `on` to listen for the `COUNT_UPDATED` event. A message will be logged with the current count when that event is received. The client-side code also uses `emit` to sen the `INCREMENT` event. This occurs when a button on the screen is clicked.
+
+The server-side code for this example is below.
+
+```js
+
+let count = 0;
+
+io.on('connection', () => {
+    console.log('New web socket connection');
+    socket.emit('COUNT_UPDATED', count);
+
+    socket.on('COUNT_INCREMENTED', () => {
+        count ++;
+        // socket.emit('COUNT_UPDATED', count)
+        io.emit('COUNT_UPDATED', count);
+    });
+});
+```
+The server above is responsible for emitting `COUNT_UPDATED` and listening for `INCREMENT`. New users get the current count right after they connect to the server. If a client sends `INCREMENT` to the server, the count is incremented and all connected clients are notified of the change.
+
+On the client, `socket.emit` emits an event to the server. On the server, both `socket.emit` and `io.emit` can be used. `socket.emit` sends an event to that specific client, while `io.emit` sends an event to all connected clients.
+
 ## 6. Socket.io Events Challenge
 ## 7. Broadcasting Events
 ## 8. Sharing Your Location

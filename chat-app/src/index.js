@@ -12,8 +12,20 @@ const publicDirectoryPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirectoryPath));
 
+let count = 0;
+
+// server (emit) -> client (receive) - COUNT_UPDATED
+// client (emit) -> server (receive) - INCREMENT
+
 io.on('connection', () => {
     console.log('New web socket connection');
+    socket.emit('COUNT_UPDATED', count);
+
+    socket.on('COUNT_INCREMENTED', () => {
+        count ++;
+        // socket.emit('COUNT_UPDATED', count)
+        io.emit('COUNT_UPDATED', count);
+    });
 });
 
 app.listen(port, () => {
