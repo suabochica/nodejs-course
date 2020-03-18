@@ -10,24 +10,27 @@ const io = socketio(server);
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 
+// let count = 0;
+
 app.use(express.static(publicDirectoryPath));
 
-let count = 0;
-
-// server (emit) -> client (receive) - COUNT_UPDATED
-// client (emit) -> server (receive) - INCREMENT
-
-io.on('connection', () => {
+io.on('connection', (socket) => {
     console.log('New web socket connection');
-    socket.emit('COUNT_UPDATED', count);
+    // socket.emit('COUNT_UPDATED', count);
 
-    socket.on('COUNT_INCREMENTED', () => {
-        count ++;
-        // socket.emit('COUNT_UPDATED', count)
-        io.emit('COUNT_UPDATED', count);
+    // socket.on('COUNT_INCREMENTED', () => {
+    //     count++;
+    //     socket.emit('COUNT_UPDATED', count)
+    //     io.emit('COUNT_UPDATED', count);
+    // });
+
+    io.emit('WELCOME_MESSAGE', 'Welcome to the jungle!');
+
+    socket.on('SEND_MESSAGE', (message) => {
+        io.emit('MESSAGE', message);
     });
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Server is up on port 3000');
 });

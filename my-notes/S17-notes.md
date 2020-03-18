@@ -132,6 +132,23 @@ The server above is responsible for emitting `COUNT_UPDATED` and listening for `
 On the client, `socket.emit` emits an event to the server. On the server, both `socket.emit` and `io.emit` can be used. `socket.emit` sends an event to that specific client, while `io.emit` sends an event to all connected clients.
 
 ## 6. Socket.io Events Challenge
+To consolidate the explanation in the last lesson we will define two challenge:
+
+### One: Event to send welcome message
+Goal: Send a welcome message to new users
+
+- Have server emit "message" when new clients connect
+- Have client listen for "message" event and print the message to console
+- Test your work
+
+### Two: Event to send message between users
+Goal: Allow clients to send message
+
+- Create a form with and input and a button
+- Setup event listener for form submissions
+- Have server listen to the `SEND_MESSAGE` event
+- Test your work
+
 ## 7. Broadcasting Events
 ## 8. Sharing Your Location
 ## 9. Event Acknowledgements
