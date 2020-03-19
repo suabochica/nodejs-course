@@ -28,3 +28,16 @@ document.querySelector('#message-form').addEventListener('submit', (event) => {
 
     socket.emit('SEND_MESSAGE', message);
 });
+
+
+document.querySelector('#send-location').addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        return alert('Your browser not supports geolocation');
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+
+        socket.emit('SEND_LOCATION', latitude, longitude);
+    });
+});

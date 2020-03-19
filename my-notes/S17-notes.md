@@ -175,6 +175,40 @@ io.on('connection', (socket) => {
 ```
 
 ## 8. Sharing Your Location
+Let's integrate the Geolocation API into the chat app. This will allow users to share their locations in real time.
+
+### Sharing Your Location
+The Geolocation API lets you fetch a user's location using client-side JavaScript. Once the user gives you permission to access their location, this location can be shared with everyone else in the chat room. The code below attempts to share a user's location with the chat room:
+
+```js
+document.querySelector('#send-location').addEventListener('click', () => {
+  if (!navigator.geolocation) {
+    return alert('Geolocation is not supported by your browser.')
+  }
+  navigator.geolocation.getCurrentPosition((position) => {
+      socket.emit('sendLocation', {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+      })
+  })
+})
+```
+
+First up, check if the `navigator.geolocation` exists. This will determine if the browser supports geolocation. From there, `navigator.geolocation.getCurrentPosition` can be called to fetch the user's location. The provided callback function will get called with the user's position, which includes the latitude and longitude.
+
+With the client set up, the server can listen for the `sendLocation` event. When it is received, `io.emit` is used to share that location with everyone in the chat room.
+
+
+```js
+socket.on('sendLocation', (coords) => {
+    io.emit('message',
+`https://google.com/maps?q=${coords.latitude},${coords.longitude}`)
+})
+```
+
+### Links
++ [MDN: Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+
 ## 9. Event Acknowledgements
 ## 10. Form and Button States
 ## 11. Rendering Messages

@@ -43,7 +43,8 @@
     CLOSED: [2020-03-18 Wed 12:11]
 *** DONE 7. Broadcasting Events
     CLOSED: [2020-03-19 Thu 12:11]
-*** TODO 8. Sharing Your Location
+*** DONE 8. Sharing Your Location
+    CLOSED: [2020-03-19 Thu 15:08]
 *** TODO 9. Event Acknowledgements
 *** TODO 10. Form and Button States
 *** TODO 11. Rendering Messages
