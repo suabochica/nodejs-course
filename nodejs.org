@@ -35,10 +35,14 @@
     CLOSED: [2020-03-16 Mon 13:38]
 *** DONE 3. WebSockets
     CLOSED: [2020-03-16 Mon 13:38]
-*** TODO 4. Getting Started with Socket.io
-*** TODO 5. Socket.io Events
-*** TODO 6. Socket.io Events Challenge
-*** TODO 7. Broadcasting Events
+*** DONE 4. Getting Started with Socket.io
+    CLOSED: [2020-03-16 Mon 12:11]
+*** DONE 5. Socket.io Events
+    CLOSED: [2020-03-17 Tue 12:11]
+*** DONE 6. Socket.io Events Challenge
+    CLOSED: [2020-03-18 Wed 12:11]
+*** DONE 7. Broadcasting Events
+    CLOSED: [2020-03-19 Thu 12:11]
 *** TODO 8. Sharing Your Location
 *** TODO 9. Event Acknowledgements
 *** TODO 10. Form and Button States

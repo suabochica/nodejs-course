@@ -1,3 +1,4 @@
+s
 # Section Intro: Real-Time Web Applications with Socket.io
 
 ## 1: Section Intro: Real-Time Web Applications with Socket.io
@@ -150,6 +151,29 @@ Goal: Allow clients to send message
 - Test your work
 
 ## 7. Broadcasting Events
+Time to learn about broadcast events. Broadcasted events are sent to all connected clients, expect for the client that initiated the broadcast.
+
+### Broadcasting Events
+Events can be broadcasted from the server using `socket.broadcast.emit`. This event will get sent to all sockets except the one that broadcasted the event. The code below shows this off. When a new user joins to the chat application `socket.broadcast.emit` is used to send a message to all users that someone new has joined.
+
+```js
+io.on('connection', (socket) => {
+    socket.broadcast.emit('message', 'A new user has joined!')
+})
+```
+
+To identify if a user left the chat room, we should use the `socket.on` method inside the `connection` event with a subscription to the `disconnect` event. The snippet below shows the relation between the connection and disconnections of the chat app.
+
+```js
+io.on('connection', (socket) => {
+    ...
+
+    socket.on('disconnect', () => {
+        io.emit('MESSAGE', 'A user has left!');
+    });
+})
+```
+
 ## 8. Sharing Your Location
 ## 9. Event Acknowledgements
 ## 10. Form and Button States

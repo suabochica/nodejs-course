@@ -25,9 +25,14 @@ io.on('connection', (socket) => {
     // });
 
     io.emit('WELCOME_MESSAGE', 'Welcome to the jungle!');
+    socket.broadcast.emit('MESSAGE', 'A new user has joined!');
 
     socket.on('SEND_MESSAGE', (message) => {
         io.emit('MESSAGE', message);
+    });
+
+    socket.on('disconnect', () => {
+        io.emit('MESSAGE', 'A user has left!');
     });
 });
 
