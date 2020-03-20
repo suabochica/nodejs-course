@@ -45,7 +45,8 @@
     CLOSED: [2020-03-19 Thu 12:11]
 *** DONE 8. Sharing Your Location
     CLOSED: [2020-03-19 Thu 15:08]
-*** TODO 9. Event Acknowledgements
+*** DONE 9. Event Acknowledgements
+    CLOSED: [2020-03-20 Fri 15:29]
 *** TODO 10. Form and Button States
 *** TODO 11. Rendering Messages
 *** TODO 12. Rendering Location Messages

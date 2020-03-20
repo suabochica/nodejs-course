@@ -210,6 +210,38 @@ socket.on('sendLocation', (coords) => {
 + [MDN: Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
 ## 9. Event Acknowledgements
+Event acknowledgements allows the receiver of an event to send a message back to the sender of the event. This is useful for error handling and data validation.
+
+To explore acknowledgements, let’s set up the server to screen messages for profane language. The bad-words module will let you check text for profane language.
+
+```
+npm i bad-words
+```
+
+You already know there are two sides to every event, the sender and the receiver. In the example below, the client is the one emitting the `sendMessage` event. The big change is the addition of the callback function. This function will run if/when the server acknowledges the event.
+
+```js
+socket.emit('sendMessage', message, (error) => { if (error) {
+return console.log(error) }
+    console.log('Message delivered!')
+})
+```
+
+On the server, the event listener for also has a small change. Aside from the `message` parameter, it now has access to the `callback` parameter. This `callback` function can be called on the server to trigger the acknowledgement function on the client.
+
+The callback can be called with or without data. In this example, the callback is called with an error if profane language was detected. The argument would get passed to the client where the error could be shown. The callback is called without no arguments if no profane language was detected. This lets the client know that the message was successfully processed.
+
+```js
+socket.on('sendMessage', (message, callback) => {
+    const filter = new Filter()
+    if (filter.isProfane(message)) {
+      return callback('Profanity is not allowed!')
+    }
+    io.emit('message', message)
+    callback()
+})
+```
+
 ## 10. Form and Button States
 ## 11. Rendering Messages
 ## 12. Rendering Location Messages

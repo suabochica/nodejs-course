@@ -26,7 +26,13 @@ document.querySelector('#message-form').addEventListener('submit', (event) => {
 
     const message = event.target.elements.message.value;
 
-    socket.emit('SEND_MESSAGE', message);
+    socket.emit('SEND_MESSAGE', message, (error) => {
+        if (error) {
+            return console.log(error);
+        }
+
+        console.log('Message delivered!');
+    });
 });
 
 
@@ -38,6 +44,8 @@ document.querySelector('#send-location').addEventListener('click', () => {
     navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
 
-        socket.emit('SEND_LOCATION', latitude, longitude);
+        socket.emit('SEND_LOCATION', latitude, longitude, () => {
+            console.log('Location shared!');
+        });
     });
 });
