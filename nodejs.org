@@ -61,4 +61,3 @@
 *** TODO 21. Sending Message to Rooms
 *** TODO 22. Rendering User List
 *** TODO 23. Automatic Scrolling
-*** TODO 24. Deploying the Chat Application
