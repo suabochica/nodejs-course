@@ -270,6 +270,57 @@ $messageFormInput.value = '';
 $messageFormInput.focus();
 ```
 ## 11. Rendering Messages
+Let's use a client-side templating engine to render message to the screen.
+
+### Creating a Template
+First up, include these in your HTML. Mustache will be used to render the messages. Moment and Qs will be used a bit later in the section.
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.1/qs.min.js"></script>
+```
+
+Rendering messages to the screen will require two changes to the HTML. First up, a place needs to be created on the page to store the rendered messages.
+
+```html
+<div id="messages"> </div>
+```
+
+Second, a template needs to be created for the messages. the template below looks like pretty standard HTML. The only addition is `{{message}}`. This is the syntax used to inject a value into the template. In this case, the message text will be shown inside the templates paragraph.
+
+```html
+<script id="message-template" type="text/html">
+    <div>
+        <p>{{message}}</p>
+    </div>
+</script>
+```
+
+### Rendering a Templates
+The template can be compiled and rendered using client-side JavaScript. The snippet below renders a new instance of the message template to the screen whenever it receives a new `message` event.
+
+```js
+// Select the element in which you want to render the template
+const $messages = document.querySelector('#messages')
+
+// Select the template
+const messageTemplate = document.querySelector('#message-template').innerHTML
+
+socket.on('message', (message) => {
+  // Render the template with the message data
+  const html = Mustache.render(messageTemplate, {
+    message
+  })
+
+  // Insert the template into the DOM
+  $messages.insertAdjacentHTML('beforeend', html)
+})
+```
+
+### Links
++ [Mustache.js](https://github.com/janl/mustache.js/)
+
 ## 12. Rendering Location Messages
 ## 13. Working With Time
 ## 14. Timestamps for Location Messages

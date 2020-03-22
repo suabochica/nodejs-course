@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
     //     io.emit('COUNT_UPDATED', count);
     // });
 
-    io.emit('WELCOME_MESSAGE', 'Welcome to the jungle!');
+    io.emit('MESSAGE', 'Welcome to the jungle!');
     socket.broadcast.emit('MESSAGE', 'A new user has joined!');
 
     socket.on('SEND_MESSAGE', (message, callback) => {
