@@ -322,6 +322,13 @@ socket.on('message', (message) => {
 + [Mustache.js](https://github.com/janl/mustache.js/)
 
 ## 12. Rendering Location Messages
+Let's consolidate the learning in the previous sections to accomplish the next goals:
+
+1. Isolate the location message with a new event called `locationMessage`
+2. Create a dynamic template to share our current location with a link
+
+The code to accomplish this goals are in the `index.js` and `chat.js` files
+
 ## 13. Working With Time
 ## 14. Timestamps for Location Messages
 ## 15. Styling the Chat App

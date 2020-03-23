@@ -16,11 +16,20 @@ const $sendLocationButton = document.querySelector('#send-location');
 // Templates
 // ---------
 const messageTemplate = document.querySelector('#message-template').innerHTML;
+const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
 
 socket.on('MESSAGE', (message) => {
     console.log(message);
     const html = Mustache.render(messageTemplate, {
         message
+    });
+
+    $messages.insertAdjacentHTML('beforeend', html);
+});
+
+socket.on('LOCATION_MESSAGE', (url) => {
+    const html = Mustache.render(locationMessageTemplate, {
+        url
     });
 
     $messages.insertAdjacentHTML('beforeend', html);
