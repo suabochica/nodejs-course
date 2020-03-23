@@ -8,6 +8,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+const { generateMessage } = require('./utils/message');
+
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
 
@@ -25,8 +27,8 @@ io.on('connection', (socket) => {
     //     io.emit('COUNT_UPDATED', count);
     // });
 
-    io.emit('MESSAGE', 'Welcome to the jungle!');
-    socket.broadcast.emit('MESSAGE', 'A new user has joined!');
+    io.emit('MESSAGE', generateMessage('Welcome to the jungle!'));
+    socket.broadcast.emit('MESSAGE', generateMessage('A new user has joined!'));
 
     socket.on('SEND_MESSAGE', (message, callback) => {
         const filter = new Filter();
@@ -35,7 +37,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed');
         }
 
-        io.emit('MESSAGE', message);
+        io.emit('MESSAGE', generateMessage(message));
         callback();
     });
 
@@ -45,7 +47,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        io.emit('MESSAGE', 'A user has left!');
+        io.emit('MESSAGE', generateMessage('A user has left!'));
     });
 });
 
