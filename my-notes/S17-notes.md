@@ -355,7 +355,13 @@ You can find a complete list of the formatting option in the documentation below
 ### Links
 + [Moment](https://momentjs.com)
 + [Moment formatting](https://momentjs.com/docs/#/displaying/format/)
+
 ## 14. Timestamps for Location Messages
+Let's apply the last notes to the send location message event.
+
+There are no notes for this challenge lesson, as no new information is covered. The goal is
+to give you experience using what was covered in previous lesson.
+
 ## 15. Styling the Chat App
 ## 16. Join Page
 ## 17. Socket.io Rooms

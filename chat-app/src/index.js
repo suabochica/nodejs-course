@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const { generateMessage } = require('./utils/message');
+const { generateMessage, generateLocationMessage } = require('./utils/message');
 
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -42,7 +42,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('SEND_LOCATION', (latitude, longitude, callback) => {
-        io.emit('LOCATION_MESSAGE', `https://google.com/maps?q=${latitude},${longitude}`);
+        const url = `https://google.com/maps?q=${latitude},${longitude}`;
+
+        io.emit('LOCATION_MESSAGE', generateLocationMessage(url));
         callback();
     });
 
