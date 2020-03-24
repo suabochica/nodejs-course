@@ -363,6 +363,11 @@ There are no notes for this challenge lesson, as no new information is covered. 
 to give you experience using what was covered in previous lesson.
 
 ## 15. Styling the Chat App
+In this lesson, you’ll add styles to the chat application. This will give it a professional and
+polished feel.
+
+This lesson contains detailed instructions to apply the provided styles. Please refer to the
+video for a recap on working with the styles.
 ## 16. Join Page
 ## 17. Socket.io Rooms
 ## 18. Storing Users: Part I

@@ -47,12 +47,18 @@
     CLOSED: [2020-03-19 Thu 15:08]
 *** DONE 9. Event Acknowledgements
     CLOSED: [2020-03-20 Fri 15:29]
-*** TODO 10. Form and Button States
-*** TODO 11. Rendering Messages
-*** TODO 12. Rendering Location Messages
-*** TODO 13. Working With Time
-*** TODO 14. Timestamps for Location Messages
-*** TODO 15. Styling the Chat App
+*** DONE 10. Form and Button States
+    CLOSED: [2020-03-20 Fri 13:53]
+*** DONE 11. Rendering Messages
+    CLOSED: [2020-03-21 Sat 13:53]
+*** DONE 12. Rendering Location Messages
+    CLOSED: [2020-03-22 Sun 13:54]
+*** DONE 13. Working With Time
+    CLOSED: [2020-03-23 Mon 13:54]
+*** DONE 14. Timestamps for Location Messages
+    CLOSED: [2020-03-23 Mon 13:54]
+*** DONE 15. Styling the Chat App
+    CLOSED: [2020-03-24 Tue 13:54]
 *** TODO 16. Join Page
 *** TODO 17. Socket.io Rooms
 *** TODO 18. Storing Users: Part I
