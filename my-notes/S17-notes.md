@@ -369,6 +369,35 @@ polished feel.
 This lesson contains detailed instructions to apply the provided styles. Please refer to the
 video for a recap on working with the styles.
 ## 16. Join Page
+Let's add a join page to the chat application. This will allow users to pick a username and join a specific chat room.
+
+### Adding a Join Page
+Below is the HTML for the join page. This will be `index.html`. The HTML for the chat page will move to `chat.html`. This will make sure that users visit the join page when pulling up the site.
+
+```js
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Chat App</title>
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/styles.min.css">
+    </head>
+    <body>
+        <div class="centered-form">
+            <div class="centered-form__box">
+                <h1>Join</h1n>
+                <form action="/chat.html">
+                    <label for="username">Display name</label>
+                    <input name="username" type="text" value="" placeholder="Display name" required/>
+                    <label for="room">Room</label>
+                    <input name="room" type="text" value="" placeholder="Room" required/>
+                    <button>Join</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+```
 ## 17. Socket.io Rooms
 ## 18. Storing Users: Part I
 ## 19. Storing Users: Part II
