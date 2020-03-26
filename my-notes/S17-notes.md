@@ -398,7 +398,34 @@ Below is the HTML for the join page. This will be `index.html`. The HTML for the
     </body>
 </html>
 ```
+
 ## 17. Socket.io Rooms
+Time to work with rooms in Socket.io. Rooms allow you to separate users into groups, which is a great fit for the chat application.
+
+### Socket.io Rooms
+It's the server's job to add and remove users form a room. The server can add a user to a room by calling `socket.join` with the room name. Below, the listener for `join` accepts the username and the room name from the client. `socket.join(room)` is then called to add the user to the room they wanted to join.
+
+```js
+socket.on('join', ({ username, room }) => {
+  // Join the room
+  socket.join(room)
+
+  // Welcome the user to the room
+  socket.emit('message', generateMessage('Welcome!'))
+
+  // Broadcast an event to everyone in the room
+  socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined!`))
+})
+```
+The `join` listener above also calls `to` as part of the `socket.broadcast.to.emit`. The `to` method allows an event to be emmited to a specific room. In this case, when a user joins a room, only users in that room will be notified.
+
+The `to` method can also be used with `io` to send an event to everyone in a room.
+
+```js
+// Emit a message to everyone in a specific room
+io.to('Center City').emit('message', generateMessage(message))
+```
+
 ## 18. Storing Users: Part I
 ## 19. Storing Users: Part II
 ## 20. Tracking Users Joining and Leaving

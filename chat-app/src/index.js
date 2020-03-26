@@ -27,8 +27,12 @@ io.on('connection', (socket) => {
     //     io.emit('COUNT_UPDATED', count);
     // });
 
-    io.emit('MESSAGE', generateMessage('Welcome to the jungle!'));
-    socket.broadcast.emit('MESSAGE', generateMessage('A new user has joined!'));
+    socket.on('JOIN', ({ username, room }) => {
+        socket.join(room);
+
+        socket.emit('MESSAGE', generateMessage('Welcome to the jungle!'));
+        socket.broadcast.to(room).emit('MESSAGE', generateMessage(`${username} has joined!`));
+    });
 
     socket.on('SEND_MESSAGE', (message, callback) => {
         const filter = new Filter();
@@ -37,7 +41,7 @@ io.on('connection', (socket) => {
             return callback('Profanity is not allowed');
         }
 
-        io.emit('MESSAGE', generateMessage(message));
+        io.to('This').emit('MESSAGE', generateMessage(message));
         callback();
     });
 

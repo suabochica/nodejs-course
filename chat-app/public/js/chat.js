@@ -18,6 +18,12 @@ const $sendLocationButton = document.querySelector('#send-location');
 const messageTemplate = document.querySelector('#message-template').innerHTML;
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
 
+// Options
+// -------
+const { username, room } = Qs.parse(location.search, {ignoreQueryPrefix: true});
+
+// Socket Events
+// -------------
 socket.on('MESSAGE', (message) => {
     console.log(message);
     console.log(message.text);
@@ -39,6 +45,8 @@ socket.on('LOCATION_MESSAGE', (locationMessage) => {
     $messages.insertAdjacentHTML('beforeend', html);
 });
 
+// Events Listeners
+// ----------------
 // document.querySelector('#plus-one').addEventListener('click', () => {
 //     console.log('Clicked');
 //     // Listen the 'INCREMENT' event
@@ -80,3 +88,5 @@ $sendLocationButton.addEventListener('click', () => {
         });
     });
 });
+
+socket.emit('JOIN', { username, room });

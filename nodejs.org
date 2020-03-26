@@ -59,8 +59,10 @@
     CLOSED: [2020-03-23 Mon 13:54]
 *** DONE 15. Styling the Chat App
     CLOSED: [2020-03-24 Tue 13:54]
-*** TODO 16. Join Page
-*** TODO 17. Socket.io Rooms
+*** DONE 16. Join Page
+    CLOSED: [2020-03-25 Wed 19:28]
+*** DONE 17. Socket.io Rooms
+    CLOSED: [2020-03-25 Wed 19:28]
 *** TODO 18. Storing Users: Part I
 *** TODO 19. Storing Users: Part II
 *** TODO 20. Tracking Users Joining and Leaving
