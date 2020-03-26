@@ -427,7 +427,77 @@ io.to('Center City').emit('message', generateMessage(message))
 ```
 
 ## 18. Storing Users: Part I
+In this lesson, you’ll create functions that allow the chat application to track which users are in which rooms.
+
+Our goals are:
+
+1. Add a user
+2. Remove a user
+3. Get a user
+4. Get the users of a room
+
 ## 19. Storing Users: Part II
+All the actions over an user will be stored in the next file `src/utils/users.js`. The code below is the content of this file.
+
+```js
+const users = [];
+
+const addUser = ({ id, username, room }) => {
+    username = username.trim().toLowerCase();
+    room = room.trim().toLowerCase();
+
+    // Validate the data
+    if (!username || !room) {
+        return {
+            error: 'username and room are required'
+        };
+    }
+
+    // Check existing user
+    const existingUser = users.find((user) => {
+        return user.room === room && user.username === username;
+    });
+
+    // Validate username
+    if (existingUser) {
+        return {
+            error: 'Username is in use!'
+        };
+    }
+
+    // Store user
+    const user = { id, username, room };
+    users.push(user);
+
+    return { user }; 
+};
+
+const removeUser = (id) => {
+    const index = users.findIndex((user) => user.id === id);
+
+    if (index !== -1 ) {
+        return users.splice(index, 1)[0];
+    }
+};
+
+const getUser = (id) => {
+    return users.find((user) => user.id === id);
+};
+
+const getUsersInRoom = (room) => {
+    room = room.trim().toLowerCase();
+
+    return users.filter((user) => user.room === room);
+};
+
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+}
+```
+
 ## 20. Tracking Users Joining and Leaving
 ## 21. Sending Message to Rooms
 ## 22. Rendering User List
