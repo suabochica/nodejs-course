@@ -9,6 +9,12 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const { generateMessage, generateLocationMessage } = require('./utils/message');
+const {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+} = require('./utils/users');
 
 const port = process.env.PORT || 3000;
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -27,11 +33,19 @@ io.on('connection', (socket) => {
     //     io.emit('COUNT_UPDATED', count);
     // });
 
-    socket.on('JOIN', ({ username, room }) => {
-        socket.join(room);
+    socket.on('JOIN', (options, callback) => {
+        const { error, user } = addUser({ id: socket.id, ...options });
+
+        if (error) {
+            callback(error);
+        }
+
+        socket.join(user.room);
 
         socket.emit('MESSAGE', generateMessage('Welcome to the jungle!'));
-        socket.broadcast.to(room).emit('MESSAGE', generateMessage(`${username} has joined!`));
+        socket.broadcast.to(user.room).emit('MESSAGE', generateMessage(`${user.username} has joined!`));
+
+        callback();
     });
 
     socket.on('SEND_MESSAGE', (message, callback) => {
@@ -53,7 +67,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        io.emit('MESSAGE', generateMessage('A user has left!'));
+        const user = removeUser(socket.id);
+
+        if (user) {
+            io.to(user.room).emit('MESSAGE', generateMessage(`${user.username} has left`));
+        }
     });
 });
 

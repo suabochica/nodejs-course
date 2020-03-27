@@ -89,4 +89,9 @@ $sendLocationButton.addEventListener('click', () => {
     });
 });
 
-socket.emit('JOIN', { username, room });
+socket.emit('JOIN', { username, room }, (error) => {
+    if (error) {
+        alert(error);
+        location.href  = '/';
+    }
+});

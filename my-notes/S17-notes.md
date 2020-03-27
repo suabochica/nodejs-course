@@ -499,6 +499,56 @@ module.exports = {
 ```
 
 ## 20. Tracking Users Joining and Leaving
+Time to use the user function that we collect in the last lesson.
+
+### Adding and Removing Users
+When a user attempts to join a room, their username and room name will be passed to `addUser`. This will allow the application to track the user, and it will also allow the data to be validated. If an error occurs, that error message will be sent back to the client and the user won't join the request room.
+
+```js
+socket.on('join', (options, callback) => {
+  // Validate/track user
+  const { error, user } = addUser({ id: socket.id, ...options })
+
+  // If error, send message back to client
+  if (error) {
+    return callback(error)
+  }
+
+  // Else, join the room
+  socket.join(user.room)
+  socket.emit('message', generateMessage('Welcome!'))
+  socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined!`))
+
+  callback()
+})
+```
+
+When a user disconnects from the application, `removeUser` is called to remove them from the list of active users. If a user was removed, a message is sent to everyone in the chat room letting them know that someone has left.
+
+```js
+socket.on('disconnect', () => {
+    const user = removeUser(socket.id);
+
+    if (user) {
+        io.to(user.room).emit('MESSAGE', generateMessage(`${user.username} has left`));
+    }
+});
+```
+
+The server uses an acknowledgement to send errors back to the client. The client can set up the callback function and respond to any errors that might occur. If an error does occur, the snippet below shows the error message and then redirect the user back to the join page.
+
+```js
+socket.emit('join', { username, room }, (error) => {
+   if (error) {
+       alert(error) 
+       location.href = '/'
+   }
+})
+```
+
+
+
+
 ## 21. Sending Message to Rooms
 ## 22. Rendering User List
 ## 23. Automatic Scrolling
