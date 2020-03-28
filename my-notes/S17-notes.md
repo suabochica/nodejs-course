@@ -545,11 +545,25 @@ socket.emit('join', { username, room }, (error) => {
    }
 })
 ```
-
-
-
-
 ## 21. Sending Message to Rooms
+The `sendLocation` event listener below uses `getUser` to get the username and room for
+the user who sent the message. This allows the server to use to `to` emit the message to
+only users in that chat room.
+
+```js
+socket.on('sendLocation', (coords, callback) => {
+  // Get the username and room for the user
+  const user = getUser(socket.id)
+  
+  // Emit the message to just that room
+  io.to(user.room).emit('locationMessage',
+  generateLocationMessage(user.username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
+  
+  // Send an acknowledgement to the client
+  callback()
+})
+```
+ 
 ## 22. Rendering User List
 ## 23. Automatic Scrolling
 ## 24. Deploying the Chat Application
