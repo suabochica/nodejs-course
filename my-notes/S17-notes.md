@@ -647,3 +647,6 @@ const autoScroll = () => {
 The `autoScroll` function should be called in the `message` and `locationMessage` events.
 
 ## 24. Deploying the Chat Application
+In this lesson, it is on you to deploy the chat application to production!
+
+There are no notes, as no new information is covered the goal is to give you experience using what was covered in the heroku app deployment lessons.

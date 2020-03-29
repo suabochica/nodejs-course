@@ -220,8 +220,8 @@ By the end, you’ll be able to take what you’ve learned and launch your own N
 
 ## Section 17: Real-Time Web Applications with Socket.io
 
-1: Section Intro: Real-Time Web Applications with Socket.io
-2: Creating the Chat App Project
+1. Section Intro: Real-Time Web Applications with Socket.io
+2. Creating the Chat App Project
 3. WebSockets
 4. Getting Started with Socket.io
 5. Socket.io Events
