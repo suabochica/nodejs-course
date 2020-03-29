@@ -23,6 +23,31 @@ const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML;
 // -------
 const { username, room } = Qs.parse(location.search, {ignoreQueryPrefix: true});
 
+// Auto Scroll
+// -----------
+const autoScroll = () => {
+    // Get new message element
+    const $newMessage = $messages.lastElementChild;
+
+    // Get the height of the new message
+    const newMessageStyles = getComputedStyle($newMessage);
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom);
+    const newMessageHeight = $newMessage.offsetHeight + newMessageMargin;
+
+    // Get the visible height
+    const visibleHeight = $messages.offsetHeight;
+
+    // Get the message container height
+    const containerHeight = $messages.scrollHeight;
+
+    // Calculate the scroll height change
+    const scrollOffset = $messages.scrollTop + visibleHeight;
+
+    if (containerHeight - newMessageHeight <= scrollOffset) {
+        $messages.scrollTop = $messages.scrollHeight;
+    };
+};
+
 // Socket Events
 // -------------
 socket.on('MESSAGE', (message) => {
@@ -35,6 +60,7 @@ socket.on('MESSAGE', (message) => {
     });
 
     $messages.insertAdjacentHTML('beforeend', html);
+    autoScroll();
 });
 
 socket.on('LOCATION_MESSAGE', (locationMessage) => {

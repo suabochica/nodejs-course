@@ -609,4 +609,41 @@ document.querySelector('#sidebar').innerHTML = html
 ```
 
 ## 23. Automatic Scrolling
+To get an automatic scrolling every time that a new message is sent and the height of the message container surpasses the height of the screen view port we should retrieves relevant heights and establish a condition to recalculate the scrolling of the visible area. Below are the steps to do this calculations:
+
+1. Get the height of the new message element
+2. Get the visible height 
+3. Get the message container height 
+4. Calculate the scroll offset
+5. Establish the condition to assign the scroll top of the message container.
+
+These steps are illustrated in the next snippet:
+
+```js
+const autoScroll = () => {
+    // Get new message element
+    const $newMessage = $messages.lastElementChild;
+
+    // Get the height of the new message
+    const newMessageStyles = getComputedStyle($newMessage);
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom);
+    const newMessageHeight = $newMessage.offsetHeight + newMessageMargin;
+
+    // Get the visible height
+    const visibleHeight = $messages.offsetHeight;
+
+    // Get the message container height
+    const containerHeight = $messages.scrollHeight;
+
+    // Calculate the scroll height change
+    const scrollOffset = $messages.scrollTop + visibleHeight;
+
+    if (containerHeight - newMessageHeight <= scrollOffset) {
+        $messages.scrollTop = $messages.scrollHeight;
+    };
+};
+```
+
+The `autoScroll` function should be called in the `message` and `locationMessage` events.
+
 ## 24. Deploying the Chat Application
