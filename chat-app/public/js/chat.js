@@ -17,6 +17,7 @@ const $sendLocationButton = document.querySelector('#send-location');
 // ---------
 const messageTemplate = document.querySelector('#message-template').innerHTML;
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
+const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML;
 
 // Options
 // -------
@@ -45,6 +46,15 @@ socket.on('LOCATION_MESSAGE', (locationMessage) => {
     });
 
     $messages.insertAdjacentHTML('beforeend', html);
+});
+
+socket.on('ROOM_DATA', ({ room, users }) => {
+    const html = Mustache.render(sidebarTemplate, {
+        room,
+        users
+    });
+
+    document.querySelector('#sidebar').innerHTML = html;
 });
 
 // Events Listeners

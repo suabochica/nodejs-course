@@ -565,5 +565,48 @@ socket.on('sendLocation', (coords, callback) => {
 ```
  
 ## 22. Rendering User List
+Let's set up the chat application to show a list of all active users in the sidebar. With socket.io, this list will be updated in real time.
+
+### Rendering the User List
+The client can only render data it has access to, so the server needs to send a list of all active users to the client. This data should be sent again whenever a user is added or removed from a chat room.
+
+`getUserInRoom` is used to get a list of all users in a specific room. The server the emits `roomData` to all clients in that affected room letting the know the rerender their user list.
+
+```js
+// After a user joins or leaves
+io.to(user.room).emit('roomData', {
+  room: user.room,
+  users: getUsersInRoom(user.room)
+})
+```
+On the client-side, the sidebar template will be responsible for rendering the room name and the list of users. Rendering a list with Moustache requires a new syntax. In the template below, everything between `{{#users}}` and `{{/users}}` will be repeated for each user. In this case, the username is rendered in a list item that will show up in the sidebar.
+
+```html
+<script id="sidebar-template" type="text/html">
+    <h2 class="room-title">{{room}}</h2>
+    <h3 class="users-title">Users</h3>
+    <ul>
+        {{#users}}
+        <li>{{username}}</li>
+        {{/users}}
+    </ul>
+</script>
+```
+
+The client-side is then able to listen for that event and render the user list to the sidebar.
+
+```js
+const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
+
+socket.on('roomData', ({ room, users }) => {
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users
+})
+
+document.querySelector('#sidebar').innerHTML = html
+})
+```
+
 ## 23. Automatic Scrolling
 ## 24. Deploying the Chat Application
