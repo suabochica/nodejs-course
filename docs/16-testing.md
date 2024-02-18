@@ -1,4 +1,4 @@
-# Section 16: Sending Emails
+# Section 16: Testing Node
 
 ## 1. Intro: Testing Node.js
 In this section, we will learn how to test out Node.js application. Seeting up an automated test suite makes it easy to check that your application is alway working as expected.

@@ -2,14 +2,17 @@ s
 # Section Intro: Real-Time Web Applications with Socket.io
 
 ## 1: Section Intro: Real-Time Web Applications with Socket.io
+
 Time to learn how to create real-time web applications with Node. The non- blocking nature of Node makes it well-suited for real-time applications such as chat apps, social media apps, and more.
 
 ## 2: Creating the Chat App Project
+
 In this lesson it’s on you to set up the chat application web server.
 
 The goal is to give you experience using what was covered in previous lessons. (You can check the web server project as guidance)
 
 ## 3. Web Sockets
+
 The web socket protocol is used to create real time applications. Keep in mind that you can use web sockets with other programming languages as well. But in this case we will use the protocol with NodeJS to create a chat application.
 
 Similar to HTTP, web socket protocol is going to allow us to setup communication between server and clients. So, the server start the application and from here clients will can connect with the server. I might have one client connect, or I might have several clients as well. In the next image you will see a scenario of one server and four clients with a list of the features that the web socket protocol offers us:
@@ -31,9 +34,11 @@ In this case we start with a client active, and three clients in hold. First, we
 The next thing we're gonna do is make sure that everyone else connected to that chatroom actually sees the message that this person typed. So right here we'll go ahead and bring those three clients into the mix. And this time we're also going to send some data around this time though it's going to go from the server to the client something we were not able to do in the past. So right here the server has said to this client I have a message from another user. It's going to send that message across to the client and the client can it in the browser the exact same thing is going to happen with our other two clients as well.
 
 ## 4. Getting Started with Socket.io
+
 Time to setup the socket.io library. Socket.io comes with everything needed to set up a Web Socket server using Node.
 
 ### Socket.io on the Server
+
 First up, install the modules
 
 ```
@@ -76,6 +81,7 @@ app.listen(port, () => {
 The server above uses `io.on` which is provided by Socket.io. `on` allows the server to listen for an event and respond to it. In the example above, the server listens for `connection` which allows it to run some code when a client connects to the WebSocket server.
 
 ### Socket.io on the Client
+
 Socket.io is also used on the client to connect to the server. Socket.io automatically serves up `/src/socket.io/socket.io.js` which contains the client-side code. The script tags below load in the client-side library followed by a custom JavaScript file.
 
 ```js
@@ -86,12 +92,15 @@ Socket.io is also used on the client to connect to the server. Socket.io automat
 You client-side JavaScript can the connect to the Socket.io server by calling `io`. `io` is provided by the client-side socket.io library. Calling this function will setup the connection, and it will cause the server `connection` event handler to run.
 
 ### Links
+
 + [https://socket.io/](Socket.io)
 
 ## 5. Socket.io Events
+
 Time to learn how to work with events in Socket.io. Events allow you to transfer data from the client to the server.
 
 ### Working with Events
+
 There are two side to every event, the sender and the receiver. If the server is the sender, then the client is the receiver, and vice versa. Events can be sent from the sender using `emit`. Events can be received by receiver using `on`. The example below shows how this pattern can be used to create a simple counter application. The following snippet contains the client-side JavaScript code.
 
 ```js
@@ -133,9 +142,11 @@ The server above is responsible for emitting `COUNT_UPDATED` and listening for `
 On the client, `socket.emit` emits an event to the server. On the server, both `socket.emit` and `io.emit` can be used. `socket.emit` sends an event to that specific client, while `io.emit` sends an event to all connected clients.
 
 ## 6. Socket.io Events Challenge
+
 To consolidate the explanation in the last lesson we will define two challenge:
 
 ### One: Event to send welcome message
+
 Goal: Send a welcome message to new users
 
 - Have server emit "message" when new clients connect
@@ -143,6 +154,7 @@ Goal: Send a welcome message to new users
 - Test your work
 
 ### Two: Event to send message between users
+
 Goal: Allow clients to send message
 
 - Create a form with and input and a button
@@ -151,9 +163,11 @@ Goal: Allow clients to send message
 - Test your work
 
 ## 7. Broadcasting Events
+
 Time to learn about broadcast events. Broadcasted events are sent to all connected clients, expect for the client that initiated the broadcast.
 
 ### Broadcasting Events
+
 Events can be broadcasted from the server using `socket.broadcast.emit`. This event will get sent to all sockets except the one that broadcasted the event. The code below shows this off. When a new user joins to the chat application `socket.broadcast.emit` is used to send a message to all users that someone new has joined.
 
 ```js
@@ -175,9 +189,11 @@ io.on('connection', (socket) => {
 ```
 
 ## 8. Sharing Your Location
+
 Let's integrate the Geolocation API into the chat app. This will allow users to share their locations in real time.
 
 ### Sharing Your Location
+
 The Geolocation API lets you fetch a user's location using client-side JavaScript. Once the user gives you permission to access their location, this location can be shared with everyone else in the chat room. The code below attempts to share a user's location with the chat room:
 
 ```js
@@ -198,7 +214,6 @@ First up, check if the `navigator.geolocation` exists. This will determine if th
 
 With the client set up, the server can listen for the `sendLocation` event. When it is received, `io.emit` is used to share that location with everyone in the chat room.
 
-
 ```js
 socket.on('sendLocation', (coords) => {
     io.emit('message',
@@ -207,9 +222,11 @@ socket.on('sendLocation', (coords) => {
 ```
 
 ### Links
+
 + [MDN: Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
 ## 9. Event Acknowledgements
+
 Event acknowledgements allows the receiver of an event to send a message back to the sender of the event. This is useful for error handling and data validation.
 
 To explore acknowledgements, let’s set up the server to screen messages for profane language. The bad-words module will let you check text for profane language.
@@ -243,9 +260,11 @@ socket.on('sendMessage', (message, callback) => {
 ```
 
 ## 10. Form and Button States
+
 In this lesson, you’ll use a bit of DOM manipulation to provide users with a nicer experience.
 
 ### Form and Buttons States
+
 First up is the form that allows users to send a new message. This form should be disabled while messages are being sent to the server. This will prevent duplicate messages from being sent if the user was to double-click the button. The form can be disabled by setting the disabled attribute on the submit button.
 
 ```js
@@ -270,9 +289,11 @@ $messageFormInput.value = '';
 $messageFormInput.focus();
 ```
 ## 11. Rendering Messages
+
 Let's use a client-side templating engine to render message to the screen.
 
 ### Creating a Template
+
 First up, include these in your HTML. Mustache will be used to render the messages. Moment and Qs will be used a bit later in the section.
 
 ```html
@@ -298,6 +319,7 @@ Second, a template needs to be created for the messages. the template below look
 ```
 
 ### Rendering a Templates
+
 The template can be compiled and rendered using client-side JavaScript. The snippet below renders a new instance of the message template to the screen whenever it receives a new `message` event.
 
 ```js
@@ -319,9 +341,11 @@ socket.on('message', (message) => {
 ```
 
 ### Links
+
 + [Mustache.js](https://github.com/janl/mustache.js/)
 
 ## 12. Rendering Location Messages
+
 Let's consolidate the learning in the previous sections to accomplish the next goals:
 
 1. Isolate the location message with a new event called `locationMessage`
@@ -330,9 +354,11 @@ Let's consolidate the learning in the previous sections to accomplish the next g
 The code to accomplish this goals are in the `index.js` and `chat.js` files
 
 ## 13. Working With Time
+
 Out purpose is allow to the chat app to shows users when a given message was sent. To achieve it, we have to work with time in JavaScript with help of the _MomentJS_ library.
 
 ### Working with Time
+
 Every message is going to contain a timestamp. This timestamp will represent the time when the server sent the message out to everyone in the chat application. The server will be the one to generate the timestamp, which prevents the client from lying about when a message was sent.
 
 A JavaScript timestamp is nothing more than an integer. This integer represents the number of milliseconds since the Unix Epoch. The Unix Epoch was January 1st, 1970 at midnight, so the timestamp for the current point in time is a pretty big number.
@@ -353,25 +379,31 @@ moment(message.createdAt).format('h:mm a')
 You can find a complete list of the formatting option in the documentation below.
 
 ### Links
+
 + [Moment](https://momentjs.com)
 + [Moment formatting](https://momentjs.com/docs/#/displaying/format/)
 
 ## 14. Timestamps for Location Messages
+
 Let's apply the last notes to the send location message event.
 
 There are no notes for this challenge lesson, as no new information is covered. The goal is
 to give you experience using what was covered in previous lesson.
 
 ## 15. Styling the Chat App
+
 In this lesson, you’ll add styles to the chat application. This will give it a professional and
 polished feel.
 
 This lesson contains detailed instructions to apply the provided styles. Please refer to the
 video for a recap on working with the styles.
+
 ## 16. Join Page
+
 Let's add a join page to the chat application. This will allow users to pick a username and join a specific chat room.
 
 ### Adding a Join Page
+
 Below is the HTML for the join page. This will be `index.html`. The HTML for the chat page will move to `chat.html`. This will make sure that users visit the join page when pulling up the site.
 
 ```js
@@ -400,9 +432,11 @@ Below is the HTML for the join page. This will be `index.html`. The HTML for the
 ```
 
 ## 17. Socket.io Rooms
+
 Time to work with rooms in Socket.io. Rooms allow you to separate users into groups, which is a great fit for the chat application.
 
 ### Socket.io Rooms
+
 It's the server's job to add and remove users form a room. The server can add a user to a room by calling `socket.join` with the room name. Below, the listener for `join` accepts the username and the room name from the client. `socket.join(room)` is then called to add the user to the room they wanted to join.
 
 ```js
@@ -427,6 +461,7 @@ io.to('Center City').emit('message', generateMessage(message))
 ```
 
 ## 18. Storing Users: Part I
+
 In this lesson, you’ll create functions that allow the chat application to track which users are in which rooms.
 
 Our goals are:
@@ -437,6 +472,7 @@ Our goals are:
 4. Get the users of a room
 
 ## 19. Storing Users: Part II
+
 All the actions over an user will be stored in the next file `src/utils/users.js`. The code below is the content of this file.
 
 ```js
@@ -499,9 +535,11 @@ module.exports = {
 ```
 
 ## 20. Tracking Users Joining and Leaving
+
 Time to use the user function that we collect in the last lesson.
 
 ### Adding and Removing Users
+
 When a user attempts to join a room, their username and room name will be passed to `addUser`. This will allow the application to track the user, and it will also allow the data to be validated. If an error occurs, that error message will be sent back to the client and the user won't join the request room.
 
 ```js
@@ -546,6 +584,7 @@ socket.emit('join', { username, room }, (error) => {
 })
 ```
 ## 21. Sending Message to Rooms
+
 The `sendLocation` event listener below uses `getUser` to get the username and room for
 the user who sent the message. This allows the server to use to `to` emit the message to
 only users in that chat room.
@@ -565,9 +604,11 @@ socket.on('sendLocation', (coords, callback) => {
 ```
  
 ## 22. Rendering User List
+
 Let's set up the chat application to show a list of all active users in the sidebar. With socket.io, this list will be updated in real time.
 
 ### Rendering the User List
+
 The client can only render data it has access to, so the server needs to send a list of all active users to the client. This data should be sent again whenever a user is added or removed from a chat room.
 
 `getUserInRoom` is used to get a list of all users in a specific room. The server the emits `roomData` to all clients in that affected room letting the know the rerender their user list.
@@ -609,6 +650,7 @@ document.querySelector('#sidebar').innerHTML = html
 ```
 
 ## 23. Automatic Scrolling
+
 To get an automatic scrolling every time that a new message is sent and the height of the message container surpasses the height of the screen view port we should retrieves relevant heights and establish a condition to recalculate the scrolling of the visible area. Below are the steps to do this calculations:
 
 1. Get the height of the new message element
@@ -647,6 +689,7 @@ const autoScroll = () => {
 The `autoScroll` function should be called in the `message` and `locationMessage` events.
 
 ## 24. Deploying the Chat Application
+
 In this lesson, it is on you to deploy the chat application to production!
 
 There are no notes, as no new information is covered the goal is to give you experience using what was covered in the heroku app deployment lessons.

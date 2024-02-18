@@ -1,6 +1,7 @@
 # Section 7: Web Servers
 
 ## Index
+
 1. Intro: Web Servers
 2. Hello Express
 3. Serving up HTML and JSON
@@ -14,12 +15,15 @@
 11. Styling the Application: Part II
 
 ## 1. Intro: Web Servers
+
 Node.js is commonly used as web server to serve up websites, JSON, and more. To achieve these features, we will create a web server with Express. Once the server is up and running, users will be able to interact with your application via the browser.
 
 ## 2. Hello Express
+
 Serving up websites and JSON data is easy with Express. So, it is time to create your web server with Express. Once the server is up and running, users will be able to interact with your application via the browser.
 
 ### Express 101
+
 To get started, add Express to your project.
 
 ```
@@ -67,9 +71,11 @@ Server is up on port 3000.
 + [Express](http://expressjs.com/)
 
 ## 3. Serving up HTML and JSON
+
 With the basics out of the way, it is time to serve up HTML and JSON with Express. That will let you serve up a static website or create an HTTP REST API designed to be consumed by a web or mobile application.
 
 ### Serving up HTML and JSON
+
 Using `response.send` you can send back more than just text. `response.send` can be used to send an HTML or JSON response. The root route below sends back some HTML to be rendered in the browser. The weather route bleow send back a JSON respone.
 
 ```js
@@ -89,12 +95,15 @@ app.get('/weather', (request, response) => {
 ```
 
 ### Links
+
 + [Express - res.send](http://expressjs.com/en/4x/api.html#res.send);
 
 ## 4. Serving up Static Assets
+
 Exoress cab serve up all the assets needed for you website. This includes HTML, CSSS, JavaScript, images, and more. Time the serve up an entire directory with Express.
 
 ### Serving up a Static Directory
+
 A modern website is more that just an HTML file. It is styles, scripts, images, and fonts. Everything needs to be exposed via the web server so the browser can load it in. With Express, it is easy to serve up an entire directory without needing to manually serve ip each asset. All Express needs is the path to the directory it should serve.
 
 The example below uses Node's path module to generate the absolute path. The call to `path.join` allows you to manipulate a path by providing individual path segments. It starts with `__dirname` which is the directory path for the current script. From there, the second segment moves out of the `src` folder and into the `public ` directory.
@@ -127,12 +136,15 @@ app.listen(3000, () => {
 Start the server, and the browser will be able to access all assets in the public directory.
 
 ### Links
+
 + [Path](https://nodejs.org/dist/latest-v11.x/docs/api/path.html)
 
 ## 5. Serving up CSS, JS, Images and More
+
 It is time to use the Express server to serve up a webpage with images, styles, and scripts.
 
 ### Serving up CSS, JS, Images and More
+
 All files in `public` are exposed via the Express server. This is where your site assets need to live. If they are not in `public`, then they are not public and the browser won't be able to load them correctly. The HTML file below shoes how you can use a CSS file , JavaScrip file and image in your website.
 
 ```html
@@ -152,9 +164,11 @@ All files in `public` are exposed via the Express server. This is where your sit
 ```
 
 ## 6. Dynamic Pages with Templating
+
 Your web pages don't have to be static. Express supports templating engines that allow you to render dynamic HTML pages. So we will use Handlebars as templating engine for express.
 
 ### Setting up Handlebars
+
 Start by installing Handlebars in your project.
 
 ```
@@ -168,6 +182,7 @@ app.set('view engine', 'hbs');
 ```
 
 ### Rendering Handlebars Templates
+
 By default Express expects your views to live in a `views` directory inside your project root. You will learn how to customize the location and directory names in the next section.
 
 Below is an example handlebars view in `views/index.hbs`. This looks like a normal HTML document with a few new features. Notice `{{title}}` and `{{name}}`. This is a Handlebars syntax which allows you to inject variables inside of the template. This is what allows you to generate dynamic pages.
@@ -197,11 +212,13 @@ app.get('', (request, response) => {
 });
 ```
 ### Links
+
 + [Handlebars](https://handlebarsjs.com/)
 + [npm:hbs](https://www.npmjs.com/package/hbs)
 
 
 ## 7. Customizing the Views Directory
+
 If you don't save your handlebars files inside a `views` folder, that is the default folder where express will fetch the views, when you load the localhost in the browser you will get an error. To customize the location of the views directory, you have to provide to Express a path with the new location and call the `app.set` to set a values for the `views` option. The example below configures Express to look for views in `templates/views`
 
 ```js
@@ -210,12 +227,15 @@ app.set('views', viewsPath);
 ```
 
 ### Links
+
 + [Express API](https://expressjs.com/en/api.html)
 
 ## 8. Advancing Templating
+
 It is time to work with Handlebars partials. As the name suggest, partials are just part of the web pages and are great for things you need to show on multiple pages like headers, footers, and navigation bars.
 
 ### Setting up Partials
+
 You can use partials by telling Handlebars where you would like to store them. This is done with a call to `hbs.registerPartials`. It expects to get called with the absolute path to the partials directory.
 
 ```js
@@ -229,6 +249,7 @@ hbs.registerPartials(partialsPath);
 ```
 
 ### Using Partials
+
 Partials are created with the "hbs" file extension. Partials have access to all the same features as you Handlebars templates. The header partial below renders the title followed by a list of navigation links which can be shown at the top of every page.
 
 ```html
@@ -260,9 +281,11 @@ The partial can then be rendered on a page using `{{>header}}` where "header" co
 ```
 
 ## 9. 404 Pages
+
 Time to set up a 404 page. The 404 page will show when a user tries to visit a page that does not exist.
 
 ### Setting up a 404 Page
+
 Express has support for `*` in route paths. This is a special character which matches anything. This can be used to create a route handler that matches all requests.
 
 The 404 page should be set up just before call to `app.listen`. this ensures that requests for valid pages still get the correct response. The code below send the object with the information that you can show in a 404 page.
@@ -278,7 +301,9 @@ app.get('*', (request, response) => {
 ```
 
 ## 10. Styling the Application: Part I
+
 Time to add some styles to the weather application. There are no notes because no new Node.js features are covered.
 
 ## 11. Styling the Application: Part II
+
 Time to add some styles to the weather application. There are no notes because no new Node.js features are covered.

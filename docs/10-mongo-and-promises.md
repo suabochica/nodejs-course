@@ -1,6 +1,7 @@
 # Section 10: MongoDB and Promises
 
 ## Index
+
 1. Intro: MongoDB
 2. MongoDB and NoSQL Databases
 3. Installing MongoDB on macOS
@@ -14,9 +15,11 @@
 12. Deleting Documents
 
 ## 1. Intro: MongoDB
+
 Let's introduce databases in our Node.js application, Here we will learn how to connect to a MongoDB database from your Node.js application. This will allow us to store data in a secure and reliable fashion. To illustrate this relation, we will create a _Task Application_ that will use MongoDB to store user accounts as well as tasks.
 
 ## 2. MongoDB and NoSQL Databases
+
 Before to start with MongoDB, it is necessary explore the NoSQL concept. NoSQL stands for _not only SQL_. The NoSQL databases are a bit different that traditional SQL databases such as MySQL. However, we can define the theory behind NoSQL from the SQL concepts. Please check carefully the next image:
 
 ![image](../assets/sql_no_sql.png)
@@ -36,6 +39,7 @@ For the other hand, in NoSQL the scheme is:
 With this base, we can start to go deep with MongoDB, that is a NoSQL database.
 
 ## 3. Installing MongoDB on macOS
+
 To install MongoDB on macOS, you can download the [MongoDB Community Server](https://www.mongodb.com/download-center/community). The download is a zip file. Unzip the contents, change the folder name to "mongodb", and move it to your users home directory. From there, create a "mongodb-data" directory at the same level of your "mongodb". This directory will store the database data.
 
 Now, you can start the mongodb server using the following command:
@@ -51,20 +55,25 @@ NETWORK  [initandlisten] waiting for connections on port 27017
 ```
 
 ### Links
+
 - [MongoDB download page](https://www.mongodb.com/download-center/community)
 
 ## 4. Installing Database GUI Viewer
+
 The GUI (Graphic User Interface) that we will setup is Robo 3T. Robo T3 is a MongoDB admin tool that makes easy to manage and visualize the data in your database.
 
 Robo 3T is a completely free MongoDB admin tool.
 
 ### Links
+
 - [Robo 3T download page](https://robomongo.org/)
 
 ## 5. Connecting and Inserting Documents
+
 Let's to connect your MongoDB database with a Node.js application, and then, insert documents into the database to save them for later.
 
 ### Connecting to MongoDB
+
 MongoDB provides a native driver that allows you to connect to the database. You just need to provide two pieces of information. The first is the connection URL and the second is the name of the database. You can pick any database name that you like, but I suggest chose a coherent one.
 
 ```js
@@ -96,13 +105,16 @@ db.collection('users').insertOne({
 ```
 
 ### Links
+
 + [npm:mongodb](https://www.npmjs.com/package/mongodb)
 + [MongoDB driver documentation](http://mongodb.github.io/node-mongodb-native/3.1/api/)
 
 ## 6. Inserting Documents
+
 In the last section we review how to insert one document, this time we will learn how to insert several documents.
 
 ### Inserting Documents
+
 Similar to the `insertOne` method, the collection object offer us a `insertMany` method to insert multiple documents at once. The example below inserts two documents into "tasks" collection. `insertMany` expects an array of objects, and an array of the documents you want to insert.
 
 ```js
@@ -128,13 +140,16 @@ db.collection('tasks').insertMany([
 ```
 
 ### Links
+
 + [insertOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertOne)
 + [insertMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#insertMany)
 
 ## 7. The ObjectID
+
 MongoDB uses ObjectID's to create a unique identifiers for all the documents in the database. It is a different than the traditional auto-incrementing integer ID, but it comes with its own set of advantages, how for example, get a timestamp of the insertion of the document.
 
 ### Working with ObjectIDs
+
 MongoDB provides `ObjectID` which can be used to generate new ObjectIDs. The example below generates a new Id and prints it to the console:
 
 ```js
@@ -150,12 +165,15 @@ console.log(id); // Print the id to the console
 An ObjectID is a GUID (Global Uniques Identifier). GUIDs are generated randomly via an algorithm to ensure uniqueness. These IDs can be generated on the server, but as seen in the snippet above, they can be generated of the cliente ass weel. That means a client can generate ID for a document it is about to insert to the database.
 
 ### Links
+
 + [ObjectID](https://docs.mongodb.com/manual/reference/method/ObjectId/)
 
 ## 8. Querying Documents
+
 Let's learn how to read data from MongoDB. This will allow you to fetch the documents that you had previously inserted.
 
 ### Finding Documents
+
 You can search for documents in a given collection using `find` or `findOne`. `find` can be used to fetch multiple documents, while `findOne` can be used to fetch a single document.
 
 The example below use `find` to search for documents in the tasks collection. You can provide an object as the first argument to `find` to filter documents. The example below sets `completed` equal to false to fetch only those tasks that have not been completed.
@@ -176,10 +194,12 @@ ObjectID("5c0fec243ef6bdfbe1d62e2f") }, (error, task) => {
 ```
 
 ### Links
+
 + [find](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#find)
 + [findOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#findOne)
 
 ## 9. Promises
+
 It is important to understand the Promises feature. Promises provide a much needed alternative to the traditional pattern.
 
 To illustrate the alternative, let's review the callback pattern. Please check the next code:
@@ -219,6 +239,7 @@ doWorkPromise.then((result) => {
 Promises offer us two functions `resolve` and `reject`. This functions follows the states definitions of a promise: pending, and then, fulfilled or rejected. This way we can handle the success path and the error path properly. It is important to notice that the `then` method just chain the success path of the promise and the `catch` method will chain the error path, and no matter the case, the promise will response the first function attended.
 
 ## 10. Updating Documents
+
 You can update documents in a collection using `updateOne` or `updateMany`. The first argument for both methods is similar to the first argument used in `find` and `findOne`. It is an object that allows you to filter down all the documents to just the ones you want to update.
 
 The update calls require a second argument as well. This is an object where you define the updates you want to make. For this, you need to use one of the supported _update operators_
@@ -257,11 +278,13 @@ db.collection('tasks').updateMany({
 ```
 
 ### Links
+
 + [updateOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#updateOne)
 + [updateMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#updateMany)
 + [Update Operators](https://docs.mongodb.com/manual/reference/operator/update/#id1)
 
 ## 12. Deleting Documents
+
 You can delete documents from MongoDB using `deleteOne` or `deleteMany`. Both accept an object as the first argument. This object is used to filter just the documents you want to delete.
 
 The example below uses `deleteMany` to delete all users whose `age` field is 27.
@@ -289,5 +312,6 @@ db.collection('tasks').deleteOne({
 ```
 
 ### Links
+
 + [deleteOne](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#deleteOne)
 + [deleteMany](http://mongodb.github.io/node-mongodb-native/3.1/api/Collection.html#deleteMany)

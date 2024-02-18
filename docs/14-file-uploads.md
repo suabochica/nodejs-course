@@ -1,6 +1,7 @@
 # Section 14: File Uploads
 
 ## Index
+
 1. Intro: File Uploads
 2. Adding Support for File Uploads
 3. Validating File Uploads
@@ -11,12 +12,15 @@
 8. Auto-Cropping and Image Formatting
 
 ## 1. Intro: File Uploads
+
 In this section you will learn how to configure Node.js to support file uploads. This will allow users to upload documents, profile pictures, and any other file type you might need to support. You will also see what it takes to store the uploaded files in MongoDb.
 
 ## 2. Adding Support for File Uploads
+
 To support file uploads we will use an npm package called multer. Multer is a library in the Express ecosystem that allow your Express application easily support file uploads.
 
 ### Configuring Multer
+
 First up, install the library
 
 ```
@@ -42,12 +46,15 @@ router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
 ```
 
 ### Links
+
 + [npm: multer](https://www.npmjs.com/package/multer)
 
 ## 3. Validating File Uploads
+
 It is important add validations over the files. This will allow you to reject files that are too large or files of the wrong type.
 
 ### Validating Multer Uploads
+
 The multer configuration below adds these two types of validation.
 
 + `limits.fileSize` is set to limit the file size in bytes. The configuration below uses 1,000,000 bytes which is equivalent to 1 megabyte.
@@ -73,9 +80,11 @@ const upload = multer({
 ```
 
 ### Tools
+
 + [Regex 101](https://regex101.com/)
 
 ## 4. Validation Challenge
+
 The goal of this challenge is: Add validation to the avatar upload route. To achieve it you need.
 
 + Limit the upload size to 1 Mb
@@ -105,9 +114,11 @@ router.post('/users/me/avatar', upload.single('avatar'), (request, response) => 
 ```
 
 ## 5. Handling Express Errors
+
 Let's customize the error that multer provides. This will give you complete control of what sort of response the client gets when their upload is rejected.
 
 ### Handling Express Errors
+
 You can handle errors fro middleware function by providing a function to Express. As shown below, a new function is passed as the final argument to `router.post`. This function accepts `error`, `req`, `res` and `next`. This call signature lets Express know the function is designed to handle errors.
 
 The function itself send back a JSON response with the error message from multer.
@@ -121,6 +132,7 @@ router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
 ```
 
 ## 6. Adding Images to the User Profile
+
 Let's associate the uploaded avatar with the users account.
 
 First of all, a new file needs to be added to the user model to store the avatar image data. The snippet below adds `avatar` on the user with the type of `Buffer`. The `Buffer` type should be used when storing binary data, which is exactly the type of data that multer provides.
@@ -159,6 +171,7 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
 > Note: you can render an image with his binary data with the next format: `<img src="data:image/jpg;base64,{binary data}"/>`
 
 ## 7. Serving up Files
+
 Time to serve up user profile images. These images will be served up as if they were static assets for the application.
 
 Serving up the user avatars will require two pieces of data from the server. The first is the images data, and the second is the `Content-Type` header. The image data is stored on the user profile. The header should be set equal to `image/png` which lets the client know they are getting a PNG image back.
@@ -178,6 +191,7 @@ res.send(user.avatar) } catch (e) {
 ```
 
 ## 8. Auto-Cropping and Image Formatting
+
 Finally, we will resize and format images. This will let you create uniform sizes and file types for users avatars.
 
 First up, install the npm library
@@ -195,4 +209,5 @@ const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250
 ```
 
 ### Links
+
 + [npm: sharp](https://www.npmjs.com/package/sharp)
