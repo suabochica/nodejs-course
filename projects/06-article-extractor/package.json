@@ -1,0 +1,15 @@
+{
+  "name": "article-extractor",
+  "version": "1.0.0",
+  "description": "Using  the article extractor library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Sergio L. Benítez D.",
+  "license": "ISC",
+  "dependencies": {
+    "@extractus/article-extractor": "8.0.10"
+  }
