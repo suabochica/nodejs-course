@@ -1,0 +1,6 @@
+public/
+
+# Ignore node modules of notes app
+node_modules/
+
+screenshots/*.png
