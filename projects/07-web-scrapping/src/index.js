@@ -37,29 +37,29 @@ const shops = [
     url: 'https://www.fnac.es/Consola-Xbox-Series-X-1TB-Negro-Videoconsola-Consola/a7732201',
     checkStock: async ({ page }) => {
       const notAvailableIcon = await page.$$(
-        '.f-buyBox-availabilityStatus-unavailable',
+        '.f-buyBox-availabilityStatus-unavailable'
       )
       return notAvailableIcon.length === 0
     }
-  },
-  {
-    vendor: 'El Corte Inglés',
-    hasSchema: false,
-    url: 'https://www.elcorteingles.es/videojuegos/A37047078-xbox-series-x/',
-    checkStock: async ({ page }) => {
-      const content = await page.textContent('#js_add_to_cart_desktop')
-      return content.includes('Agotado temporalmente') === false
-    }
-  },
-  {
-    vendor: 'PCComponentes',
-    hasSchema: true,
-    url: 'https://www.pccomponentes.com/microsoft-xbox-series-x-1tb',
-    checkStock: async ({ page }) => {
-      const content = await page.textContent('#buy-buttons-section')
-      return content && content.includes('Añadir al carrito') === true
-    }
   }
+  // {
+  //   vendor: 'El Corte Inglés',
+  //   hasSchema: false,
+  //   url: 'https://www.elcorteingles.es/videojuegos/A37047078-xbox-series-x/',
+  //   checkStock: async ({ page }) => {
+  //     const content = await page.textContent('#js_add_to_cart_desktop')
+  //     return content.includes('Agotado temporalmente') === false
+  //   }
+  // },
+  // {
+  //   vendor: 'PCComponentes',
+  //   hasSchema: true,
+  //   url: 'https://www.pccomponentes.com/microsoft-xbox-series-x-1tb',
+  //   checkStock: async ({ page }) => {
+  //     const content = await page.textContent('#buy-buttons-section')
+  //     return content && content.includes('Añadir al carrito') === true
+  //   }
+  // },
   // disabled for now because it's not working properly
   // {
   //   vendor: 'MediaMarkt',
@@ -70,9 +70,9 @@ const shops = [
   //     return content.includes('no está disponible') === false
   //   }
   // }
-]
+];
 
-;(async () => {
+(async () => {
   const browser = await firefox.launch()
 
   for (const shop of shops) {
