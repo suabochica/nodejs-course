@@ -10,6 +10,8 @@
   },
   "author": "Sergio L. Benítez D.",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "@extractus/article-extractor": "8.0.10"
+    "@extractus/article-extractor": "^8.0.10"
   }
+}

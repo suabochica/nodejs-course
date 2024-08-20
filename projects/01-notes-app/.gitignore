@@ -1,3 +1,4 @@
 # Ignore node modules of notes app
+.vscode
 node_modules/
 

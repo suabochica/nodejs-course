@@ -1,5 +1,5 @@
-**/.DS_Store
-.log
+public/
 
 # Ignore node modules of notes app
 node_modules/
+
