@@ -1,0 +1,54 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/assert@1.0.19": "1.0.19",
+    "jsr:@std/assert@^1.0.19": "1.0.19",
+    "jsr:@std/expect@*": "1.0.18",
+    "jsr:@std/expect@1.0.18": "1.0.18",
+    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/path@^1.1.4": "1.1.4",
+    "jsr:@std/regexp@^1.0.1": "1.0.1",
+    "jsr:@std/text@1.0.17": "1.0.17"
+  },
+  "jsr": {
+    "@std/assert@1.0.19": {
+      "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/expect@1.0.18": {
+      "integrity": "8566eab35200466f8609eb7e7aed062ed0db314e9a258d5d201b1b8997ce801a",
+      "dependencies": [
+        "jsr:@std/assert@^1.0.19",
+        "jsr:@std/internal",
+        "jsr:@std/path"
+      ]
+    },
+    "@std/internal@1.0.12": {
+      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
+    },
+    "@std/path@1.1.4": {
+      "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/regexp@1.0.1": {
+      "integrity": "5179d823465085c5480dafb44438466e83c424fadc61ba31f744050ecc0f596d"
+    },
+    "@std/text@1.0.17": {
+      "integrity": "4b2c4ef67ae5b6c1dfd447c81c83a43718f52e3c7e748d8b33f694aba9895f95",
+      "dependencies": [
+        "jsr:@std/regexp"
+      ]
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1.0.19",
+      "jsr:@std/expect@1.0.18",
+      "jsr:@std/text@1.0.17"
+    ]
+  }
+}

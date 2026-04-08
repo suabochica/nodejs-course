@@ -8,8 +8,9 @@
     "async": "first & second"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@0.177.0",
-    "@std/text": "jsr:@std/text@0.177.0"
+    "@std/assert": "jsr:@std/assert@1.0.19",
+    "@std/text": "jsr:@std/text@1.0.17",
+    "@std/expect": "jsr:@std/expect@1.0.18"
   },
   "lint": {
     "include": ["src/"],
