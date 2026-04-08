@@ -304,3 +304,40 @@ deno run cli.ts
 ```
 
 You will get an interaction with your terminal, an according the answers you will get specific flows wit color styles. This little program is all done with the standard library where we use colors, get input from prompt and more.
+
+## Foreign Function Interface (FFI)
+
+Foreign Function Interface allows JavaScript and TypeScript code to call functions in dynamic libraries written in languages like C, C++, or Rust. This enables you to integrate native code performance and capabilities directly into your Deno applications.
+
+The example we did use the `toUpperCase` function form a file in C. You can run:
+
+```sh
+deno run --allow-ffi cli.ts
+```
+
+## Compile
+
+Run
+
+```sh
+deno compile --allow-ffi -o upper cli.ts
+```
+
+This will generate a upper file that it can use to run our cli program in a native binary of the OS we will be sing:
+
+```sh
+./upper --text "deno is cool" --kebab
+```
+
+The output:
+
+```txt
+How old are you? 21
+
+ACCESS GRANTED
+
+Wait, r u sure? [y/N] y
+
+DENO IS COOL
+deno-is-cool
+```

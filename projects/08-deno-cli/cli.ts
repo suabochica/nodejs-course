@@ -2,6 +2,8 @@ import { parseArgs } from "jsr:@std/cli/parse-args";
 import { toKebabCase, toSnakeCase } from "jsr:@std/text";
 import { red, bgGreen, blue, yellow, magenta } from "jsr:@std/fmt/colors";
 
+import { toUpperCaseWithC } from "./ffi.ts";
+
 const flags = parseArgs(Deno.args, {
   boolean: ["snake", "kebab"],
   string: ["text"],
@@ -27,7 +29,9 @@ if (!shouldProceed) {
   Deno.exit();
 }
 
+const upperCased = toUpperCaseWithC(flags.text);
+
 console.log()
-console.log(yellow((flags.text.toUpperCase())))
+console.log(yellow(upperCased))
 flags.kebab && console.log(blue(toKebabCase(flags.text)))
 flags.snake && console.log(magenta(toSnakeCase(flags.text)))
