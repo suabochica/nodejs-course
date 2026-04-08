@@ -1,30 +1,13 @@
-import { route, type Route } from "@std/http/unstable-route";
-import { serveDir } from "@std/http/file-server";
+import { Router } from "./router.ts";
 
-const routes: Route[] = [
-  {
-    pattern: new URLPattern({ pathname: '/' }),
-    handler: () => new Response('Home page'),
-  },
-  {
-    pattern: new URLPattern({ pathname: '/user/:id' }),
-    handler: (req: Request, info: unknown, params: any) =>
-      new Response(params?.pathname.groups.id),
-  },
-  {
-    pattern: new URLPattern({ pathname: '/static/*' }),
-    handler: (req: Request) => serveDir(req),
-  },
-]
+const app = new Router();
 
-function defaultHandler() {
-  return new Response('Not found', { status: 404 })
-}
+app.get('/', () => new Response('Hi Mom!'))
 
-const handler = route(routes, defaultHandler)
+app.post('/health-check', () => new Response("It's ALIVE!"))
 
 export default {
   fetch(req) {
-    return handler(req)
+    return app.handler(req);
   },
-} satisfies Deno.ServeDefaultExport
+} satisfies Deno.ServeDefaultExport;

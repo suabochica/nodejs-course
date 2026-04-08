@@ -1,0 +1,17 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/http@1": "1.0.25"
+  },
+  "jsr": {
+    "@std/http@1.0.25": {
+      "integrity": "577b4252290af1097132812b339fffdd55fb0f4aeb98ff11bdbf67998aa17193"
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1",
+      "jsr:@std/http@1"
+    ]
+  }
+}
