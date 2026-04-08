@@ -270,3 +270,37 @@ summary
 ```
 
 As you can see the Quick Sort is almost 3x faster but keep in mind that this depends of the items in the array you are sorting.
+
+## Testing
+
+Run:
+
+```sh
+deno test main_test.ts 
+```
+
+The output is:
+
+```txt
+Check main_test.ts
+running 4 tests from ./main_test.ts
+multiplyTest ... ok (0ms)
+multiply test ... ok (0ms)
+mock API call ... ok (0ms)
+database lib ...
+  db exists ... ok (0ms)
+  insert user ... ok (0ms)
+database lib ... ok (0ms)
+
+ok | 4 passed (2 steps) | 0 failed (10ms)
+```
+
+## CLI
+
+Run
+
+```sh
+deno run cli.ts
+```
+
+You will get an interaction with your terminal, an according the answers you will get specific flows wit color styles. This little program is all done with the standard library where we use colors, get input from prompt and more.
