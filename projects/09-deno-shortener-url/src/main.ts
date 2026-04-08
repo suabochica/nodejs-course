@@ -1,25 +1,30 @@
-import { serveDir } from "@std/http";
+import { route, type Route } from "@std/http/unstable-route";
+import { serveDir } from "@std/http/file-server";
 
-const userPagePattern = new URLPattern({ pathname: "/users/:id" });
-const staticPathPattern = new URLPattern({ pathname: "/static/*" });
+const routes: Route[] = [
+  {
+    pattern: new URLPattern({ pathname: '/' }),
+    handler: () => new Response('Home page'),
+  },
+  {
+    pattern: new URLPattern({ pathname: '/user/:id' }),
+    handler: (req: Request, info: unknown, params: any) =>
+      new Response(params?.pathname.groups.id),
+  },
+  {
+    pattern: new URLPattern({ pathname: '/static/*' }),
+    handler: (req: Request) => serveDir(req),
+  },
+]
+
+function defaultHandler() {
+  return new Response('Not found', { status: 404 })
+}
+
+const handler = route(routes, defaultHandler)
 
 export default {
   fetch(req) {
-    const url = new URL(req.url);
-
-    if (url.pathname === "/") {
-      return new Response("Home page");
-    }
-
-    const userPageMatch = userPagePattern.exec(url);
-    if (userPageMatch) {
-      return new Response(userPageMatch.pathname.groups.id);
-    }
-
-    if (staticPathPattern.test(url)) {
-      return serveDir(req);
-    }
-
-    return new Response("Not found", { status: 404 });
+    return handler(req)
   },
-} satisfies Deno.ServeDefaultExport;
+} satisfies Deno.ServeDefaultExport
