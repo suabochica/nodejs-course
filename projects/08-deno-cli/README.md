@@ -341,3 +341,23 @@ Wait, r u sure? [y/N] y
 DENO IS COOL
 deno-is-cool
 ```
+
+## Workers
+
+Web Workers are a simple means for web content to run scripts in background threads. The worker thread can perform tasks without interfering with the user interface. In addition, they can make network requests using the fetch() or XMLHttpRequest APIs. Once created, a worker can send messages to the JavaScript code that created it by posting messages to an event handler specified by that code (and vice versa).
+
+When you run 
+
+```sh
+deno run -A main.ts
+```
+
+the program calculate the fibonacci of the numbers in the array in worker threads. The output is:
+
+```txt
+Main Thread (n=10): 55
+Main Thread (n=15): 610
+Main Thread (n=20): 6765
+Main Thread (n=10): 55
+Main Thread (n=15): 610
+```
