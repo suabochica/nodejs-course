@@ -1,10 +1,14 @@
 {
   "tasks": {
-    "dev": "deno serve --watch -A src/main.ts",
+    "dev": "deno serve --watch -A --unstable-kv src/main.ts",
     "test": "deno test tests/"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/http": "jsr:@std/http@1"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:preact"
   }
 }

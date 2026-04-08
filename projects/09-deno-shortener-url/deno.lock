@@ -3,7 +3,8 @@
   "specifiers": {
     "jsr:@std/crypto@*": "1.0.5",
     "jsr:@std/encoding@*": "1.0.10",
-    "jsr:@std/http@1": "1.0.25"
+    "jsr:@std/http@1": "1.0.25",
+    "npm:preact-render-to-string@*": "6.6.7_preact@10.29.1"
   },
   "jsr": {
     "@std/crypto@1.0.5": {
@@ -16,10 +17,30 @@
       "integrity": "577b4252290af1097132812b339fffdd55fb0f4aeb98ff11bdbf67998aa17193"
     }
   },
+  "npm": {
+    "preact-render-to-string@6.6.7_preact@10.29.1": {
+      "integrity": "sha512-3XdbsX3+vn9dQW+jJI/FsI9rlkgl6dbeUpqLsChak6jp3j3auFqBCkno7VChbMFs5Q8ylBj6DrUkKRwtVN3nvw==",
+      "dependencies": [
+        "preact"
+      ]
+    },
+    "preact@10.29.1": {
+      "integrity": "sha512-gQCLc/vWroE8lIpleXtdJhTFDogTdZG9AjMUpVkDf2iTCNwYNWA+u16dL41TqUDJO4gm2IgrcMv3uTpjd4Pwmg=="
+    }
+  },
+  "redirects": {
+    "https://esm.sh/preact/jsx-runtime": "https://esm.sh/preact@10.29.1/jsx-runtime"
+  },
+  "remote": {
+    "https://esm.sh/preact@10.29.1/denonext/jsx-runtime.mjs": "64a51d80aa801a27876bf40beb523b83f10bbe1369cf733b67ab56b50065aa26",
+    "https://esm.sh/preact@10.29.1/denonext/preact.mjs": "912a81248f80523f51f78f36be98a2f6c1d643dadc3e6df2ddb200eadef2dcad",
+    "https://esm.sh/preact@10.29.1/jsx-runtime": "7082e6b9a2432df52c1c2a9f7adfeb968ae5dc0fd7a334b97465732390617a69"
+  },
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@1",
-      "jsr:@std/http@1"
+      "jsr:@std/http@1",
+      "npm:preact@*"
     ]
   }
 }
