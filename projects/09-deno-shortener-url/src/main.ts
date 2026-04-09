@@ -3,8 +3,8 @@ import { serveDir } from "@std/http";
 import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
 import { Router } from "./router.ts";
-// import { generateShortCode, storeShortLink, getShortLink } from "./db.ts";
-import { HomePage } from "./ui.tsx";
+import { generateShortCode, storeShortLink, getUserLinks } from "./db.ts";
+import { HomePage, UnauthorizedPage, CreateShortlinkPage, LinksPage } from "./ui.tsx";
 import { handleGithubCallback } from "./auth.ts";
 
 const app = new Router();
@@ -20,6 +20,15 @@ const {
 app.get("/oauth/signin", (req: Request) => signIn(req));
 app.get("/oauth/signout", signOut);
 app.get("/oauth/callback", handleGithubCallback);
+
+function unauthorizedResponse() {
+  return new Response(render(UnauthorizedPage()), {
+    status: 401,
+    headers: {
+      "content-type": "text/html",
+    },
+  });
+}
 
 app.get("/", () => {
   return new Response(
@@ -60,6 +69,55 @@ app.post('/health-check', () => new Response("It's ALIVE!"))
 //   });
 
 // })
+
+app.get("/links/new", (_req) => {
+  if (!app.currentUser) return unauthorizedResponse();
+
+  return new Response(render(CreateShortlinkPage()), {
+    status: 200,
+    headers: {
+      "content-type": "text/html",
+    },
+  });
+});
+
+
+app.post("/links", async (req) => {
+  if (!app.currentUser) return unauthorizedResponse();
+
+  // Parse form data
+  const formData = await req.formData();
+  const longUrl = formData.get("longUrl") as string;
+
+  if (!longUrl) {
+    return new Response("Missing longUrl", { status: 400 });
+  }
+
+  const shortCode = await generateShortCode(longUrl);
+  await storeShortLink(longUrl, shortCode, app.currentUser.login);
+
+  // Redirect to the links list page after successful creation
+  return new Response(null, {
+    status: 303,
+    headers: {
+      "Location": "/links",
+    },
+  });
+});
+
+app.get("/links", async () => {
+  if (!app.currentUser) return unauthorizedResponse();
+
+  const shortLinks = await getUserLinks(app.currentUser.login);
+
+  return new Response(render(LinksPage({ shortLinkList: shortLinks })), {
+    status: 200,
+    headers: {
+      "content-type": "text/html",
+    },
+  });
+});
+
 // Static Assets
 app.get("/static/*", (req) => serveDir(req));
 

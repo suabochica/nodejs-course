@@ -79,6 +79,17 @@ export async function getShortLink(shortCode: string) {
   return link.value
 }
 
+export async function getUserLinks(userId: string) {
+  const list = kv.list<string>({ prefix: [userId] });
+  const res = await Array.fromAsync(list);
+  const userShortLinkKeys = res.map((v) => ["shortlinks", v.value]);
+
+  const userRes = await kv.getMany<ShortLink[]>(userShortLinkKeys);
+  const userShortLinks = await Array.fromAsync(userRes);
+
+  return userShortLinks.map((v) => v.value);
+}
+
 // Temporary example
 // deno run -A --unstable-kv src/db.ts
 
