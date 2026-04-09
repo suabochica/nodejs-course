@@ -17,6 +17,14 @@ export type GitHubUser = {
     html_url: string;
 };
 
+export type ClickAnalytics = {
+  shortUrl: string;
+  createdAt: number;
+  ipAddress: string;
+  userAgent: string;
+  country?: string;
+};
+
 export async function storeUser(sessionId: string, userData: GitHubUser) {
     const key = ["sessions", sessionId];
     const res = await kv.set(key, userData);
@@ -58,19 +66,18 @@ export async function storeShortLink(
   const data: ShortLink = {
     shortCode,
     longUrl,
-    createdAt: Date.now(),
     userId,
+    createdAt: Date.now(),
     clickCount: 0,
   };
 
-  const res = await kv.set(shortLinkKey, data);
+  const userKey = [userId, shortCode];
+  const res = await kv.atomic()
+    .set(shortLinkKey, data)
+    .set(userKey, shortCode)
+    .commit();
 
-  if (!res.ok) {
-    // Handle error, e.g., log it or throw an exception
-    throw new Error(`Failed to store short link;`)
-  }
-
-  return res
+  return res;
 }
 
 export async function getShortLink(shortCode: string) {
@@ -90,17 +97,38 @@ export async function getUserLinks(userId: string) {
   return userShortLinks.map((v) => v.value);
 }
 
-// Temporary example
-// deno run -A --unstable-kv src/db.ts
+export async function incrementClickCount(
+  shortCode: string,
+  data?: Partial<ClickAnalytics>,
+) {
+  const shortLinkKey = ["shortlinks", shortCode];
+  const shortLink = await kv.get(shortLinkKey);
+  const shortLinkData = shortLink.value as ShortLink;
 
-const longUrl = "https://fireship.io";
-const shortCode = await generateShortCode(longUrl)
-const userId = "test-user";
+  const newClickCount = shortLinkData?.clickCount + 1;
 
-console.log(shortCode)
+  const analyicsKey = ["analytics", shortCode, newClickCount];
+  const analyticsData = {
+    shortCode,
+    createdAt: Date.now(),
+    ...data,
+    // ipAddress: "192.168.1.1",
+    // userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    // country: "United States"
+  };
 
-await storeShortLink(longUrl, shortCode, userId);
+  const res = await kv.atomic()
+    .check(shortLink)
+    .set(shortLinkKey, {
+      ...shortLinkData,
+      clickCount: newClickCount,
+    })
+    .set(analyicsKey, analyticsData)
+    .commit();
 
-const linkData = await getShortLink(shortCode);
+  if (!res.ok) {
+    console.error("Error recording click!");
+  }
 
-console.log(linkData)
+  return res;
+}
