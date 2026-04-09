@@ -26,7 +26,8 @@
     "jsr:@std/path@^1.1.4": "1.1.4",
     "jsr:@std/streams@0.221": "0.221.0",
     "jsr:@std/streams@^1.0.17": "1.0.17",
-    "npm:preact-render-to-string@*": "6.6.7_preact@10.29.1"
+    "npm:preact-render-to-string@*": "6.6.7_preact@10.29.1",
+    "npm:preact@*": "10.29.1"
   },
   "jsr": {
     "@deno/kv-oauth@0.11.0": {

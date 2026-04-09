@@ -1,10 +1,18 @@
 /** @jsxImportSource https://esm.sh/preact */
 
+import type { GitHubUser, ShortLink } from './db.ts'
 import type { ComponentChildren } from 'npm:preact'
 
-const BASE_URL = Deno.env.get("DENO_ENV") === "dev"
-  ? "http://localhost:8000"
-  : "https://link.fireship.app";
+interface PageProps {
+  user?: GitHubUser
+  shortLink?: ShortLink | null
+  shortLinkList?: (ShortLink | null)[]
+}
+
+const BASE_URL =
+  Deno.env.get('DENO_ENV') === 'dev'
+    ? 'http://localhost:8000'
+    : 'https://link.fireship.app'
 
 export function Layout({ children }: { children: ComponentChildren }) {
   return (
@@ -88,8 +96,7 @@ export function Layout({ children }: { children: ComponentChildren }) {
   )
 }
 
-// @ts-expect-error - This is a Preact component, but we're using it in a Deno environment without JSX support
-export function HomePage({ user }) {
+export function HomePage({ user }: PageProps) {
   return (
     <Layout>
       <div className="hero min-h-[500px] bg-base-200 rounded-box">
@@ -134,7 +141,7 @@ export function HomePage({ user }) {
   )
 }
 
-export function LinksPage({ shortLinkList }) {
+export function LinksPage({ shortLinkList }: PageProps) {
   return (
     <Layout>
       <div className="card bg-base-100 shadow-xl">
@@ -192,26 +199,33 @@ export function LinksPage({ shortLinkList }) {
 export function CreateShortlinkPage() {
   return (
     <Layout>
-      <h2>Create a New Shortlink</h2>
-      <form action="/links" method="POST">
-        <div>
-          <label>
-            <span>Long URL</span>
-          </label>
-          <input
-            type="url"
-            name="longUrl"
-            required
-            placeholder="https://example.com/your-long-url"
-          />
+      <div className="card bg-base-100 shadow-xl max-w-2xl mx-auto">
+        <div className="card-body">
+          <h2 className="card-title text-2xl mb-6">Create a New Shortlink</h2>
+          <form action="/links" method="POST" className="space-y-6">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Long URL</span>
+              </label>
+              <input
+                type="url"
+                name="longUrl"
+                required
+                placeholder="https://example.com/your-long-url"
+                className="input input-bordered w-full"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-full">
+              Create Shortlink
+            </button>
+          </form>
         </div>
-        <button type="submit">Create Shortlink</button>
-      </form>
+      </div>
     </Layout>
   )
 }
 
-export function ShortlinkViewPage({ shortLink }) {
+export function ShortlinkViewPage({ shortLink }: PageProps) {
   return (
     <Layout>
       <div className="space-y-8">
