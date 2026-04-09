@@ -1,7 +1,11 @@
 {
   "tasks": {
     "dev": "deno serve --watch --unstable-kv --env -A src/main.ts",
-    "test": "deno test tests/"
+    "test": "deno test tests/",
+    "deploy": "deployctl deploy --project YOUR_PROJECT"
+  },
+  "deploy": {
+    "entrypoint": "src/main.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
