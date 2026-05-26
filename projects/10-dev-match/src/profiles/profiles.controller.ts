@@ -36,5 +36,7 @@ export class ProfilesController {
   // DELETE /profiles/:id
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: string) {}
+  remove(@Param('id') id: string) {
+    return this.profilesService.remove(id);
+  }
 }

@@ -54,4 +54,12 @@ export class ProfilesService {
 
     return matchingProfile;
   }
+
+  remove(id: string): void {
+    const profileIndex = this.profiles.findIndex((profile) => profile.id === id);
+
+    if (profileIndex !== -1) {
+      this.profiles.splice(profileIndex, 1);
+    }
+  }
 }
