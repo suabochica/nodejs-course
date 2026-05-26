@@ -38,6 +38,7 @@ export class ProfilesService {
     return matchingProfile;
   }
 
+  // bash post.sh
   create(createProfileDto: CreateProfileDto) {
     const newProfile = {
       id: randomUUID(),
@@ -48,11 +49,12 @@ export class ProfilesService {
     return newProfile;
   }
 
+  // bash put.sh
   update(id: string, updateProfileDto: UpdateProfileDto) {
     const matchingProfile = this.profiles.find((profile) => profile.id === id);
 
     if (!matchingProfile) {
-      return {};
+      throw new NotFoundException(`Profile with id ${id} not found`);
     }
 
     matchingProfile.name = updateProfileDto.name;
@@ -61,11 +63,16 @@ export class ProfilesService {
     return matchingProfile;
   }
 
+  // bash delete.sh
   remove(id: string): void {
-    const profileIndex = this.profiles.findIndex((profile) => profile.id === id);
+    const profileIndex = this.profiles.findIndex(
+      (profile) => profile.id === id,
+    );
 
     if (profileIndex !== -1) {
-      this.profiles.splice(profileIndex, 1);
+      throw new NotFoundException(`Profile with id ${id} not found`);
     }
+
+    this.profiles.splice(profileIndex, 1);
   }
 }
