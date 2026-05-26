@@ -1,2 +1,7 @@
 packages:
-- 'projects/*'
+  - 'projects/*'
+allowBuilds:
+  '@nestjs/core': true
+  nodemon: true
+  sharp: true
+  unrs-resolver: true
