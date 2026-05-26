@@ -3,12 +3,16 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, 
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
+import { ProfilesService } from './profiles.service';
+
 @Controller('profiles')
 export class ProfilesController {
+  constructor(private profilesService: ProfilesService) {}
+
   // GET /profiles
   @Get()
-  findAll(@Query('age') age: number) {
-    return [{ age }];
+  findAll() {
+    return this.profilesService.findAll();
   }
 
   // GET /profiles/:id
