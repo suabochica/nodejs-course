@@ -9,6 +9,7 @@ import {
   Post,
   Put,
   ParseUUIDPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import type { UUID } from 'crypto';
 
@@ -48,7 +49,7 @@ export class ProfilesController {
 
   // POST /profiles
   @Post()
-  create(@Body() createProfileDto: CreateProfileDto) {
+  create(@Body(new ValidationPipe()) createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);
   }
 
@@ -56,7 +57,7 @@ export class ProfilesController {
   @Put(':id')
   update(
     @Param('id', ParseUUIDPipe) id: UUID,
-    @Body() updateProfileDto: UpdateProfileDto,
+    @Body(new ValidationPipe()) updateProfileDto: UpdateProfileDto,
   ) {
     return this.profilesService.update(id, updateProfileDto);
   }
