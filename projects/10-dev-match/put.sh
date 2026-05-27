@@ -1,4 +1,4 @@
-curl -X PUT -i http://localhost:3000/profiles/bb8e958e-9f6a-49f5-a865-38f3fd5a89a3 \
+curl -X PUT -i http://localhost:3000/profiles/bcbe25f6-154f-4de6-b894-691a80fed875 \
 	-H "Content-Type: application/json" \
 	-d '{
 	"name": "Cobra Kai",
