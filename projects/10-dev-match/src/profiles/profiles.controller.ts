@@ -19,6 +19,19 @@ export class ProfilesController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.profilesService.findOne(id);
+
+    /** Handle exceptions with try/catch to categorize errors.
+    try {
+      return this.profilesService.findOne(id);
+    } catch (error) {
+      if (error instanceof DatabaseException) {
+        // Handle the case where the profile is not found
+        throw new NotFoundException(`Profile with id ${id} not found`); 
+      }
+      // Handle other types of errors if necessary
+      throw error;
+    }
+    */
   }
 
   // POST /profiles

@@ -33,6 +33,7 @@ export class ProfilesService {
 
     if (!matchingProfile) {
       throw new NotFoundException(`Profile with id ${id} not found`);
+      /** throw new Error() */
     }
 
     return matchingProfile;
