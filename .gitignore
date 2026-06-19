@@ -1,5 +1,7 @@
 **/.DS_Store
-.log
+*.log
 
 # Ignore node modules of notes app
 node_modules/
+.next/
+prisma/dev.db

@@ -2,6 +2,11 @@ packages:
   - 'projects/*'
 allowBuilds:
   '@nestjs/core': true
+  '@prisma/client': true
+  '@prisma/engines': true
+  bcrypt: true
+  esbuild: true
   nodemon: true
+  prisma: true
   sharp: true
   unrs-resolver: true
